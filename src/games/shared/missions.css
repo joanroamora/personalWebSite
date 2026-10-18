@@ -1,0 +1,20 @@
+.arcade-window[data-guided="true"] .arcade-footer{bottom:env(safe-area-inset-bottom,0px)}
+.arcade-window[data-guided="true"] .arcade-footer button{min-height:44px;min-width:44px}
+.arcade-window[data-guided="true"] .arcade-controls{bottom:max(3rem,calc(env(safe-area-inset-bottom) + 3rem))}
+/* A short desktop window remains the same external 9:16 dialog as Cadete Roa.
+   Compact its internals instead of forcing fullscreen or a device orientation. */
+@media(max-height:500px) and (min-width:500px) and (pointer:fine){
+ .arcade-window[data-guided="true"] .arcade-topbar{inset:.35rem .4rem auto}.arcade-window[data-guided="true"] .arcade-mark{font-size:.38rem}
+ .arcade-window[data-guided="true"] .arcade-screen-body{display:block;max-width:none}.arcade-window[data-guided="true"] .arcade-overlay{padding:3.8rem .6rem 2.6rem}.arcade-window[data-guided="true"] .arcade-title{font-size:2rem;margin:.5rem 0}.arcade-window[data-guided="true"] .arcade-description{font-size:.7rem}
+ .arcade-window[data-guided="true"] .arcade-hud{inset:3.3rem .4rem auto;width:auto}.arcade-window[data-guided="true"] .arcade-stats{gap:.25rem}
+ .arcade-window[data-guided="true"] .arcade-controls{inset:auto .4rem 3rem;width:auto;display:grid;gap:.25rem;grid-template-columns:repeat(3,minmax(0,1fr));align-content:normal}
+ .arcade-window[data-guided="true"] .arcade-controls button{min-width:44px;min-height:44px;font-size:.49rem;padding:.15rem}
+ .arcade-window[data-layout="management"] .arcade-hud{inset:3.3rem .4rem auto;width:auto}.ops-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;font-size:.42rem}.ops-stats strong{font-size:.65rem;margin-top:.1rem}.ops-notice{font-size:.47rem;margin-top:.25rem;min-height:0;max-height:2.9em}
+ .arcade-window[data-layout="management"] .arcade-playfield{inset:8.8rem .35rem 10.3rem}.arcade-window[data-layout="management"] .arcade-controls{grid-template-columns:1fr 1fr}.ops-selection{font-size:.49rem;line-height:1.2}
+ .arcade-window.theme-packet-runner .arcade-playfield{inset:8rem .35rem 10.3rem}.arcade-window.theme-packet-runner .packet-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;font-size:.42rem}.arcade-window.theme-packet-runner .packet-stats strong{font-size:.7rem;margin-top:.1rem}.arcade-window.theme-packet-runner .packet-meta{flex-direction:row;flex-wrap:wrap;gap:.1rem;margin-top:.2rem;font-size:.42rem}.arcade-window.theme-packet-runner .packet-meta meter{width:1.2rem}.arcade-window.theme-packet-runner .packet-notice{font-size:.46rem;margin-top:.2rem;max-height:2.9em;overflow:hidden}
+ .arcade-window.theme-packet-runner .arcade-dpad,.arcade-window.theme-packet-runner .packet-actions{display:contents}.arcade-window.theme-packet-runner .packet-actions p,.arcade-window.theme-packet-runner .packet-actions>span{display:none}.arcade-window.theme-packet-runner .packet-actions button{margin:0;grid-column:2/4}
+ .arcade-window.theme-packet-runner .arcade-dpad button{grid-area:auto}
+ .arcade-window.theme-packet-runner .arcade-dpad button:nth-child(1){grid-area:1/2}.arcade-window.theme-packet-runner .arcade-dpad button:nth-child(2){grid-area:1/1}.arcade-window.theme-packet-runner .arcade-dpad button:nth-child(3){grid-area:1/3}.arcade-window.theme-packet-runner .arcade-dpad button:nth-child(4){grid-area:2/1}
+ .arcade-window.theme-orbital-rescue .arcade-playfield{inset:8.7rem .35rem 10.3rem}.arcade-window.theme-orbital-rescue .rescue-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;font-size:.4rem}.arcade-window.theme-orbital-rescue .rescue-stats strong{font-size:.65rem;margin-top:.1rem}.arcade-window.theme-orbital-rescue .rescue-target,.arcade-window.theme-orbital-rescue .rescue-notice{font-size:.45rem;line-height:1.35;margin-top:.2rem;max-height:2.7em;overflow:hidden}
+ .arcade-window.theme-orbital-rescue .rescue-flight-controls,.arcade-window.theme-orbital-rescue .rescue-context-controls{display:contents}
+}

@@ -1,0 +1,29 @@
+---
+interface Props{symbol:string}
+const {symbol}=Astro.props;
+---
+<svg viewBox="0 0 600 360" fill="none" preserveAspectRatio="xMidYMid slice">
+ {symbol==='grid'?<>
+  <path fill="#143239" d="M0 0h600v360H0z"/><path d="M178 76h113v44h65l22 30 55 20-9 56-48 12-23 43-36 5-39-56-45-10-36-35-56-12 6-34h31z" fill="#245047" stroke="#8fc4a2" stroke-width="2"/>
+  <path d="M90 94h96m-48 0v91h142m0 0h150m-150 0v98M138 185v95m292-95v95" stroke="#b9ddb1" stroke-width="5"/>
+  <path d="M90 65h85v58H90zM247 157h66v58h-66z" fill="#1b4147" stroke="#e9d195" stroke-width="3"/><path fill="#edcc88" d="m276 166-11 23h12l-3 17 18-26h-13l8-14z"/>
+  {[{x:138,y:280,t:'⌂'},{x:280,y:283,t:'▥'},{x:430,y:280,t:'+'},{x:430,y:94,t:'⚙'}].map(({x,y,t})=><g><rect x={x-31} y={y-24} width="62" height="48" rx="5" fill="#1d4547" stroke="#b0dbc1" stroke-width="2"/><text x={x} y={y+8} fill="#ecf0ce" text-anchor="middle" font-size="25" font-family="monospace">{t}</text></g>)}
+  <text x="132" y="103" fill="#edf1d3" text-anchor="middle" font-family="monospace" font-size="15">GAS</text><text x="44" y="36" fill="#b5d6bd" font-family="monospace" font-size="11">FREQUENCY / KEEP IT STEADY</text>
+ </>:symbol==='deploy'?<>
+  <path fill="#19273c" d="M0 0h600v360H0z"/><path d="M65 90h470v29H65z" fill="#31536c" stroke="#a0d4e4" stroke-width="2"/><path d="M300 119v33M120 152h360m-360 0v35m120-35v35m120-35v35m120-35v35M120 248v27h360v-27m-180 27v17" stroke="#91c5cf" stroke-width="3"/>
+  {[120,240,360,480].map((x,i)=><g><rect x={x-37} y="187" width="74" height="61" rx="5" fill="#284556" stroke={i===2?'#f2c58c':'#9fd5d0'} stroke-width="2"/>{[202,215,228].map(y=><path d={`M${x-24} ${y}h31`} stroke="#c7e4d6" stroke-width="3"/>)}<circle cx={x+21} cy="204" r="4" fill={i===2?'#ffcc8b':'#ade1bc'}/></g>)}
+  <path d="M246 294h108v35H246z" fill="#304b68" stroke="#b6d4e2" stroke-width="2"/><ellipse cx="300" cy="294" rx="54" ry="11" fill="#4c6b81" stroke="#b6d4e2" stroke-width="2"/><text x="300" y="111" fill="#e8f1ed" text-anchor="middle" font-family="monospace" font-size="15">LOAD BALANCER</text><text x="37" y="37" fill="#b7d8e2" font-family="monospace" font-size="11">SHIP / OBSERVE / ROLLBACK</text>
+ </>:symbol==='packet'?<>
+  <path fill="#0b2634" d="M0 0h600v360H0z"/><path d="M70 92h116v85h111V92h110v85h115M70 177v99h227v-99m0 99h110V177m115 0v99H407M186 92v-28h221" stroke="#557e91" stroke-width="9"/>
+  <path d="M186 177h111v99" stroke="#ebc289" stroke-width="7" stroke-dasharray="10 7"/>
+  {[70,186,297,407,522].map(x=><g>{[92,177,276].map(y=><rect x={x-5} y={y-5} width="10" height="10" fill="#a1c9ce"/>)}</g>)}
+  <rect x="155" y="155" width="56" height="42" rx="2" fill="#ebf6e8" stroke="#142e43" stroke-width="3"/><path d="m157 157 26 21 26-21" stroke="#214255" stroke-width="3"/>
+  <path d="m407 243 31 33-31 33-31-33z" fill="#a0ebc9"/><text x="407" y="282" fill="#143747" text-anchor="middle" font-size="16" font-family="monospace">B2</text><path d="m297 62 18 30-18 30-18-30z" fill="#f2a4aa"/><circle cx="70" cy="276" r="19" stroke="#d9b9fa" stroke-width="4"/><circle cx="522" cy="92" r="19" stroke="#d9b9fa" stroke-width="4"/><text x="36" y="36" fill="#afdacb" font-family="monospace" font-size="11">CHOOSE A PATH / DELIVER THE SIGNAL</text>
+ </>:<>
+  <path fill="#0d1c30" d="M0 0h600v360H0z"/>{Array.from({length:45},(_,i)=><circle cx={(i*137)%590+5} cy={(i*i*31)%350+5} r={i%4===0?1.5:.8} fill="#b8cdda" opacity={i%3===0?.8:.3}/>)}
+  <circle cx="492" cy="210" r="82" fill="#354d67" stroke="#829bb4" stroke-width="2"/><circle cx="465" cy="184" r="18" fill="#253e56"/><circle cx="522" cy="229" r="12" fill="#253e56"/><circle cx="492" cy="210" r="110" stroke="#4a6684" stroke-dasharray="4 8"/>
+  <path d="M77 232h38v30H77zM165 232h38v30h-38z" fill="#386b80" stroke="#93cbd3" stroke-width="2"/><path d="M119 225h42v43h-42z" fill="#d8e8d8"/><path d="M132 234h16v21h-16z" fill="#527a91"/>
+  <g transform="translate(285 151) rotate(30)"><path d="m0-31 24 50L0 8l-24 11z" fill="#dcece3" stroke="#8fd5d3" stroke-width="3"/><path fill="#507998" d="M-5-12H5V4H-5z"/><path fill="#f4cf8c" d="m-5 14 5 25 5-25z"/></g>
+  {[{x:170,y:105},{x:352,y:264}].map(({x,y})=><g><circle cx={x} cy={y} r="24" stroke="#e9d199" stroke-width="2"/><circle cx={x} cy={y-6} r="6" fill="#e5ecdb"/><path d={`M${x} ${y}v14m-8-9h16m-8 9-6 8m6-8 6 8`} stroke="#e5ecdb" stroke-width="3"/></g>)}<text x="36" y="36" fill="#c5dfd6" font-family="monospace" font-size="11">FOLLOW THE BEACON / BRING THEM HOME</text>
+ </>}
+</svg>

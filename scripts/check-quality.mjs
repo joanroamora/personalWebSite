@@ -106,7 +106,7 @@ export async function checkQuality({ directory, config = siteConfig }) {
         else await visitImports(script.body, url);
       }
       const css = await Promise.all(page.stylesheets.map(href => asset(new URL(href, url))));
-      const isGame = /^juegos\/(cadete-roa|galactian|rail-crane|torque-trail)\/$/.test(context.path);
+      const isGame = /^juegos\/(cadete-roa|galactian|rail-crane|torque-trail|blackout-texas|deploy-or-die|packet-runner|orbital-rescue)\/$/.test(context.path);
       const metrics = {
         html: gzipSync(html).length,
         javascript: [...modules.values(), ...page.scripts.filter(script => !script.src).map(script => script.body)].reduce((total, code) => total + gzipSync(code).length, 0),
@@ -121,7 +121,7 @@ export async function checkQuality({ directory, config = siteConfig }) {
   }
   if (!pages.length) problems.push('No se encontraron páginas HTML para auditar.');
   const home = pages.find(page => page.path === 'index.html');
-  for (const id of ['cadete-roa','galactian','rail-crane','torque-trail']) {
+  for (const id of ['cadete-roa','galactian','rail-crane','torque-trail','blackout-texas','deploy-or-die','packet-runner','orbital-rescue']) {
     const game = pages.find(page => page.path === `juegos/${id}/index.html`);
     if (!home || !game) continue;
     const gameRoots = game.scriptRoots.filter(url => !home.modules.includes(url));

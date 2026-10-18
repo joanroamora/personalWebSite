@@ -1,0 +1,39 @@
+---
+import ArcadeWindow from '../shared/ArcadeWindow.astro';
+import '../shared/operations.css';
+import '../shared/missions.css';
+import {solarForecast} from './model';
+const desktop=['Start Gas first: warm-up takes 8 seconds, then output ramps at 5 MW/s.','Select Gas or a district. Use −10 / +10 MW or the assignment slider. Hospital has first priority.','Auto Balance respects demand and line capacity. It does not start plants or repair faults.','Choose Charge, Hold or Discharge. One real second represents one grid minute. Watch forecasts; select a fault and Dispatch Crew.'];
+const mobile=['Tap Start Gas. Select a plant or a district card; scroll the control-room map if needed.','Use the large −10 / +10 MW buttons or the assignment slider. Keep Hospital supplied.','Tap Charge for surplus power, Hold to save energy, or Discharge to cover a shortfall.','Warnings arrive before events. Select a faulty gas plant or district and Dispatch Crew. Auto Balance cannot repair it.'];
+const districts=[['Residential','⌂'],['Downtown','▥'],['Industrial','⚙'],['Hospital','+']];
+const curve=Array.from({length:31},(_,i)=>`${10+i*9},${53-solarForecast(i*6)/72*43}`).join(' ');
+---
+<ArcadeWindow id="blackout-texas" title="Blackout Texas" mark="BT / GRID CONTROL" tagline="Keep the lights. Keep your nerve." description="A fictional Texas grid. Three minutes of rising demand, shifting renewables and decisions that keep four districts alive." desktop={desktop} mobile={mobile} fullscreen={false} guided layout="management" manual="Grid handbook">
+ <div slot="hud"><div class="ops-stats"><span>TIME REMAINING<strong data-grid-time>3:00</strong></span><span>GENERATION<strong data-grid-generation>0 MW</strong></span><span>DEMAND<strong data-grid-demand>216 MW</strong></span><span>BATTERY<strong data-grid-battery>60 MWh</strong></span><span>GRID STABILITY<strong data-grid-stability>100%</strong></span><span>SCORE<strong data-grid-score>0</strong></span></div><p class="ops-notice" data-grid-notice></p></div>
+ <div slot="board" class="ops-board" aria-label="Texas grid control map">
+  <div class="ops-panel"><div class="ops-row"><h3>GENERATION / SELECT A PLANT</h3><span class="ops-caption" data-grid-day>DAY 01</span></div>
+   <div class="grid-plants"><button type="button" data-action="select--1" aria-pressed="true"><strong>▤ Gas</strong><small data-grid-gas>Offline</small></button><button type="button" data-action="select--2" aria-pressed="false"><strong>☀ Solar</strong><small data-grid-solar>0 MW</small></button><button type="button" data-action="select--3" aria-pressed="false"><strong>≋ Wind</strong><small data-grid-wind>0 MW</small></button></div>
+   <button type="button" class="grid-start" data-action="start-gas">Start Gas / 8s warm-up</button>
+   <svg viewBox="0 0 300 64" role="img" aria-label="Solar generation forecast over the shift"><path d="M10 54H290" stroke="#587e88"/><polyline points={curve} fill="none" stroke="#ffcf83" stroke-width="2"/><circle data-grid-sun cx="10" cy="42" r="4" fill="#f4e9bb"/><text x="10" y="63" fill="#d6e5db" font-size="8">SOLAR FORECAST / EVENING FALLS AT THE RIGHT</text></svg>
+  </div>
+  <div class="ops-flow" aria-hidden="true"></div>
+  <div class="ops-panel ops-battery"><div class="ops-row"><h3>▰ CENTRAL BATTERY</h3><span data-grid-storage>60 / 100 MWh</span></div><meter data-grid-energy aria-label="Battery stored energy" min="0" max="100" value="60">60%</meter><p class="ops-caption" data-grid-flow>Hold / 0 MW</p><div class="ops-button-row">{['Charge','Hold','Discharge'].map(mode=><button type="button" data-action={mode} aria-pressed={mode==='Hold'?'true':'false'}>{mode}</button>)}</div></div>
+  <div class="ops-flow" aria-hidden="true"></div>
+  <svg class="grid-map" viewBox="0 0 340 170" role="img" aria-label="Live network: gas, solar and wind supply the central battery and four districts. District cards below adjust assignments.">
+   <path d="M90 8H153V39H240L266 68 289 89 262 130 237 148 210 139 185 160 156 131 149 99 113 111 90 88 60 69 82 49Z" fill="#1b4145" stroke="#41656a"/>
+   <g fill="none" stroke="#a9d5b2" stroke-width="2"><path d="M55 27V45H170V68M170 27V68M285 27V45H170"/><path d="M170 88V106H43V123M170 106H128V123M170 106H213V123M170 106H298V123"/></g>
+   <g fill="#d5e8df" font-size="9" text-anchor="middle" font-family="monospace"><text x="55" y="22">▤ GAS</text><text x="170" y="22">☀ SOLAR</text><text x="285" y="22">≋ WIND</text><rect x="124" y="64" width="92" height="24" rx="5" fill="#122b35" stroke="#a9d5b2"/><text x="170" y="79">▰ BATTERY</text></g>
+   {districts.map(([name,icon],i)=><g><path data-grid-map-line={i} d={`M${43+i*85} 106V123`} fill="none" stroke="#bde4a1" stroke-width="3"/><rect x={3+i*85} y="123" width="80" height="43" rx="5" fill="#122b35" stroke="#69948c"/><text x={43+i*85} y="137" text-anchor="middle" fill="#f1ecce" font-size="8">{icon} {name}</text><text data-grid-map-value={i} x={43+i*85} y="152" text-anchor="middle" fill="#dbeddf" font-size="8">0 / 0 MW</text></g>)}
+  </svg>
+  <div class="ops-grid">{districts.map(([name,icon],index)=><button type="button" data-action={`select-${index}`} aria-pressed="false"><strong>{icon} {name}</strong><small data-grid-district={index}>Demand — / Received — MW</small><span class="ops-link" data-grid-line={index}>✓ Connected</span><small data-grid-satisfaction={index}>Service 100%</small></button>)}</div>
+  <label class="ops-panel ops-slider">Selected assignment / MW<input type="range" min="0" max="260" step="1" value="190" data-control="assignment" aria-label="Selected plant output or district power assignment"/></label>
+  <div class="ops-panel"><p data-grid-crew>Crew available / Repair takes 7 seconds</p><p data-grid-curtailment>Surplus 0 MW / safely curtailed</p><p class="ops-caption">Fictional arcade grid · MW = power · MWh = stored energy · 1s = 1 grid minute</p></div>
+ </div>
+ <Fragment slot="controls"><p class="ops-selection" data-grid-selection>GAS / Target 190 MW</p><button type="button" data-action="decrease">−10 MW</button><button type="button" data-action="increase">+10 MW</button><button type="button" data-action="auto">Auto Balance</button><button type="button" data-action="repair" disabled>Dispatch Crew</button></Fragment>
+</ArcadeWindow>
+<script>import './game';</script>
+<style is:global>
+ .theme-blackout-texas{--game-bg:#10262d;--game-accent:#bde4a1}.theme-blackout-texas .arcade-overlay{background:linear-gradient(160deg,#0e292af2,#172b27eb)}
+ .theme-blackout-texas .arcade-title{font-size:clamp(2.8rem,8vh,4rem)}.grid-plants{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem}.grid-plants button{padding:.45rem}.grid-plants button[aria-pressed="true"]{padding:calc(.45rem - 1px)}
+ .ops-board .grid-start{width:100%;text-align:center;margin:.6rem 0}.theme-blackout-texas [data-action="select-3"]{border-color:#dfce8f}
+</style>

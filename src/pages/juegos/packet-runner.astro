@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import PacketRunner from '../../games/packet-runner/PacketRunner.astro';
+import {games} from '../../data/games';
+const game=games.find(game=>game.id==='packet-runner')!;
+---
+<PlayableGamePage game={game}><PacketRunner/></PlayableGamePage>

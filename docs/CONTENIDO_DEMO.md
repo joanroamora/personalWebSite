@@ -11,7 +11,7 @@ Las rutas comparten la base `/personalWebSite/`. El mapa de rutas se mantiene en
 | Inicio | `/` | Presentación y retrato casual reales, pdfRoar destacado y última entrada demo identificada |
 | Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; retrato formal aprobado |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
-| Juegos | `/juegos/` | Cadete Roa, Galactian, Rail Crane y Torque Trail jugables, más tres fichas de muestra con rutas propias |
+| Juegos | `/juegos/` | Ocho juegos jugables, incluidos Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue desde Feature11; más tres fichas de muestra con rutas propias |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
 | Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario, con dos fotografías de contexto |
 | Contacto | `/contacto/` | Correo, LinkedIn, GitHub, Flickr y ubicación general autorizados |
@@ -21,6 +21,8 @@ Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las 
 Feature9 añade `/juegos/galactian/` y `/juegos/rail-crane/`, juegos autorizados y funcionales, con interfaces en inglés y gráficos originales. No sustituyen ni convierten en juegos los tres conceptos dummy. Rail Crane mantiene su indicación de nombre provisional. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md).
 
 Feature10 añade `/juegos/torque-trail/`, cuarto juego autorizado: moto lateral de 8 bits con reglas físicas, controles de teclado y táctiles, y puntos de control. Su nombre es provisional. Ver [TORQUE_TRAIL.md](TORQUE_TRAIL.md).
+
+Feature11 añade cuatro juegos completos autorizados con rutas propias, sin reemplazar los tres conceptos dummy. Ver [FEATURE11_JUEGOS.md](FEATURE11_JUEGOS.md).
 
 ## Entrega original de Feature3 — sustituida en Feature7
 

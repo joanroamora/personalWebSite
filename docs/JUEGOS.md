@@ -1,4 +1,6 @@
-# Juegos — Feature6, Feature9 y Feature10
+# Juegos — Feature6, Feature9, Feature10 y Feature11
+
+Feature11 añade Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue: ocho juegos jugables en total, más tres conceptos dummy. Mantienen el mismo contenedor, rutas aisladas e interfaz inglesa. Los cuatro nuevos no solicitan pantalla completa. Controles, reglas, arquitectura y validación en [FEATURE11_JUEGOS.md](FEATURE11_JUEGOS.md).
 
 Feature10 añade Torque Trail como cuarto juego jugable: moto lateral de 8 bits con suspensión, agarre, inercia, equilibrio y puntos de control. Controles, reglas y límites de la aproximación física en [TORQUE_TRAIL.md](TORQUE_TRAIL.md).
 

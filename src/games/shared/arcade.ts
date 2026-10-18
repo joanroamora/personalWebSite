@@ -1,6 +1,6 @@
 export const WIDTH = 360, HEIGHT = 480;
 export interface Input { x: number; y: number; fire: boolean; slow: boolean; touch: boolean }
-export type Action = 'bomb' | 'context' | 'grip' | 'view-left' | 'view-right';
+export type Action = string;
 export interface ArcadeGame {
   reset(): void;
   update(dt: number, input: Input): void;
@@ -10,9 +10,10 @@ export interface ArcadeGame {
   result(): { score: number; title: string; message: string; next?:string } | null;
   next?(): void;
   camera?(value: number): void;
+  control?(name: string, value: number): void;
 }
 export type Beep = (frequency: number, duration?: number, type?: OscillatorType) => void;
-type Phase = 'ready' | 'running' | 'paused' | 'over' | 'help';
+type Phase = 'ready' | 'tutorial' | 'running' | 'paused' | 'over' | 'help';
 
 /** A document-scoped session: no game loop, input listener or audio survives pagehide. */
 export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): void {
@@ -24,6 +25,7 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
   const q = <T extends HTMLElement = HTMLElement>(selector: string) => dialog.querySelector<T>(selector)!;
   const canvas = q<HTMLCanvasElement>('canvas'), stage = q('.arcade-stage');
   const context = canvas.getContext('2d', { alpha:false });
+  const focusField=()=>{(canvas.hidden?q('.arcade-playfield'):canvas).focus({preventScroll:true});};
   const startButton = q<HTMLButtonElement>('[data-arcade-start]');
   const title = q('.arcade-title'), label = q('[data-screen-label]'), message = q('[data-screen-message]');
   const original = { title:title.textContent!, label:label.textContent!, message:message.textContent! };
@@ -43,7 +45,7 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
   let slowFrames = 0, eco = false;
   const oscillators=new Set<OscillatorNode>();
   const beep: Beep = (frequency,duration=.08,type='square') => {
-    if (!sound || !audio || audio.state !== 'running') return;
+    if (!sound || !audio || audio.state !== 'running' || oscillators.size>=6) return;
     const oscillator = audio.createOscillator(), gain = audio.createGain();
     oscillator.type = type; oscillator.frequency.value = frequency;
     gain.gain.setValueAtTime(.025,audio.currentTime);
@@ -68,22 +70,23 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
     q('[data-arcade-best]').textContent = String(best);
   }
   function display(): void {
-    const playing = phase === 'running', help = phase === 'help';
+    const playing = phase === 'running', help = phase === 'help', tutorial = phase === 'tutorial';
     stage.dataset.phase = phase;
+    q('.arcade-playfield').inert=!playing;
     q('.arcade-overlay').hidden = playing;
     q('.arcade-hud').hidden = !playing;
     q('.arcade-controls').hidden = !playing;
     q('[data-arcade-pause]').hidden = !playing;
-    q('.arcade-instructions').hidden = !help;
+    q('.arcade-instructions').hidden = !help && !tutorial;
     q('[data-arcade-help]').hidden = phase !== 'ready';
     q('[data-arcade-restart]').hidden = phase !== 'paused';
     q('[data-arcade-exit]').hidden = phase !== 'paused' && phase !== 'over';
-    title.textContent = phase === 'paused' ? 'On standby' : help ? 'Flight manual' : original.title;
+    title.textContent = phase === 'paused' ? 'On standby' : tutorial ? 'Quick briefing' : help ? dialog.dataset.manual ?? 'Flight manual' : original.title;
     if (id === 'rail-crane' && help) title.textContent = 'Operator manual';
     if (id === 'torque-trail' && help) title.textContent = 'Rider handbook';
     label.textContent = phase === 'paused' ? 'Your session is waiting' : original.label;
     message.textContent = phase === 'paused' ? 'Take your time. Resume when you are ready.' : original.message;
-    startButton.textContent = help ? 'Back' : phase === 'paused' ? 'Resume' : phase === 'over' ? 'Play Again' : 'Play →';
+    startButton.textContent = help ? 'Back' : tutorial ? 'Start Playing →' : phase === 'paused' ? 'Resume' : phase === 'over' ? 'Play Again' : 'Play →';
     const result = phase === 'over' ? game.result() : null;
     q('[data-arcade-next]').hidden=!result?.next;
     if (result) { title.textContent=result.title; label.textContent=`FINAL SCORE / ${result.score}`; message.textContent=result.message;if(result.next)q('[data-arcade-next]').textContent=result.next; }
@@ -126,11 +129,12 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
   function start(fresh=false): void {
     if (!dialog.open || !context) return;
     if (phase==='help') { phase=previous; display(); startButton.focus({preventScroll:true}); return; }
+    if (phase==='ready' && dialog.dataset.guided==='true') { phase='tutorial';display();startButton.focus({preventScroll:true});return; }
     if (fresh || phase !== 'paused') game.reset();
-    stop(); phase='running'; display(); paint(); canvas.focus({preventScroll:true});
+    stop(); phase='running'; display(); paint(); focusField();
     if(sound&&!audio){try{audio=new AudioContext();}catch{sound=false;}}
     void audio?.resume().catch(()=>{}); beep(520,.09,'triangle');
-    if (touch && !document.fullscreenElement && !fullscreenRequest && document.documentElement.requestFullscreen) {
+    if (dialog.dataset.allowFullscreen!=='false' && touch && !document.fullscreenElement && !fullscreenRequest && document.documentElement.requestFullscreen) {
       fullscreenRequest=document.documentElement.requestFullscreen().then(()=>{ownsFullscreen=true;}).catch(()=>{}).finally(()=>{fullscreenRequest=null;});
     }
     frame=requestAnimationFrame(tick);
@@ -179,6 +183,7 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
   dialog.addEventListener('keydown',event=>{
     if (event.altKey || event.metaKey || event.ctrlKey || (event.target instanceof HTMLInputElement)) return;
     if (event.code==='KeyP' && phase==='running') {event.preventDefault();pause();return;}
+    if(dialog.dataset.layout==='management')return;
     if (phase!=='running' || (event.target instanceof HTMLButtonElement && ['Space','Enter'].includes(event.code))) return;
     if (movement[event.code]) { event.preventDefault();held.add(movement[event.code]); }
     else if (event.code==='Space') {event.preventDefault();if(id==='galactian')held.add('fire');else if(!event.repeat)game.action('grip');}
@@ -204,8 +209,8 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
     const act=()=>{if(phase==='running'&&!button.disabled){game.action(button.dataset.action as Action);updateHUD();}};
     // A second finger does not reliably emit a click. Trigger on its pointerdown;
     // preserve synthetic keyboard clicks without firing a second action on pointerup.
-    button.addEventListener('pointerdown',event=>{if(event.button!==0)return;event.preventDefault();act();if(event.pointerType!=='touch')canvas.focus({preventScroll:true});},on);
-    button.addEventListener('click',event=>{if(event.detail===0){act();canvas.focus({preventScroll:true});}},on);
+    button.addEventListener('pointerdown',event=>{if(event.button!==0)return;event.preventDefault();act();if(event.pointerType!=='touch')focusField();},on);
+    button.addEventListener('click',event=>{if(event.detail===0){act();if(dialog.dataset.layout!=='management')focusField();}},on);
   });
   const pad=dialog.querySelector<HTMLElement>('[data-joystick]');
   if(pad){
@@ -222,6 +227,9 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
     pad.addEventListener('pointerup',release,on);pad.addEventListener('pointercancel',release,on);pad.addEventListener('lostpointercapture',release,on);
   }
   dialog.querySelector<HTMLInputElement>('[data-camera]')?.addEventListener('input',event=>game.camera?.(Number((event.currentTarget as HTMLInputElement).value)),on);
+  dialog.querySelectorAll<HTMLInputElement>('[data-control]').forEach(input=>{
+    input.addEventListener('input',()=>{if(phase==='running'){game.control?.(input.dataset.control!,Number(input.value));updateHUD();}},on);
+  });
   q('[data-arcade-sound]').addEventListener('click',async()=>{
     sound=!sound;
     if(sound){try{audio??=new AudioContext();await audio.resume();beep(660,.1,'triangle');}catch{sound=false;}}
