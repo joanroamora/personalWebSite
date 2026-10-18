@@ -1,29 +1,41 @@
 ---
-import { personalDemo } from '../../data/personal-demo';
+import { publicProfile } from '../../data/profile';
 import { sectionHref } from '../../utils/paths';
-const { journey } = personalDemo;
+import '../../styles/profile.css';
+const experience = [...publicProfile.experience].reverse();
 ---
 
 <div class="journey-grid content-block">
   <div class="prose journey-intro">
-    <p class="eyebrow">Relato de muestra / Sin fechas</p>
-    <h2 id="journey-title">{journey.title}</h2>
-    <p>{journey.description}</p>
+    <p class="eyebrow">Experiencias que se conectan</p>
+    <h2 id="journey-title">Un camino entre sistemas y personas.</h2>
+    <p>{publicProfile.biography[2]}</p>
   </div>
   <ol class="journey-list" aria-labelledby="journey-title">
-    {journey.chapters.map((chapter, index) => (
+    {experience.map((chapter, index) => (
       <li>
         <span class="journey-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
         <div class="prose">
-          <p class="eyebrow">Capítulo de muestra {String(index + 1).padStart(2, '0')}</p>
+          <p class="eyebrow">{chapter.period}</p>
           <h3>{chapter.title}</h3>
-          <p>{chapter.description}</p>
-          <p class="journey-learning">{chapter.learning}</p>
+          {chapter.paragraphs.map(paragraph => <p>{paragraph}</p>)}
         </div>
       </li>
     ))}
   </ol>
 </div>
+
+<section class="content-block divided-section" aria-labelledby="education-title">
+  <p class="eyebrow">Formación</p>
+  <h2 id="education-title">Aprender sigue siendo parte del camino.</h2>
+  <ul class="profile-education" role="list">{publicProfile.education.map(entry => <li><h3>{entry.title}</h3><p>{entry.description}</p></li>)}</ul>
+</section>
+
+<section class="content-block divided-section" aria-labelledby="certifications-title">
+  <p class="eyebrow">Certificaciones</p>
+  <h2 id="certifications-title">Otras estaciones del recorrido.</h2>
+  <ul class="profile-certifications" role="list">{publicProfile.certifications.map(entry => <li><h3>{entry.title}</h3><p>{entry.description}</p></li>)}</ul>
+</section>
 
 <div class="page-outro divided-section">
   <p class="muted">Cada recorrido tiene sus propias preguntas.</p>

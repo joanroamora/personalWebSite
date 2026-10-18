@@ -1,8 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import { parsePublicProfile } from '../src/utils/profile';
 import { navigation } from '../src/data/navigation';
 import { siteConfig } from '../site.config.mjs';
 
 const base = siteConfig.base;
+const publicProfile = parsePublicProfile(readFileSync(new URL('../docs/PERFIL_PUBLICO.md', import.meta.url), 'utf8'));
 const summarySelector = 'summary[aria-controls="mobile-navigation"]';
 
 async function openNavigation(page: Page) {
@@ -32,7 +35,7 @@ test('las siete rutas son navegables y señalan la sección activa', async ({ pa
     if (section.id === 'projects') await page.screenshot({ path: testInfo.outputPath('proyectos.png'), fullPage: true, animations: 'disabled' });
     if (section.id === 'games') await page.screenshot({ path: testInfo.outputPath('juegos.png'), fullPage: true, animations: 'disabled' });
     if (['about', 'journey', 'contact'].includes(section.id)) {
-      await expect(page.getByRole('complementary', { name: 'Aviso de contenido de muestra' })).toBeVisible();
+      await expect(page.getByRole('complementary', { name: 'Aviso de contenido de muestra' })).toHaveCount(0);
       await page.screenshot({ path: testInfo.outputPath(`${section.id}.png`), fullPage: true, animations: 'disabled' });
     }
   }
@@ -69,19 +72,10 @@ test.describe('sin JavaScript', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/Ideas en\s*órbita\./);
   });
 
-  test('los contactos de muestra llevan a destinos visibles con foco, sin enviar mensajes', async ({ page }) => {
+  test('los contactos públicos conservan sus destinos sin JavaScript', async ({ page }) => {
     await page.goto(`${base}contacto/`);
-    for (const channel of [
-      { link: 'Probar enlace de correo', destination: 'correo-de-muestra' },
-      { link: 'Probar enlace de perfil', destination: 'perfil-de-muestra' },
-    ]) {
-      await page.getByRole('link', { name: channel.link }).click();
-      await expect(page).toHaveURL(`http://127.0.0.1:4321${base}contacto/#${channel.destination}`);
-      const destination = page.locator(`#${channel.destination}`);
-      await expect(destination).toBeInViewport();
-      await expect(destination).toBeFocused();
-      await destination.getByRole('link', { name: 'Volver a los canales' }).click();
-      await expect(page.getByRole('heading', { name: 'Cruzar una señal.' })).toBeInViewport();
+    for (const channel of publicProfile.contact.channels) {
+      await expect(page.getByRole('link', { name: channel.label, exact: true })).toHaveAttribute('href', channel.href);
     }
   });
 });

@@ -1,24 +1,26 @@
 # Inventario del esqueleto y contenido dummy
 
-Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. Las excepciones aprobadas son la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`, y Cadete Roa, prototipo jugable solicitado en Feature6. Las demás secciones y fichas de juegos siguen con contenido dummy. [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), ubicado en `docs/`, es la fuente principal aportada por el propietario para sustituir el contenido personal de muestra.
+Inicio, Sobre mí, Trayectoria y Contacto ya utilizan la información real de [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), incorporada por petición del propietario en la misma rama de Feature7. Los proyectos corresponden a la selección aprobada y Cadete Roa es un prototipo jugable. El blog, tres conceptos de juegos y la fotografía pendiente conservan sus avisos de muestra o de contenido pendiente.
 
 ## Mapa de secciones
 
-Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 404; Feature2 añade las otras seis páginas y la navegación completa. Feature3 desarrolla las cuatro páginas personales con contenido de muestra separado en `src/data/personal-demo.ts`. El mapa de rutas se mantiene en `src/data/navigation.ts`.
+Las rutas comparten la base `/personalWebSite/`. El mapa de rutas se mantiene en `src/data/navigation.ts`. El contenido personal se lee del Markdown mediante `src/data/profile.ts`; no hay una segunda copia de la biografía en TypeScript.
 
 | Sección | Ruta relativa | Contenido para su etapa |
 | --- | --- | --- |
-| Inicio | `/` | Presentación dummy, obra destacada y última entrada |
-| Sobre mí | `/sobre-mi/` | Biografía dummy e indicación de fotografía pendiente |
+| Inicio | `/` | Presentación real, pdfRoar destacado y última entrada demo identificada |
+| Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; fotografía pendiente |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
 | Juegos | `/juegos/` | Cadete Roa jugable en desarrollo y tres fichas de muestra con rutas propias |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
-| Trayectoria | `/trayectoria/` | Hitos ficticios etiquetados como muestra |
-| Contacto | `/contacto/` | Canales de prueba claramente identificados |
+| Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario |
+| Contacto | `/contacto/` | Correo, LinkedIn, GitHub y ubicación general autorizados |
 
 Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las rutas `/juegos/orbita-de-bolsillo/`, `/juegos/senal-perdida/` y `/juegos/jardin-lunar/` son conceptos de muestra en desarrollo: no contienen un juego ni un botón falso de jugar. Sus títulos y descripciones son temporales. Datos en `src/data/games.ts`; mantenimiento en `JUEGOS.md`.
 
-## Entrega de Feature3
+## Entrega original de Feature3 — sustituida en Feature7
+
+Los siguientes puntos describen la entrega histórica. Sus datos personales ficticios y destinos de prueba ya se retiraron, al igual que el archivo de datos dummy y el componente de paneles vacíos; son recuperables desde el historial Git. La fotografía pendiente mantiene su identificación. El estado actual figura en la tabla anterior.
 
 - **Inicio:** presentación ficticia y frase sin atribución; espacios vacíos de obra destacada y última entrada que enlazan a los índices existentes. No hay proyectos ni publicaciones inventados.
 - **Sobre mí:** biografía, tres intereses y enfoque creativo ficticios; aviso explícito de muestra. `PhotoPlaceholder.astro` reserva una fotografía mediante geometría y un pie que indica «Marcador temporal», sin cargar una imagen ni simular un retrato.
@@ -32,20 +34,16 @@ El blog contiene tres textos ficticios y fechas de muestra en `src/content/blog/
 
 Las demos se excluyen de rutas, índice, navegación entre entradas e Inicio al cambiar `siteConfig.isDemo` a `false`. Retirar o sustituir los textos demo durante la etapa de contenido. No atribuirlos al propietario ni convertirlos en publicaciones reales cambiando únicamente su estado. La plantilla está fuera de la colección, en `docs/plantillas/entrada.md`. Ver [BLOG.md](BLOG.md).
 
-En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los títulos y textos temporales de los componentes personales y de Inicio, usando `docs/PERFIL_PUBLICO.md` como fuente principal. También se reemplazarán los destinos de contacto por los canales públicos proporcionados en ese documento y los espacios vacíos de Inicio por la selección real de obra y entradas.
+La información personal ya se incorporó usando `docs/PERFIL_PUBLICO.md`. Se conservan las fechas, experiencias y resultados aportados por el propietario. Inicio usa un párrafo de su biografía en vez de inventar una frase personal. El mantenimiento de esta fuente se explica en [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
 
 ## Sustituciones antes de publicar
 
-Las fichas de `src/data/projects.ts` y sus enlaces están aprobados para mostrarse y no se consideran dummy. Mantener esta selección al retirar el contenido de muestra. Inicio conserva su espacio reservado de obra destacada hasta elegir una pieza para la portada.
+Las fichas de proyectos y la información personal ya están aprobadas para mostrarse y no se consideran dummy. Mantener esos contenidos al retirar las muestras restantes.
 
-- Título provisional «Archivo orbital», presentación y textos en `site.config.mjs` y la portada.
-- Descripciones temporales de secciones en `src/data/navigation.ts`.
-- Texto «Esta sección está tomando forma» y paneles de `src/components/SectionPlaceholder.astro`.
-- Textos ficticios en `src/data/personal-demo.ts`, encabezados y textos de apoyo en Inicio y `src/components/personal/`.
-- Marcador `PhotoPlaceholder.astro` y destinos internos de contacto de Feature3.
-- Biografía, hitos, fichas dummy de juegos, entradas de muestra del blog y contactos añadidos en siguientes Features.
-- Cualquier imagen de muestra; las fotografías personales quedan pendientes de selección y autorización.
-- Rutas y enlaces de prueba que no formen parte del sitio definitivo.
-- Etiquetas de muestra y valor `isDemo`, tras comprobar que el contenido personal está aprobado.
+- Sustituir o retirar las tres entradas demo del blog y su borrador de prueba.
+- Decidir qué hacer con los tres conceptos dummy de juegos.
+- Incorporar fotografías aprobadas y textos alternativos, o retirar su marcador si no se usará una fotografía.
+- Revisar personalmente los datos reales renderizados, incluidos contactos, fechas y resultados de la fuente.
+- Retirar las etiquetas de vista previa y cambiar `isDemo` cuando no quede contenido de muestra por revisar.
 
-Durante el desarrollo, la portada incluye el aviso «Versión de muestra» y los metadatos indican `noindex, nofollow`. La activación de publicación es una decisión independiente del push de una Feature.
+Durante el desarrollo, la cabecera indica «Vista previa» y los metadatos conservan `noindex, nofollow`. La activación de publicación es una decisión independiente del push de una Feature.

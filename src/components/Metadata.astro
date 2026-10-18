@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '../../site.config.mjs';
 import { withBase } from '../utils/paths';
+import { publicProfile } from '../data/profile';
 
 interface Props {
   title: string;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const { title, description = siteConfig.description, isError = false, article } = Astro.props;
-const pageTitle = `${title} · ${siteConfig.title}`;
+const pageTitle = `${title} · ${publicProfile.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 

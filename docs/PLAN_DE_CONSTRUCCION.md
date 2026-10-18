@@ -6,7 +6,7 @@
 
 La prioridad inmediata es construir un esqueleto navegable con datos dummy y enlaces de prueba. Todo texto de demostración debe estar marcado como tal y conservarse separado de la información personal futura.
 
-La información personal, los proyectos reales, los juegos reales, las fotografías y los canales de contacto se incorporarán al final, en una etapa específica de sustitución y revisión. El esqueleto no se considera la versión pública definitiva.
+La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Las fotografías y los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
 
 ## 1. Resultado buscado
 
@@ -155,10 +155,12 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Rama sugerida:** `Feature7-calidad-esqueleto`, o cambios pequeños sobre las Features anteriores.
 
+**Alcance de Feature7:** auditoría de las 42 páginas estáticas, metadatos e imágenes; accesibilidad automática de páginas y diálogos en móvil y escritorio; texto al 200 % y estabilidad de carga. Se corrigen etiquetas accesibles, desbordamientos de texto ampliado y el cierre del juego con una solicitud de pantalla completa pendiente. Los presupuestos de tamaño y el aislamiento del juego se comprueban en `verify`. Ver [CALIDAD_ESQUELETO.md](CALIDAD_ESQUELETO.md). Por autorización posterior del propietario, esta misma rama también incorpora su perfil desde el Markdown fuente; las muestras del blog, juegos dummy y la fotografía pendiente conservan sus avisos.
+
 1. Revisar todas las rutas, enlaces dummy, metadatos, títulos de página y textos alternativos de imágenes.
 2. Comprobar tamaños de pantalla pequeños, medianos y grandes; teclado; lector de pantalla en puntos clave; reducción de movimiento.
 3. Optimizar imágenes, fuentes y JavaScript. Medir y corregir problemas reales de carga o estabilidad.
-4. Confirmar que todo el contenido dummy está identificado y que no se ha incorporado información personal.
+4. Confirmar que todo el contenido dummy restante está identificado, conservar los proyectos y el juego aprobados y comprobar que las páginas personales corresponden a la fuente autorizada.
 5. Validar el build de `dev` mediante CI y revisar el esqueleto completo.
 
 **Salida:** esqueleto navegable y revisado, listo para recibir el contenido aprobado.
@@ -166,6 +168,8 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 ### Etapa 9 — Incorporar información personal aprobada
 
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
+
+**Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Quedan fotografías, textos propios y revisión de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
 
 1. Usar `docs/PERFIL_PUBLICO.md` como fuente principal de la información personal del sitio. El documento aportado por el propietario se conserva junto a los otros Markdown de referencia en `docs/`. Completar únicamente los datos que aporte después: fotografías, frase personal, textos propios y cualquier exclusión de publicación. Conservar la información proporcionada y no inventar campos pendientes.
 2. Reemplazar los textos, fichas, enlaces e imágenes dummy por contenido aprobado.

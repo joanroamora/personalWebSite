@@ -1,6 +1,6 @@
 # Juegos — Feature6
 
-Feature6 se adelanta por petición del propietario. Feature5-blog sigue pendiente. Cadete Roa es un prototipo jugable en desarrollo; Órbita de bolsillo, Señal perdida y Jardín lunar son conceptos dummy, no juegos terminados. No hay servicios externos ni cambios de publicación.
+Feature6 se adelantó por petición del propietario y el blog de Feature5 ya se completó. Cadete Roa es un prototipo jugable en desarrollo; Órbita de bolsillo, Señal perdida y Jardín lunar son conceptos dummy, no juegos terminados. No hay servicios externos ni cambios de publicación.
 
 ## Catálogo y rutas
 
@@ -12,7 +12,7 @@ Los juegos jugables usan una página propia para importar su componente y sus re
 
 - **Controles:** ←/→ o A/D cambian de carril; Espacio/↑/W salta; P/Escape pausa. En pausa, Escape cierra la ventana. Deslizar a los lados o hacia arriba hace lo equivalente; también hay botones de 44 px o más y un toque en la pista permite saltar.
 - **Reglas:** corre automáticamente; granadas y paredes causan fin de partida. Las trincheras necesitan salto o desvío. Es posible aterrizar en contenedores y tanques y volver a saltar. Cada fila conserva al menos un carril libre. Las insignias suman 25 puntos; la distancia suma un punto por metro. La velocidad aumenta hasta un límite.
-- **Presentación:** interfaz en inglés. Diálogo nativo vertical en escritorio, ventana completa en móvil/táctil, también en horizontal. Al comenzar se solicita pantalla completa en móviles que admiten la API; si el navegador no la ofrece, se ocupa su ventana. Cerrar sale de la pantalla completa si la solicitó el juego. La ruta permanece compartible.
+- **Presentación:** interfaz en inglés. Diálogo nativo vertical en escritorio, ventana completa en móvil/táctil, también en horizontal. Al comenzar se solicita pantalla completa en móviles que admiten la API; si el navegador no la ofrece, se ocupa su ventana. Cerrar espera cualquier solicitud pendiente y sale de la pantalla completa si la solicitó el juego. La ruta permanece compartible.
 - **Pausa:** al perder foco, ocultarse la pestaña, cerrar el diálogo o perderse el contexto WebGL. Nunca se reanuda automáticamente. Salir de la ruta cancela RAF, temporizadores y listeners, desconecta ResizeObserver y libera recursos gráficos y de audio. Regresar desde el historial vuelve a inicializar la pantalla de presentación.
 - **Guardado:** solo el mejor puntaje, en `localStorage` bajo `cadete-roa:best:v1`. Si el almacenamiento está bloqueado, la partida funciona y el récord solo dura en memoria. Sin cuentas, red ni analítica.
 - **Audio:** sonidos sintetizados opcionales, apagados inicialmente. No hay descargas de audio. El contexto se crea tras una interacción y se suspende en pausa.
