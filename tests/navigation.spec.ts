@@ -44,7 +44,7 @@ test('el enlace de salto permite entrar al contenido con teclado', async ({ page
 test('respeta el movimiento reducido y mantiene la navegación normal', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(base);
-  expect(await page.locator('html').evaluate(element => getComputedStyle(element).getPropertyValue('--motion-fast').trim())).toBe('0ms');
+  expect(await page.locator('html').evaluate(element => parseFloat(getComputedStyle(element).getPropertyValue('--motion-fast')))).toBe(0);
   const nav = await openNavigation(page);
   expect(await nav.getByRole('link').first().evaluate(element => getComputedStyle(element).transitionDuration)).toBe('0s');
   await nav.getByRole('link', { name: 'Juegos', exact: true }).click();
