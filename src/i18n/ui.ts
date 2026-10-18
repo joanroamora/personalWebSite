@@ -75,6 +75,7 @@ export const ui: Record<string, Translation> = {
   'Ubicación': ['Location','所在地','स्थान','الموقع','Localisation'],
   'Una conversación empieza aquí': ['A conversation starts here','对话从这里开始','बातचीत यहाँ शुरू होती है','المحادثة تبدأ هنا','La conversation commence ici'],
   'Para seguir el rastro': ['Follow the trail','追踪足迹','आगे जुड़े रहने के लिए','لمتابعة الأثر','Pour suivre le fil'],
+  'Ver mis fotografías': ['View my photographs','查看我的摄影作品','मेरी तस्वीरें देखें','شاهد صوري','Voir mes photographies'],
   'Correo': ['Email','电子邮件','ईमेल','البريد الإلكتروني','Courriel'],
   'Archivo personal': ['Personal archive','个人档案','निजी संग्रह','أرشيف شخصي','Archives personnelles'],
   'Selección personal': ['Personal selection','个人精选','निजी चयन','اختيارات شخصية','Sélection personnelle'],

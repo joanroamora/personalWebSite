@@ -1,6 +1,6 @@
 # Inventario del esqueleto y contenido dummy
 
-Inicio, Sobre mí, Trayectoria y Contacto ya utilizan la información real de [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), incorporada por petición del propietario en la misma rama de Feature7. Los proyectos corresponden a la selección aprobada y Cadete Roa es un prototipo jugable. El blog, tres conceptos de juegos y la fotografía pendiente conservan sus avisos de muestra o de contenido pendiente.
+Inicio, Sobre mí, Trayectoria y Contacto ya utilizan la información real de [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), incorporada por petición del propietario en la misma rama de Feature7. Feature10 incorpora sus cuatro fotografías aprobadas. Los proyectos corresponden a la selección aprobada y Cadete Roa es un prototipo jugable. El blog y tres conceptos de juegos conservan sus avisos de muestra.
 
 ## Mapa de secciones
 
@@ -8,21 +8,23 @@ Las rutas comparten la base `/personalWebSite/`. El mapa de rutas se mantiene en
 
 | Sección | Ruta relativa | Contenido para su etapa |
 | --- | --- | --- |
-| Inicio | `/` | Presentación real, pdfRoar destacado y última entrada demo identificada |
-| Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; fotografía pendiente |
+| Inicio | `/` | Presentación y retrato casual reales, pdfRoar destacado y última entrada demo identificada |
+| Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; retrato formal aprobado |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
-| Juegos | `/juegos/` | Cadete Roa, Galactian y Rail Crane jugables, más tres fichas de muestra con rutas propias |
+| Juegos | `/juegos/` | Cadete Roa, Galactian, Rail Crane y Torque Trail jugables, más tres fichas de muestra con rutas propias |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
-| Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario |
-| Contacto | `/contacto/` | Correo, LinkedIn, GitHub y ubicación general autorizados |
+| Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario, con dos fotografías de contexto |
+| Contacto | `/contacto/` | Correo, LinkedIn, GitHub, Flickr y ubicación general autorizados |
 
 Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las rutas `/juegos/orbita-de-bolsillo/`, `/juegos/senal-perdida/` y `/juegos/jardin-lunar/` son conceptos de muestra en desarrollo: no contienen un juego ni un botón falso de jugar. Sus títulos y descripciones son temporales. Datos en `src/data/games.ts`; mantenimiento en `JUEGOS.md`.
 
 Feature9 añade `/juegos/galactian/` y `/juegos/rail-crane/`, juegos autorizados y funcionales, con interfaces en inglés y gráficos originales. No sustituyen ni convierten en juegos los tres conceptos dummy. Rail Crane mantiene su indicación de nombre provisional. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md).
 
+Feature10 añade `/juegos/torque-trail/`, cuarto juego autorizado: moto lateral de 8 bits con reglas físicas, controles de teclado y táctiles, y puntos de control. Su nombre es provisional. Ver [TORQUE_TRAIL.md](TORQUE_TRAIL.md).
+
 ## Entrega original de Feature3 — sustituida en Feature7
 
-Los siguientes puntos describen la entrega histórica. Sus datos personales ficticios y destinos de prueba ya se retiraron, al igual que el archivo de datos dummy y el componente de paneles vacíos; son recuperables desde el historial Git. La fotografía pendiente mantiene su identificación. El estado actual figura en la tabla anterior.
+Los siguientes puntos describen la entrega histórica. Sus datos personales ficticios y destinos de prueba ya se retiraron, al igual que el archivo de datos dummy y el componente de paneles vacíos; son recuperables desde el historial Git. Feature10 sustituye el marcador de fotografía por el retrato aprobado. El estado actual figura en la tabla anterior.
 
 - **Inicio:** presentación ficticia y frase sin atribución; espacios vacíos de obra destacada y última entrada que enlazan a los índices existentes. No hay proyectos ni publicaciones inventados.
 - **Sobre mí:** biografía, tres intereses y enfoque creativo ficticios; aviso explícito de muestra. `PhotoPlaceholder.astro` reserva una fotografía mediante geometría y un pie que indica «Marcador temporal», sin cargar una imagen ni simular un retrato.
@@ -44,7 +46,7 @@ Las fichas de proyectos y la información personal ya están aprobadas para most
 
 - Sustituir o retirar las tres entradas demo del blog y su borrador de prueba.
 - Decidir qué hacer con los tres conceptos dummy de juegos.
-- Incorporar fotografías aprobadas y textos alternativos, o retirar su marcador si no se usará una fotografía.
+- Revisar los encuadres, pies y textos alternativos de las cuatro fotografías aprobadas, incorporadas en Feature10.
 - Revisar personalmente los datos reales renderizados, incluidos contactos, fechas y resultados de la fuente.
 - Retirar las etiquetas de vista previa y cambiar `isDemo` cuando no quede contenido de muestra por revisar.
 

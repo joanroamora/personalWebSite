@@ -25,12 +25,20 @@ Los proyectos destacados deben corresponder a fichas de `src/data/projects.ts`. 
 
 El lector no ejecuta HTML del documento. Una sección obligatoria ausente o un enlace de contacto fuera de `mailto:` y HTTPS impide generar información incompleta. Mantener las etiquetas `Nombre visible`, `Ubicación`, `Correo`, `LinkedIn` y `GitHub`; las fichas de formación y certificación conservan su título en negrita. Los cambios en la configuración general pueden requerir reiniciar el servidor de desarrollo; cada build vuelve a leer la fuente.
 
+Feature10 permite añadir `- **Flickr:** [nombre visible](URL HTTPS aprobada)` dentro de Contacto. Es un canal opcional: aparece automáticamente al proporcionar la URL real en la fuente. No se deduce el nombre de cuenta a partir de GitHub ni se añade un enlace de muestra. Como modifica los canales del perfil, revisar también el digest de `src/i18n/profile.ts` al incorporar la dirección.
+
+El enlace aprobado a `flickr.com/photos/137785611@N06/` ya está incorporado en Feature10. Se presenta como «Ver mis fotografías», con traducciones en los seis idiomas. No se descargan ni se incrustan fotos externas.
+
 ## Revisar el resultado
 
 Ejecutar desde la raíz `npm run verify` y `npm run test:e2e`. Las pruebas comprueban el lector, la correspondencia entre la fuente y las páginas, los contactos, la accesibilidad y los tamaños de pantalla. Los contactos se verifican por sus destinos, sin enviar mensajes ni abrir el correo.
 
-La web sigue en vista previa y con `noindex`. Las entradas demo, los juegos dummy y la fotografía pendiente conservan su identificación. Incorporar el nombre real no activa GitHub Pages: siguen vigentes las reglas de integración y publicación del proyecto.
+La web sigue en vista previa y con `noindex`. Las entradas demo y los juegos dummy conservan su identificación. Las fotografías aprobadas se incorporan en Feature10. Incorporar contenido personal no activa GitHub Pages: siguen vigentes las reglas de integración y publicación del proyecto.
 
 ## Versiones de idioma — Feature8
 
 El Markdown español continúa siendo la fuente de hechos. Las traducciones de `src/i18n/profile.ts` están ligadas a una revisión del perfil: después de modificar datos, revisar también sus cinco traducciones y actualizar el digest solo al finalizar esa revisión. Si los datos cambian sin revisar las traducciones, el build se detiene para evitar publicar versiones incoherentes. No se modifican ni traducen las direcciones de contacto. Ver [IDIOMAS.md](IDIOMAS.md) y [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).
+
+## Fotografías — Feature10
+
+Las cuatro fotos aportadas están en `src/assets/personal/`. `src/data/photos.ts` contiene sus fichas; `PersonalPhoto.astro` genera versiones WebP y JPEG adaptables durante el build. Inicio muestra el retrato casual, Sobre mí el formal y Trayectoria las dos fotos de contexto. Los textos alternativos y pies tienen versiones en los seis idiomas del sitio. El apartado de fotografías de `PERFIL_PUBLICO.md` registra la selección editorial; el lector de biografía no cambia. Ver [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md).

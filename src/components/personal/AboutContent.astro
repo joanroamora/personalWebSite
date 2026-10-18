@@ -1,7 +1,7 @@
 ---
 import { publicProfile } from '../../data/profile';
 import { sectionHref } from '../../utils/paths';
-import PhotoPlaceholder from '../PhotoPlaceholder.astro';
+import PersonalPhoto from '../PersonalPhoto.astro';
 import TechnologyBadge from '../TechnologyBadge.astro';
 import '../../styles/profile.css';
 const { biography, practice, applications, technologies } = publicProfile;
@@ -15,7 +15,7 @@ const practiceTitles = ['Infraestructura y entrega', 'Confiabilidad y observabil
     {biography.map(paragraph => <p>{paragraph}</p>)}
   </section>
   <aside class="profile-sidebar" aria-label="Un poco más de contexto">
-    <PhotoPlaceholder />
+    <div class="profile-portrait"><PersonalPhoto photo="portrait" priority /></div>
     <div class="profile-location"><p class="eyebrow">Desde aquí</p><p>{publicProfile.contact.location}</p><a class="text-link" href={sectionHref('contact')}>Cruzar una señal <span aria-hidden="true">↗</span></a></div>
   </aside>
 </div>

@@ -1,4 +1,6 @@
 .profile-sidebar { min-width:0; display:grid; gap:2rem; }
+.profile-portrait { width:min(100%,22rem); }
+.journey-photos { display:grid; gap:2rem; margin-top:2rem; }
 .profile-location { width:min(100%,22rem); padding:1.5rem; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
 .profile-location>p:not(.eyebrow) { margin-top:.75rem; color:var(--muted); font-size:.9rem; }
 .profile-location .text-link { font-size:.8rem; margin-top:.75rem; }
@@ -14,6 +16,7 @@
 .contact-location { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line); }.contact-location>p+p { margin-top:.75rem; }
 .contact-list .text-link { max-width:100%; margin-top:0; overflow-wrap:anywhere; }.contact-list h3 { margin-bottom:.5rem; }
 @media(min-width:45rem) {
+  .journey-photos { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .profile-applications { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem 2rem; }
   .profile-toolkit>div { grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:2rem; }
   .profile-education { grid-template-columns:repeat(2,minmax(0,1fr)); }

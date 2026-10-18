@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import TorqueTrail from '../../games/torque-trail/TorqueTrail.astro';
+import { games } from '../../data/games';
+const game=games.find(game=>game.id==='torque-trail')!;
+---
+<PlayableGamePage game={game}><TorqueTrail /></PlayableGamePage>

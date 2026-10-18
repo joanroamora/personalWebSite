@@ -6,7 +6,7 @@ export interface Game {
   genre: string;
   status: 'prototype' | 'playable' | 'development';
   color: string;
-  symbol: 'cadet' | 'galactian' | 'crane' | 'orbit' | 'signal' | 'garden';
+  symbol: 'cadet' | 'galactian' | 'crane' | 'bike' | 'orbit' | 'signal' | 'garden';
   instructions: readonly string[];
 }
 
@@ -28,6 +28,12 @@ export const games: readonly Game[] = [
     summary: 'Opera una grúa en una terminal ferroviaria: identifica la carga, recorre el tren y coloca cada contenedor en su posición antes de la salida. Nombre provisional.',
     genre: 'Logistics arcade · Crane operation', status: 'playable', color: 'sand', symbol: 'crane',
     instructions: ['WASD or arrows move the trolley and hook. Space picks up or releases a container.', 'Match the container ID and slot number. Raise the load before travelling, then lower and release over the wagon.', 'Q / E, separate View buttons or the yard slider explore the train. Moving sideways follows the crane again.', 'Correct misplaced loads by picking them up again. P or Escape pauses; touch buttons support simultaneous movement.'],
+  },
+  {
+    id: 'torque-trail', title: 'Torque Trail', subtitle: '8-bit trails. Real momentum.',
+    summary: 'Una moto de tierra en 8 bits, con suspensión, agarre e inercia. Acelera, frena e inclina al piloto para superar rampas, baches y saltos entre puntos de control.',
+    genre: 'Motorbike trials · 8-bit', status: 'playable', color: 'sand', symbol: 'bike',
+    instructions: ['W / Up accelerates. S / Down brakes. Release both to coast.', 'A / Left leans back. D / Right leans forward, on the ground and in the air.', 'Read the track preview, build speed before a gap and align both wheels with the landing.', 'Three attempts per trail. E or Recover returns to the last checkpoint after a crash. P / Escape pauses. Touch controls support gas and balance together.'],
   },
   {
     id: 'orbita-de-bolsillo', title: 'Órbita de bolsillo', subtitle: 'Un pequeño sistema por descubrir.',

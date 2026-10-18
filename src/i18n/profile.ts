@@ -5,7 +5,8 @@ import { normalizeText, type Translation } from './locales.ts';
 
 const p = parsePublicProfile(readFileSync('docs/PERFIL_PUBLICO.md','utf8'));
 // Evita asociar por posición traducciones antiguas a nuevos hechos personales.
-export const reviewedProfileDigest = 'd3ddbe75a44a9b7b11653600c3cd35dd9079a9b5310a97830374bfcb5a87d698';
+// Feature10: se añade únicamente el Flickr aprobado; su etiqueta se localiza en ui.ts.
+export const reviewedProfileDigest = 'bcb6b83e3ef92ac6e9d1402afadc709205e5346535e38b58313717691519a791';
 if (createHash('sha256').update(JSON.stringify(p)).digest('hex') !== reviewedProfileDigest) {
   throw new Error('El perfil cambió: revisar src/i18n/profile.ts antes de generar las versiones traducidas.');
 }

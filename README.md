@@ -1,6 +1,14 @@
 # personalWebSite
 
-Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y el arcade con Cadete Roa, Galactian y Rail Crane. El blog y tres conceptos de juegos siguen con muestras identificadas.
+Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y el arcade con Cadete Roa, Galactian, Rail Crane y Torque Trail. El blog y tres conceptos de juegos siguen con muestras identificadas.
+
+## Feature10 — Fotografías personales y Torque Trail
+
+Cuatro fotografías aprobadas: retrato casual en Inicio, retrato formal en Sobre mí y dos imágenes de contexto junto a Formación en Trayectoria. `PersonalPhoto.astro` genera WebP y JPEG adaptables, con dimensiones reservadas, prioridades de carga y textos alternativos en los seis idiomas. Las fuentes se conservan en `src/assets/personal/`; se sustituye el marcador pendiente. No requiere dependencias ni JavaScript adicional. Alcance y mantenimiento en [docs/FEATURE10_FOTOGRAFIAS.md](docs/FEATURE10_FOTOGRAFIAS.md). Rama de trabajo: `Feature10-fotografias`.
+
+La ampliación autorizada añade Torque Trail: moto lateral original en 8 bits, con suspensión de muelle/amortiguador, agarre, inercia, inclinación del piloto y recorridos progresivos con puntos de control. Es el cuarto juego jugable, con teclado, multitouch e interfaz inglesa. Usa la misma ventana y gestión de sesiones que los otros juegos de Canvas. Reglas y alcance físico en [docs/TORQUE_TRAIL.md](docs/TORQUE_TRAIL.md). El build genera 265 páginas estáticas.
+
+Contacto también incorpora el Flickr proporcionado por el propietario, desde `PERFIL_PUBLICO.md`, con el enlace «Ver mis fotografías» localizado en los seis idiomas.
 
 ## Feature9 — Galactian y Rail Crane
 
@@ -20,7 +28,7 @@ Se traducen la interfaz, el perfil y los títulos y resúmenes de proyectos y bl
 
 Feature7 corrige nombres accesibles de los enlaces, desbordamientos con texto al 200 % y el cierre del juego mientras la pantalla completa aún está pendiente. Añade auditoría automática de accesibilidad en móvil y escritorio, comprobaciones de metadatos en las 42 páginas, estabilidad de carga y presupuestos de tamaño que también protegen el aislamiento del juego. Detalles y alcance en [docs/CALIDAD_ESQUELETO.md](docs/CALIDAD_ESQUELETO.md).
 
-Por petición del propietario, esta misma rama incorpora su información desde `docs/PERFIL_PUBLICO.md`. Inicio muestra su presentación, una perspectiva de su biografía, pdfRoar destacado y la última entrada demo identificada. Sobre mí reúne biografía, ámbitos y herramientas, con una fotografía pendiente. Trayectoria presenta experiencias, formación y certificaciones de la fuente. Contacto ofrece correo, LinkedIn y GitHub públicos, sin formulario. Ver [docs/CONTENIDO_PERSONAL.md](docs/CONTENIDO_PERSONAL.md).
+Por petición del propietario, esta misma rama incorpora su información desde `docs/PERFIL_PUBLICO.md`. Inicio muestra su presentación, una perspectiva de su biografía, pdfRoar destacado y la última entrada demo identificada. Sobre mí reúne biografía, ámbitos y herramientas. Feature10 añade fotografías reales en Inicio, Sobre mí y Trayectoria. Trayectoria presenta experiencias, formación y certificaciones de la fuente. Contacto ofrece correo, LinkedIn y GitHub públicos, sin formulario. Ver [docs/CONTENIDO_PERSONAL.md](docs/CONTENIDO_PERSONAL.md).
 
 Blog incorpora un índice editorial y lectura con índice de apartados, metadatos, etiquetas y enlaces entre entradas. Las entradas son Markdown con un slug permanente explícito y estados `draft`, `demo` y `published`. Los borradores no generan rutas; las demos se ocultan cuando `isDemo` es `false`. Inicio selecciona automáticamente la última entrada visible. No requiere dependencias nuevas ni JavaScript de lectura. Ver [docs/BLOG.md](docs/BLOG.md) y [la plantilla](docs/plantillas/entrada.md).
 
@@ -78,6 +86,7 @@ src/i18n/           Idiomas y traducciones de compilación
 src/middleware.ts   Localización del HTML durante el prerenderizado
 src/pages/          Inicio, 404 y rutas estáticas generadas desde el menú
 src/data/           Fuente central de nombres, orden y rutas
+src/assets/personal/ Fotografías fuente para optimización en el build
 src/scripts/        Mejoras del menú nativo
 src/styles/         Estilos globales
 src/utils/          Enlaces que respetan la base de Pages
@@ -90,7 +99,7 @@ docs/               Plan e inventario de contenido de demostración
 
 `site.config.mjs` centraliza la identidad derivada del perfil, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()`, `projectHref()`, `gameHref()` y `postHref()` resuelven los enlaces. `src/pages/[section].astro` genera las secciones personales; Proyectos, Juegos y Blog contienen sus índices y rutas propias. El catálogo de proyectos carga sus filtros y diálogo; Cadete Roa carga su motor aislado en `src/games/cadete-roa/`. La colección Markdown del blog se consulta desde `src/data/blog.ts`.
 
-Los componentes personales consumen `src/data/profile.ts`, que lee `docs/PERFIL_PUBLICO.md`. Se retiraron los textos ficticios y destinos de contacto de Feature3. `PhotoPlaceholder` conserva un marcador de fotografía pendiente; no se usan retratos de sustitución. El inventario de `docs/CONTENIDO_DEMO.md` recoge las muestras que aún faltan por sustituir.
+Los componentes personales consumen `src/data/profile.ts`, que lee `docs/PERFIL_PUBLICO.md`. Se retiraron los textos ficticios y destinos de contacto de Feature3. `PersonalPhoto` presenta únicamente las fotografías aportadas por el propietario y registradas en `src/data/photos.ts`. El inventario de `docs/CONTENIDO_DEMO.md` recoge las muestras que aún faltan por sustituir.
 
 ## Ramas y comprobaciones
 
@@ -98,7 +107,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature8 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público; Feature8 incorporó idiomas. La integración y el push de Feature9 desde su rama de juegos fueron autorizados tras la revisión local. Quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature9 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público; Feature8 incorporó idiomas. El propietario también autorizó la integración y el push de Feature10, que incorpora fotografías, Torque Trail y Flickr, conservando su rama histórica. Quedan textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
@@ -129,4 +138,6 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Mantenimiento del contenido personal](docs/CONTENIDO_PERSONAL.md)
 - [Idiomas y mantenimiento de traducciones](docs/IDIOMAS.md)
 - [Revisión de la candidata y decisiones pendientes](docs/REVISION_CANDIDATA.md)
+- [Fotografías personales y mantenimiento](docs/FEATURE10_FOTOGRAFIAS.md)
+- [Torque Trail: controles, física y arquitectura](docs/TORQUE_TRAIL.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

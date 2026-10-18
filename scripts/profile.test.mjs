@@ -29,3 +29,15 @@ test('un apartado ausente o un destino de contacto no permitido impiden generar 
   assert.throws(() => parsePublicProfile(source.replace('## Sobre mí', '## Otra sección')), /falta el apartado «Sobre mí»/);
   assert.throws(() => parsePublicProfile(source.replace(/^(- \*\*LinkedIn:\*\* \[[^\]]+\]\()[^)]+(\))$/m, '$1javascript:alert(1)$2')), /enlace público inválido/);
 });
+
+test('Flickr es opcional y se incorpora desde la fuente sin inventar una cuenta', () => {
+  const original = parsePublicProfile(source);
+  const withoutFlickr = source.replace(/^- \*\*Flickr:\*\* .*\r?\n/gm, '');
+  assert.equal(parsePublicProfile(withoutFlickr).contact.channels.some(channel => channel.title === 'Flickr'), false);
+  const field = '- **Flickr:** [Photo archive](https://www.flickr.com/photos/example/)';
+  const edited = withoutFlickr.replace('### Invitación al contacto', `${field}\n\n### Invitación al contacto`);
+  const profile = parsePublicProfile(edited);
+  assert.deepEqual(profile.contact.channels.at(-1), { title:'Flickr', label:'Photo archive', href:'https://www.flickr.com/photos/example/' });
+  assert.deepEqual(profile.contact.channels.slice(0,3), original.contact.channels.slice(0,3));
+  assert.throws(() => parsePublicProfile(edited.replace('https://www.flickr.com/photos/example/', 'javascript:alert(1)')), /enlace público inválido/);
+});

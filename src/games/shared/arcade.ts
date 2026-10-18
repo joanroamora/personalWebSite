@@ -80,6 +80,7 @@ export function mountArcade(id: string, factory: (beep: Beep) => ArcadeGame): vo
     q('[data-arcade-exit]').hidden = phase !== 'paused' && phase !== 'over';
     title.textContent = phase === 'paused' ? 'On standby' : help ? 'Flight manual' : original.title;
     if (id === 'rail-crane' && help) title.textContent = 'Operator manual';
+    if (id === 'torque-trail' && help) title.textContent = 'Rider handbook';
     label.textContent = phase === 'paused' ? 'Your session is waiting' : original.label;
     message.textContent = phase === 'paused' ? 'Take your time. Resume when you are ready.' : original.message;
     startButton.textContent = help ? 'Back' : phase === 'paused' ? 'Resume' : phase === 'over' ? 'Play Again' : 'Play →';

@@ -51,7 +51,9 @@ export function parsePublicProfile(markdown: string): PublicProfile {
   const identity = section(text, 'Identidad y criterio editorial');
   const presentation = section(text, 'Presentación');
   const contact = section(text, 'Contacto');
-  const channels = ['Correo', 'LinkedIn', 'GitHub'].map(title => {
+  const channelTitles = ['Correo', 'LinkedIn', 'GitHub'];
+  if (contact.split('\n').some(line => line.startsWith('- **Flickr:** '))) channelTitles.push('Flickr');
+  const channels = channelTitles.map(title => {
     const match = field(contact, title).match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (!match || !(title === 'Correo' ? /^mailto:[^\s@]+@[^\s@]+\.[^\s@]+$/ : /^https:\/\//).test(match[2])) {
       throw new Error(`PERFIL_PUBLICO.md: enlace público inválido para «${title}».`);

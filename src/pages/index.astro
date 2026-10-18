@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import { navigation } from '../data/navigation';
 import { publicProfile, featuredProjects } from '../data/profile';
 import TechnologyBadge from '../components/TechnologyBadge.astro';
+import PersonalPhoto from '../components/PersonalPhoto.astro';
 import PostMeta from '../components/blog/PostMeta.astro';
 import { getBlogPosts } from '../data/blog';
 import { postHref, projectHref, sectionHref, withBase } from '../utils/paths';
@@ -18,13 +19,14 @@ const [featured] = featuredProjects;
       <p class="lead">{publicProfile.introduction[0]}</p>
       <a class="text-link" href={sectionHref('about')}>Conocer este espacio <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="orbital" aria-hidden="true">
-      <div class="orbit orbit-one"></div>
-      <div class="orbit orbit-two"></div>
-      <div class="orbit orbit-three"></div>
-      <div class="planet"></div>
-      <span class="satellite"></span>
-      <span class="orbital-caption">Una nueva órbita, por descubrir.</span>
+    <div class="hero-portrait">
+      <div class="orbital" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit orbit-three"></div>
+        <span class="satellite"></span>
+      </div>
+      <PersonalPhoto photo="casual" priority sizes="(min-width: 45rem) 22rem, (min-width: 28rem) 22rem, calc(100vw - 6rem)" />
     </div>
   </section>
 
@@ -95,6 +97,9 @@ const [featured] = featuredProjects;
   </section>
 </SiteLayout>
 <style>
+  .hero-portrait { position:relative; isolation:isolate; width:min(100%,28rem); margin-inline:auto; padding:1rem 1.75rem 0; }
+  .hero-portrait .orbital { position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; overflow:visible; z-index:-1; opacity:.7; }
+  .hero-portrait :global(.personal-photo) { max-width:22rem; margin-inline:auto; }
   .personal-perspective { margin-top:1.25rem; font:400 clamp(1.35rem,3vw,2rem)/1.5 var(--font-editorial); letter-spacing:-.02em; }
   .home-technologies { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.4rem 0 0; padding:0; list-style:none; }
 </style>
