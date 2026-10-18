@@ -33,6 +33,22 @@ const { game } = Astro.props;
       <path d="m48 316 42-10m624 54 39-17" stroke="#b2ad85" stroke-width="9"/>
       <path d="M28 27h24m-24 0v24m744-24h-24m24 0v24M28 493h24m-24 0v-24m744 24h-24m24 0v-24" stroke="#e9e9c5" opacity=".5"/>
     </svg>
+  ) : game.symbol === 'galactian' ? (
+    <svg viewBox="0 0 600 360" fill="none" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges">
+      <path fill="#263f3c" d="M0 0h600v360H0z"/><path fill="#354c42" d="M50 0h110v90H50zM400 0h130v100H400zM12 190h110v170H12zM430 210h140v150H430z"/><path fill="#647058" d="M275 0h50v360h-50z"/>
+      {[30,90,150,210,270,330].map(y=><path fill="#9c9e72" d={`M298 ${y}h4v22h-4z`} />)}
+      <path stroke="#739167" stroke-width="8" d="M99 151h40v33H99zM450 135h47v36h-47z"/><path fill="#112b32" stroke="#80bc9e" stroke-width="3" d="M61 240h102v89H61z"/><path stroke="#b7e6be" stroke-width="3" d="M91 263v44m37-44v44m-37-22h37"/>
+      {[{x:204,y:76},{x:389,y:103},{x:236,y:147}].map(({x,y})=><g transform={`translate(${x} ${y})`}><path fill="#c99a6e" d="m0-17 8 14 16 17-19-5-5 6-5-6-19 5 16-17z"/><path fill="#ef8c72" d="M-3-8h6v15h-6z"/><path fill="#ffc589" d="M-2 27h4v14h-4z"/></g>)}
+      <g transform="translate(309 255) scale(1.8)"><path fill="#a4c9d3" d="m0-23 7 17 17 19v7L5 12l-5 7-5-7-19 8v-7L-7-6z"/><path fill="#ecf0ca" d="M-3-17h6v31h-6z"/><path fill="#62e5d5" d="M-2-10h4V1h-4z"/><path fill="#ffc785" d="M-3 20h6v13h-6z"/></g>
+      <path stroke="#c5ec92" stroke-width="4" d="M299 185v-19m20 19v-19m-20-22v-19m20 19v-19"/><path fill="#152d37cc" d="M0 0h600v46H0z"/><path stroke="#b6d39a" stroke-width="2" d="M22 65h17m-17 0v17m556-17h-17m17 0v17M22 338h17m-17 0v-17m556 17h-17m17 0v-17"/>
+    </svg>
+  ) : game.symbol === 'crane' ? (
+    <svg viewBox="0 0 600 360" fill="none" preserveAspectRatio="xMidYMid slice">
+      <path fill="#718e9d" d="M0 0h600v360H0z"/><path fill="#9eafa9" d="M0 157h600v203H0z"/><path fill="#456473" d="M22 105h85v79H22zM119 89h102v95H119zM415 79h135v105H415z"/><path fill="#cec7aa" d="M0 213h600v147H0z"/>
+      <path stroke="#334c5c" stroke-width="12" d="M30 52v235m537-235v235M0 62h600"/><path stroke="#edc38d" stroke-width="18" d="M0 45h600"/><path stroke="#69736b" stroke-width="4" d="M0 305h600M0 326h600"/>
+      {[60,165,270,375,480].map((x,i)=><g><path fill="#344f60" d={`M${x-42} 285h84v17h-84z`}/><circle cx={x-25} cy="312" r="9" fill="#243b49"/><circle cx={x+25} cy="312" r="9" fill="#243b49"/>{i!==2&&<path fill={i%2?'#a2bd9b':'#70acc8'} d={`M${x-34} 244h68v40h-68z`} />}</g>)}
+      <path fill="#f2ca90" d="M242 39h57v30h-57z"/><path stroke="#273f4e" stroke-width="3" d="M255 69v98m30-98v98"/><path fill="#ecbd7c" d="M239 164h63v9h-63z"/><path fill="#d6a970" d="M237 175h68v42h-68z"/><path stroke="#8a775a" stroke-width="2" d="M248 179v33m11-33v33m11-33v33m11-33v33m11-33v33"/><path fill="#1c3545" d="M247 186h48v15h-48z"/><text x="271" y="197" text-anchor="middle" fill="#eee8d4" font-size="9" font-family="monospace">C-12 ◆</text><path stroke="#ffeeaf" stroke-dasharray="6 4" stroke-width="2" d="M237 244h68v40h-68z"/><text x="271" y="347" text-anchor="middle" fill="#2e4853" font-size="11" font-family="monospace">SLOT 03</text>
+    </svg>
   ) : (
     <svg viewBox="0 0 400 260" fill="none" stroke="currentColor" stroke-width="1.2">
       <circle cx="200" cy="130" r="85" opacity=".12"/>
