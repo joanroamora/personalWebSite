@@ -4,9 +4,9 @@ Este inventario permite construir sin información personal. Los textos de muest
 
 ## Mapa de secciones
 
-Las rutas comparten la base `/personalWebSite/`. Solo Inicio y 404 están implementadas en Feature1. El mapa de navegación se mantiene en `src/data/navigation.ts`.
+Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 404; Feature2 añade las otras seis páginas con contenido de muestra y la navegación completa. El mapa se mantiene en `src/data/navigation.ts`.
 
-| Sección | Ruta relativa prevista | Contenido para su etapa |
+| Sección | Ruta relativa | Contenido para su etapa |
 | --- | --- | --- |
 | Inicio | `/` | Presentación dummy, obra destacada y última entrada |
 | Sobre mí | `/sobre-mi/` | Biografía dummy e indicación de fotografía pendiente |
@@ -22,6 +22,7 @@ En la etapa de juegos, una ficha dummy podrá enlazar a `/juegos/demo-orbita/`, 
 
 - Título provisional «Archivo orbital», presentación y textos en `site.config.mjs` y la portada.
 - Descripciones temporales de secciones en `src/data/navigation.ts`.
+- Texto «Esta sección está tomando forma» y paneles de `src/components/SectionPlaceholder.astro`.
 - Biografía, hitos, fichas de proyectos, juegos, entradas del blog y contactos añadidos en siguientes Features.
 - Cualquier imagen de muestra; las fotografías personales quedan pendientes de selección y autorización.
 - Rutas y enlaces de prueba que no formen parte del sitio definitivo.

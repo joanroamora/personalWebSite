@@ -1,0 +1,23 @@
+---
+import { navigation } from '../data/navigation';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionPlaceholder from '../components/SectionPlaceholder.astro';
+
+export function getStaticPaths() {
+  return navigation.slice(1).map((section, index) => ({
+    params: { section: section.path.replace(/\/$/, '') },
+    props: { section, position: index + 1 },
+  }));
+}
+
+interface Props {
+  section: (typeof navigation)[number];
+  position: number;
+}
+
+const { section, position } = Astro.props;
+---
+
+<SiteLayout title={section.label} description={`${section.description} Sección de demostración en preparación.`}>
+  <SectionPlaceholder section={section} position={position} />
+</SiteLayout>

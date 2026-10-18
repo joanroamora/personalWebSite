@@ -45,6 +45,8 @@ Flujo habitual: `dev` → `Feature<N>-<descripcion>` → pull request a `dev` �
 
 Completar una etapa y comprobar su criterio de salida antes de pasar a la siguiente. Las ramas sugeridas son orientativas; si una etapa resulta grande, dividirla en varias Features pequeñas.
 
+La numeración de Features cuenta entregas de código: **Feature1** corresponde a la etapa 2 (base de Astro) y **Feature2** a la etapa 3 (sistema visual y navegación). Las etapas 0 y 1 son preparación; continuar con la segunda entrega significa trabajar en `Feature2-sistema-visual`.
+
 ### Etapa 0 — Definir el alcance del esqueleto y los datos dummy
 
 **Objetivo:** tener un mapa completo del sitio y contenido de demostración antes de incorporar información personal.
@@ -86,11 +88,14 @@ Completar una etapa y comprobar su criterio de salida antes de pasar a la siguie
 
 **Rama sugerida:** `Feature2-sistema-visual`.
 
+**Dependencia:** Feature1 debe revisarse e integrarse en `dev` antes de integrar Feature2. Mientras su PR esté abierto, se puede incorporar su base dentro de la rama Feature2 para desarrollar y verificar esta entrega sin modificar `dev` ni `main`.
+
 1. Definir variables de color, tipografía, espaciado y componentes reutilizables según `AGENTS.md`.
 2. Construir cabecera, menú, pie de página y estados activos para Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria y Contacto.
 3. Implementar el menú móvil y comprobar teclado, foco visible, contraste y tamaños táctiles.
 4. Añadir un motivo visual alienígena sutil que no interfiera con la lectura.
 5. Incorporar transiciones discretas entre páginas; respetar `prefers-reduced-motion` y mantener navegación normal como alternativa.
+6. Comprobar las siete rutas y la sección activa en escritorio y móvil, el menú nativo sin JavaScript, Escape y foco, navegación táctil, historial y ausencia de desbordamiento. Ejecutar las pruebas de navegador en GitHub Actions y conservar capturas para la revisión visual.
 
 **Salida:** todas las rutas base son navegables y se ven bien en móvil y escritorio, aunque parte del contenido siga pendiente.
 

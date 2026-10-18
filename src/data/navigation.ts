@@ -1,4 +1,4 @@
-// Rutas previstas: Feature2 convertirá este mapa en la navegación principal.
+// Fuente única de nombres, orden y rutas de las secciones principales.
 export const navigation = [
   { label: 'Inicio', path: '', description: 'El punto de partida de este pequeño universo.' },
   { label: 'Sobre mí', path: 'sobre-mi/', description: 'La persona detrás de las ideas.' },

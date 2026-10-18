@@ -1,0 +1,24 @@
+---
+import { navigation } from '../data/navigation';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  id: string;
+  variant: 'desktop' | 'mobile';
+}
+
+const { id, variant } = Astro.props;
+const pathname = `${Astro.url.pathname.replace(/\/$/, '')}/`;
+---
+
+<nav id={id} class={`${variant}-navigation`} aria-label="Navegación principal">
+  <ul class="navigation-list">
+    {navigation.map(section => {
+      const href = withBase(section.path);
+      const active = section.path === '' ? pathname === href : pathname.startsWith(href);
+      return (
+        <li><a href={href} aria-current={active ? 'page' : undefined}>{section.label}</a></li>
+      );
+    })}
+  </ul>
+</nav>
