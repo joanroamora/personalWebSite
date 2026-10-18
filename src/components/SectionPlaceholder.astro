@@ -1,6 +1,7 @@
 ---
 import { withBase } from '../utils/paths';
 import type { navigation } from '../data/navigation';
+import PageIntro from './PageIntro.astro';
 
 interface Props {
   section: (typeof navigation)[number];
@@ -11,11 +12,7 @@ const { section, position } = Astro.props;
 ---
 
 <section class="section-page" aria-labelledby="section-title">
-  <div class="page-intro">
-    <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Órbita {String(position).padStart(2, '0')} / En preparación</p>
-    <h1 id="section-title" class="page-title">{section.label}</h1>
-    <p class="lead">{section.description}</p>
-  </div>
+  <PageIntro title={section.label} description={section.description} position={position} state="En preparación" />
   <div class="placeholder-panel">
     <div class="placeholder-symbol" aria-hidden="true"><span></span></div>
     <div class="placeholder-copy">

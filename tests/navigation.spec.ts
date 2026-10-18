@@ -29,6 +29,10 @@ test('las siete rutas son navegables y señalan la sección activa', async ({ pa
     await expect(currentNav.locator('[aria-current="page"]')).toHaveText(section.label);
     if (await page.locator(summarySelector).isVisible()) await page.locator(summarySelector).click();
     if (section.path === 'blog/') await page.screenshot({ path: testInfo.outputPath('seccion-blog.png'), fullPage: true, animations: 'disabled' });
+    if (['about', 'journey', 'contact'].includes(section.id)) {
+      await expect(page.getByRole('complementary', { name: 'Aviso de contenido de muestra' })).toBeVisible();
+      await page.screenshot({ path: testInfo.outputPath(`${section.id}.png`), fullPage: true, animations: 'disabled' });
+    }
   }
   expect(failedResources).toEqual([]);
 });
@@ -61,6 +65,22 @@ test.describe('sin JavaScript', () => {
     const nextNav = await openNavigation(page);
     await nextNav.getByRole('link', { name: 'Inicio', exact: true }).click();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/Ideas en\s*órbita\./);
+  });
+
+  test('los contactos de muestra llevan a destinos visibles con foco, sin enviar mensajes', async ({ page }) => {
+    await page.goto(`${base}contacto/`);
+    for (const channel of [
+      { link: 'Probar enlace de correo', destination: 'correo-de-muestra' },
+      { link: 'Probar enlace de perfil', destination: 'perfil-de-muestra' },
+    ]) {
+      await page.getByRole('link', { name: channel.link }).click();
+      await expect(page).toHaveURL(`http://127.0.0.1:4321${base}contacto/#${channel.destination}`);
+      const destination = page.locator(`#${channel.destination}`);
+      await expect(destination).toBeInViewport();
+      await expect(destination).toBeFocused();
+      await destination.getByRole('link', { name: 'Volver a los canales' }).click();
+      await expect(page.getByRole('heading', { name: 'Cruzar una señal.' })).toBeInViewport();
+    }
   });
 });
 
@@ -113,8 +133,9 @@ test('pantallas pequeñas, intermedias, horizontales y escritorio sin desbordami
     await expect(page.locator('#desktop-navigation')).toBeVisible({ visible: viewport.width >= 1120 });
     await expect(page.locator(summarySelector)).toBeVisible({ visible: viewport.width < 1120 });
     await page.screenshot({ path: testInfo.outputPath(`inicio-${viewport.width}x${viewport.height}.png`), fullPage: true, animations: 'disabled' });
+    for (const section of navigation.filter(item => ['about', 'journey', 'contact'].includes(item.id))) {
+      await page.goto(`${base}${section.path}`);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `${section.label} a ${viewport.width}px`).toBe(true);
+    }
   }
-  await page.setViewportSize(screens[0]);
-  await page.goto(`${base}trayectoria/`);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

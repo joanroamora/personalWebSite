@@ -4,7 +4,7 @@ Este inventario permite construir sin información personal. Los textos de muest
 
 ## Mapa de secciones
 
-Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 404; Feature2 añade las otras seis páginas con contenido de muestra y la navegación completa. El mapa se mantiene en `src/data/navigation.ts`.
+Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 404; Feature2 añade las otras seis páginas y la navegación completa. Feature3 desarrolla las cuatro páginas personales con contenido de muestra separado en `src/data/personal-demo.ts`. El mapa de rutas se mantiene en `src/data/navigation.ts`.
 
 | Sección | Ruta relativa | Contenido para su etapa |
 | --- | --- | --- |
@@ -18,11 +18,23 @@ Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 40
 
 En la etapa de juegos, una ficha dummy podrá enlazar a `/juegos/demo-orbita/`, con un mensaje de demostración e instrucciones temporales. Es una ruta reservada: se implementará junto con la ficha para evitar enlaces rotos. El esqueleto no requiere desarrollar un juego real.
 
+## Entrega de Feature3
+
+- **Inicio:** presentación ficticia y frase sin atribución; espacios vacíos de obra destacada y última entrada que enlazan a los índices existentes. No hay proyectos ni publicaciones inventados.
+- **Sobre mí:** biografía, tres intereses y enfoque creativo ficticios; aviso explícito de muestra. `PhotoPlaceholder.astro` reserva una fotografía mediante geometría y un pie que indica «Marcador temporal», sin cargar una imagen ni simular un retrato.
+- **Trayectoria:** tres capítulos ficticios numerados, con aprendizajes de muestra y sin fechas, empresas o credenciales.
+- **Contacto:** los enlaces de correo y perfil llevan a `/contacto/#correo-de-muestra` y `/contacto/#perfil-de-muestra` bajo la base de Pages. Los destinos indican que son pruebas; no se abre un cliente de correo, se envían mensajes ni se enlaza una cuenta personal.
+- **Componentes:** los avisos visibles de `DemoNotice.astro` y el encabezado de `PageIntro.astro` acompañan a las páginas personales. Proyectos, Juegos y Blog mantienen `SectionPlaceholder.astro`.
+
+En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los títulos y textos temporales de los componentes personales y de Inicio. También se reemplazarán los destinos de contacto por los canales públicos aprobados y los espacios vacíos de Inicio por la selección real de obra y entradas.
+
 ## Sustituciones antes de publicar
 
 - Título provisional «Archivo orbital», presentación y textos en `site.config.mjs` y la portada.
 - Descripciones temporales de secciones en `src/data/navigation.ts`.
 - Texto «Esta sección está tomando forma» y paneles de `src/components/SectionPlaceholder.astro`.
+- Textos ficticios en `src/data/personal-demo.ts`, encabezados y textos de apoyo en Inicio y `src/components/personal/`.
+- Marcador `PhotoPlaceholder.astro` y destinos internos de contacto de Feature3.
 - Biografía, hitos, fichas de proyectos, juegos, entradas del blog y contactos añadidos en siguientes Features.
 - Cualquier imagen de muestra; las fotografías personales quedan pendientes de selección y autorización.
 - Rutas y enlaces de prueba que no formen parte del sitio definitivo.

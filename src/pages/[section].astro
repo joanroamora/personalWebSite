@@ -1,7 +1,13 @@
 ---
-import { navigation } from '../data/navigation';
+import { navigation, type SectionId } from '../data/navigation';
+import { personalDemo } from '../data/personal-demo';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionPlaceholder from '../components/SectionPlaceholder.astro';
+import PageIntro from '../components/PageIntro.astro';
+import DemoNotice from '../components/DemoNotice.astro';
+import AboutContent from '../components/personal/AboutContent.astro';
+import JourneyContent from '../components/personal/JourneyContent.astro';
+import ContactContent from '../components/personal/ContactContent.astro';
 
 export function getStaticPaths() {
   return navigation.slice(1).map((section, index) => ({
@@ -16,8 +22,24 @@ interface Props {
 }
 
 const { section, position } = Astro.props;
+const personalPages = new Map<SectionId, { component: typeof AboutContent; introduction: string }>([
+  ['about', { component: AboutContent, introduction: personalDemo.about.introduction }],
+  ['journey', { component: JourneyContent, introduction: personalDemo.journey.introduction }],
+  ['contact', { component: ContactContent, introduction: personalDemo.contact.introduction }],
+]);
+const personalPage = personalPages.get(section.id);
+const Content = personalPage?.component;
+const description = personalPage
+  ? `${personalPage.introduction} Contenido de demostración.`
+  : `${section.description} Sección de demostración en preparación.`;
 ---
 
-<SiteLayout title={section.label} description={`${section.description} Sección de demostración en preparación.`}>
-  <SectionPlaceholder section={section} position={position} />
+<SiteLayout title={section.label} description={description}>
+  {Content && personalPage ? (
+    <section class="section-page" aria-labelledby="section-title">
+      <PageIntro title={section.label} description={personalPage.introduction} position={position} />
+      <DemoNotice />
+      <Content />
+    </section>
+  ) : <SectionPlaceholder section={section} position={position} />}
 </SiteLayout>

@@ -1,0 +1,36 @@
+---
+import { personalDemo } from '../../data/personal-demo';
+const { contact } = personalDemo;
+---
+
+<section class="contact-grid content-block" aria-labelledby="contact-title">
+  <div class="prose">
+    <p class="eyebrow">Canales de muestra</p>
+    <h2 id="contact-title">{contact.title}</h2>
+    <p>{contact.description}</p>
+  </div>
+  <ul class="contact-list">
+    {contact.channels.map(channel => (
+      <li>
+        <p class="eyebrow">Enlace de prueba</p>
+        <h3>{channel.title}</h3>
+        <p>{channel.description}</p>
+        <a class="text-link" href={`#${channel.id}`}>{channel.label} <span aria-hidden="true">↓</span></a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section class="contact-destinations divided-section" aria-labelledby="destinations-title">
+  <p class="eyebrow">Solo demostración</p>
+  <h2 id="destinations-title">Antes de enviar una señal.</h2>
+  <div class="destination-grid">
+    {contact.channels.map(channel => (
+      <section id={channel.id} class="test-destination" aria-labelledby={`${channel.id}-title`} tabindex="-1">
+        <h3 id={`${channel.id}-title`}>{channel.destinationTitle}</h3>
+        <p>{channel.destinationDescription}</p>
+        <a class="text-link" href="#contact-title">Volver a los canales <span aria-hidden="true">↑</span></a>
+      </section>
+    ))}
+  </div>
+</section>

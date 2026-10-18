@@ -1,0 +1,15 @@
+---
+interface Props { caption?: string; }
+const { caption = 'Aquí habrá una fotografía personal elegida para este espacio.' } = Astro.props;
+---
+
+<figure class="photo-placeholder">
+  <div class="photo-frame" aria-hidden="true">
+    <span class="photo-orbit"></span>
+    <span class="photo-coordinate">Fotografía pendiente</span>
+  </div>
+  <figcaption>
+    <span class="eyebrow">Marcador temporal</span>
+    <p>{caption}</p>
+  </figcaption>
+</figure>

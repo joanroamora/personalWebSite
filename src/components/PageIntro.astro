@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  position: number;
+  state?: string;
+}
+const { title, description, position, state = 'Contenido de muestra' } = Astro.props;
+---
+
+<div class="page-intro">
+  <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Órbita {String(position).padStart(2, '0')} / {state}</p>
+  <h1 id="section-title" class="page-title">{title}</h1>
+  <p class="lead">{description}</p>
+</div>
