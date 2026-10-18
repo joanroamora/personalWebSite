@@ -1,0 +1,29 @@
+{
+  "name": "personal-web-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.19.0 <25",
+    "npm": ">=11 <12"
+  },
+  "packageManager": "npm@11.17.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check",
+    "test": "node --test scripts/check-build.test.mjs",
+    "build": "astro build",
+    "check:links": "node scripts/check-build.mjs",
+    "verify": "npm run check && npm test && npm run build && npm run check:links",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "parse5": "8.0.1",
+    "typescript": "5.9.3"
+  }
+}

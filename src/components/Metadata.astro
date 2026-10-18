@@ -1,0 +1,28 @@
+---
+import { siteConfig } from '../../site.config.mjs';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  isError?: boolean;
+}
+
+const { title, description = siteConfig.description, isError = false } = Astro.props;
+const pageTitle = `${title} · ${siteConfig.title}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#080D10" />
+<meta name="generator" content={Astro.generator} />
+<title>{pageTitle}</title>
+<link rel="icon" type="image/svg+xml" href={withBase('icons/orbit.svg')} />
+{!isError && <link rel="canonical" href={canonical} />}
+{(siteConfig.isDemo || isError) && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+{!isError && <meta property="og:url" content={canonical} />}
