@@ -1,0 +1,13 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { withBase } from '../utils/paths';
+---
+
+<SiteLayout title="Página no encontrada" description="Esta señal no lleva a ninguna página. Vuelve al inicio para continuar." isError>
+  <section class="error-page" aria-labelledby="error-title">
+    <p class="eyebrow">Señal perdida / 404</p>
+    <h1 id="error-title">Fuera de<br /><em>órbita.</em></h1>
+    <p class="lead">Esta página no existe o ha cambiado de lugar. El inicio sigue siendo un buen punto de encuentro.</p>
+    <a class="text-link" href={withBase()}>Volver al inicio <span aria-hidden="true">↗</span></a>
+  </section>
+</SiteLayout>

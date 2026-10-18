@@ -1,0 +1,16 @@
+---
+import { siteConfig } from '../../site.config.mjs';
+import { withBase } from '../utils/paths';
+---
+
+<header class="site-header container">
+  <a class="brand" href={withBase()} aria-label={`${siteConfig.title}, inicio`}>
+    <svg viewBox="0 0 32 32" width="32" height="32" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="7" stroke="currentColor" />
+      <ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-30 16 16)" stroke="currentColor" />
+      <circle cx="27" cy="9" r="2" fill="currentColor" />
+    </svg>
+    <span>{siteConfig.title}</span>
+  </a>
+  <span class="demo-label">Versión de muestra</span>
+</header>

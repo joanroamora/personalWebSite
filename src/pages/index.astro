@@ -1,0 +1,43 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { navigation } from '../data/navigation';
+---
+
+<SiteLayout title="Inicio">
+  <section class="hero" aria-labelledby="intro-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Primera señal / 001</p>
+      <h1 id="intro-title">Ideas en<br /><em>órbita.</em></h1>
+      <p class="lead">Un lugar para el código, los pequeños juegos y las historias que todavía están por llegar.</p>
+      <a class="text-link" href="#por-explorar">Lo que viene <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="orbital" aria-hidden="true">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="orbit orbit-three"></div>
+      <div class="planet"></div>
+      <span class="satellite"></span>
+      <span class="orbital-caption">Una nueva órbita, por descubrir.</span>
+    </div>
+  </section>
+
+  <section id="por-explorar" class="explore" aria-labelledby="explore-title">
+    <div class="section-intro">
+      <p class="eyebrow">Por explorar</p>
+      <h2 id="explore-title">Todo tiene<br />su órbita.</h2>
+      <p class="muted">Contenido de demostración. El nombre, los textos y las secciones se completarán más adelante.</p>
+    </div>
+    <ol class="section-list">
+      {navigation.slice(1).map((section, index) => (
+        <li>
+          <span class="section-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{section.label}</h3>
+            <p>{section.description}</p>
+          </div>
+          <span class="upcoming">Próximamente</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+</SiteLayout>
