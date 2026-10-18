@@ -1,6 +1,6 @@
 # Inventario del esqueleto y contenido dummy
 
-Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. La excepción aprobada durante Feature4 es la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`. Las demás secciones siguen con contenido dummy. `PERFIL_PUBLICO.md` se incorporará en la etapa 9.
+Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. Las excepciones aprobadas son la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`, y Cadete Roa, prototipo jugable solicitado en Feature6. Las demás secciones y fichas de juegos siguen con contenido dummy. `PERFIL_PUBLICO.md` se incorporará en la etapa 9.
 
 ## Mapa de secciones
 
@@ -11,12 +11,12 @@ Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 40
 | Inicio | `/` | Presentación dummy, obra destacada y última entrada |
 | Sobre mí | `/sobre-mi/` | Biografía dummy e indicación de fotografía pendiente |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
-| Juegos | `/juegos/` | Catálogo dummy y fichas con rutas internas de prueba |
+| Juegos | `/juegos/` | Cadete Roa jugable en desarrollo y tres fichas de muestra con rutas propias |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
 | Trayectoria | `/trayectoria/` | Hitos ficticios etiquetados como muestra |
 | Contacto | `/contacto/` | Canales de prueba claramente identificados |
 
-En la etapa de juegos, una ficha dummy podrá enlazar a `/juegos/demo-orbita/`, con un mensaje de demostración e instrucciones temporales. Es una ruta reservada: se implementará junto con la ficha para evitar enlaces rotos. El esqueleto no requiere desarrollar un juego real.
+Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las rutas `/juegos/orbita-de-bolsillo/`, `/juegos/senal-perdida/` y `/juegos/jardin-lunar/` son conceptos de muestra en desarrollo: no contienen un juego ni un botón falso de jugar. Sus títulos y descripciones son temporales. Datos en `src/data/games.ts`; mantenimiento en `JUEGOS.md`.
 
 ## Entrega de Feature3
 
@@ -24,7 +24,7 @@ En la etapa de juegos, una ficha dummy podrá enlazar a `/juegos/demo-orbita/`, 
 - **Sobre mí:** biografía, tres intereses y enfoque creativo ficticios; aviso explícito de muestra. `PhotoPlaceholder.astro` reserva una fotografía mediante geometría y un pie que indica «Marcador temporal», sin cargar una imagen ni simular un retrato.
 - **Trayectoria:** tres capítulos ficticios numerados, con aprendizajes de muestra y sin fechas, empresas o credenciales.
 - **Contacto:** los enlaces de correo y perfil llevan a `/contacto/#correo-de-muestra` y `/contacto/#perfil-de-muestra` bajo la base de Pages. Los destinos indican que son pruebas; no se abre un cliente de correo, se envían mensajes ni se enlaza una cuenta personal.
-- **Componentes:** los avisos visibles de `DemoNotice.astro` y el encabezado de `PageIntro.astro` acompañan a las páginas personales. Proyectos, Juegos y Blog mantienen `SectionPlaceholder.astro`.
+- **Componentes:** los avisos visibles de `DemoNotice.astro` y el encabezado de `PageIntro.astro` acompañan a las páginas personales. Proyectos y Juegos tienen catálogos propios; Blog mantiene `SectionPlaceholder.astro` hasta Feature5.
 
 En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los títulos y textos temporales de los componentes personales y de Inicio. También se reemplazarán los destinos de contacto por los canales públicos aprobados y los espacios vacíos de Inicio por la selección real de obra y entradas.
 

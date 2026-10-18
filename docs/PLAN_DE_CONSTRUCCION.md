@@ -135,9 +135,11 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Salida:** una nueva publicación se añade mediante un Markdown y aparece automáticamente al integrar el cambio en `main`.
 
-### Etapa 7 — Catálogo y rutas dummy para minijuegos
+### Etapa 7 — Catálogo de minijuegos y Cadete Roa
 
 **Rama sugerida:** `Feature6-juegos`.
+
+**Alcance actualizado por el propietario:** adelantar Feature6 dejando Feature5-blog pendiente. Crear Cadete Roa como primer prototipo jugable de endless runner 3D low poly, con interfaz en inglés, tres carriles, trincheras, granadas, contenedores y tanques. Abrir en una ventana vertical en escritorio y a tamaño completo en móvil, con controles de teclado y táctiles. Los otros tres juegos son fichas dummy, identificadas como «En desarrollo» y «Ficha de muestra».
 
 1. Crear fichas dummy de juegos en una colección o archivo de datos, independientes de la navegación principal.
 2. Definir `src/games/<slug>/` para las rutas y recursos de prueba de cada minijuego; cada ficha tendrá instrucciones temporales y enlace para volver al catálogo.
@@ -145,7 +147,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 4. Verificar los enlaces, estados vacíos y navegación con teclado y pantalla táctil.
 5. Probar entrada, salida y regreso a una ruta dummy después de las transiciones.
 
-**Salida:** catálogo navegable con enlaces dummy funcionales y estructura lista para sustituirlos por juegos propios. No presentar las demos como juegos reales.
+**Salida:** catálogo navegable, Cadete Roa jugable como prototipo en desarrollo y tres fichas de muestra con rutas propias. El código 3D solo se carga en la ruta de Cadete Roa. Revisar controles, pausa, reintento, colisiones, navegación de regreso y rendimiento adaptable. No presentar los otros conceptos como juegos existentes.
 
 ### Etapa 8 — Revisión de calidad del esqueleto
 

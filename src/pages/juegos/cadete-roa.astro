@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import GameArtwork from '../../components/GameArtwork.astro';
+import CadeteRoa from '../../games/cadete-roa/CadeteRoa.astro';
+import { games } from '../../data/games';
+import { sectionHref } from '../../utils/paths';
+const game = games.find(game => game.id === 'cadete-roa')!;
+---
+<SiteLayout title="Cadete Roa" description={game.summary}>
+  <section class="section-page cadet-page" aria-labelledby="cadet-page-title">
+    <a class="back-link" href={sectionHref('games')}>← Volver a Juegos</a>
+    <div class="cadet-page-grid"><div>
+      <p class="eyebrow">Prototipo jugable · En desarrollo</p><h1 class="page-title" id="cadet-page-title">Cadete Roa</h1>
+      <p class="cadet-page-subtitle" lang="en">{game.subtitle}</p><p class="cadet-page-summary">{game.summary}</p>
+      <CadeteRoa /><p class="cadet-page-note">Un runner de tres carriles con gráficos 3D sencillos. Sin instalación; récord guardado solo en este navegador.</p>
+    </div><div class="cadet-page-art"><GameArtwork game={game} /></div></div>
+    <div class="cadet-instructions"><h2>Tu primer entrenamiento.</h2><ol>{game.instructions.map(instruction => <li>{instruction}</li>)}</ol><p>En escritorio se abre en una ventana vertical. En el celular ocupa toda la ventana y, al empezar, entra en pantalla completa si tu navegador lo permite.</p></div>
+  </section>
+</SiteLayout>
+<style>
+  .back-link { display:inline-flex;align-items:center;min-height:2.75rem;margin-bottom:2rem;color:var(--muted);text-decoration:none;font-size:.85rem; }
+  .cadet-page-grid { display:grid;gap:2rem;align-items:center; }.page-title { margin:1.2rem 0;font-size:clamp(3rem,8vw,6rem); }.cadet-page-subtitle { color:var(--cyan);font:italic 1.5rem var(--font-editorial); }.cadet-page-summary { max-width:30rem;margin-top:1rem;color:var(--muted);font-size:.95rem; }.cadet-page-note { color:var(--muted);font-size:.75rem;max-width:28rem; }
+  .cadet-page-art { border:1px solid #68705a;border-radius:.8rem;overflow:hidden; }.cadet-instructions { margin-top:3rem;border-top:1px solid var(--line);padding-top:2rem;max-width:48rem; }.cadet-instructions h2 { font-size:2rem; }.cadet-instructions ol { padding-left:1.4rem;display:grid;gap:1rem;color:var(--muted);font-size:.9rem;line-height:1.7; }.cadet-instructions>p { margin-top:1.5rem;font-size:.8rem;color:var(--muted); }
+  @media(min-width:50rem) { .cadet-page-grid { grid-template-columns:1fr 1fr;gap:4rem; } }
+</style>
