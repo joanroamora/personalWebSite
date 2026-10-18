@@ -1,12 +1,14 @@
 # personalWebSite
 
-Base de una web personal estática con Astro, preparada para GitHub Pages. Se construye por etapas con contenido dummy; la información personal se incorporará al final.
+Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y Cadete Roa. El blog y tres conceptos de juegos siguen con muestras identificadas.
 
-## Estado de Feature5 — Blog (después de Feature6)
+## Estado de Feature7 — Calidad e información personal
 
 42 páginas estáticas: las siete secciones principales, 404, 27 detalles de proyectos, cuatro fichas de juegos y tres entradas de blog demo. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
 
-Inicio incluye presentación y frase de muestra, un espacio reservado para obra destacada, la última entrada del blog y accesos al resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales.
+Feature7 corrige nombres accesibles de los enlaces, desbordamientos con texto al 200 % y el cierre del juego mientras la pantalla completa aún está pendiente. Añade auditoría automática de accesibilidad en móvil y escritorio, comprobaciones de metadatos en las 42 páginas, estabilidad de carga y presupuestos de tamaño que también protegen el aislamiento del juego. Detalles y alcance en [docs/CALIDAD_ESQUELETO.md](docs/CALIDAD_ESQUELETO.md).
+
+Por petición del propietario, esta misma rama incorpora su información desde `docs/PERFIL_PUBLICO.md`. Inicio muestra su presentación, una perspectiva de su biografía, pdfRoar destacado y la última entrada demo identificada. Sobre mí reúne biografía, ámbitos y herramientas, con una fotografía pendiente. Trayectoria presenta experiencias, formación y certificaciones de la fuente. Contacto ofrece correo, LinkedIn y GitHub públicos, sin formulario. Ver [docs/CONTENIDO_PERSONAL.md](docs/CONTENIDO_PERSONAL.md).
 
 Blog incorpora un índice editorial y lectura con índice de apartados, metadatos, etiquetas y enlaces entre entradas. Las entradas son Markdown con un slug permanente explícito y estados `draft`, `demo` y `published`. Los borradores no generan rutas; las demos se ocultan cuando `isDemo` es `false`. Inicio selecciona automáticamente la última entrada visible. No requiere dependencias nuevas ni JavaScript de lectura. Ver [docs/BLOG.md](docs/BLOG.md) y [la plantilla](docs/plantillas/entrada.md).
 
@@ -18,7 +20,7 @@ El proyecto energético se identifica como proyecto aplicado de grado en la UNAD
 
 El sistema visual comparte colores, tipografías, espaciado, foco y tamaños táctiles. Las transiciones nativas usan un desvanecimiento breve; se desactivan con movimiento reducido. La navegación sigue funcionando sin JavaScript ni soporte para transiciones.
 
-Los textos personales visibles y el nombre «Archivo orbital» son de demostración; las fichas de Proyectos corresponden a repositorios reales aprobados. [docs/PERFIL_PUBLICO.md](docs/PERFIL_PUBLICO.md) es la fuente principal de la información personal de la web: identidad, presentación, biografía, trayectoria, formación y contacto. Consultarlo al sustituir los textos de muestra o actualizar datos personales. La web aún no está publicada.
+La marca y las páginas personales ya usan la información real de [docs/PERFIL_PUBLICO.md](docs/PERFIL_PUBLICO.md), leído al generar el sitio. Se conserva «Vista previa» y `noindex` mientras se revisan los contenidos restantes. La web aún no está publicada.
 
 ## Desarrollo local
 
@@ -34,11 +36,11 @@ Abrir `http://localhost:4321/personalWebSite/`. En PowerShell se puede usar `npm
 Las dependencias se instalan en `node_modules/`, excluido de Git. `package-lock.json` fija sus versiones; los scripts usan los ejecutables del proyecto.
 
 ```sh
-npm run verify   # tipos, pruebas del verificador, build y enlaces locales
+npm run verify   # tipos, pruebas, build, enlaces, metadatos y presupuestos
 npm run preview  # sirve dist/ después del build
 ```
 
-Las pruebas de navegador se ejecutan en GitHub Actions con Chromium. Comprueban navegación, teclado, menú táctil, uso sin JavaScript, movimiento reducido y las cuatro páginas personales en tamaños de 320 a 1440 píxeles, incluida orientación horizontal. Los contactos de prueba deben llevar al destino visible y transferirle el foco incluso sin JavaScript. El CI conserva el informe y las capturas durante siete días.
+Las pruebas de navegador se ejecutan en GitHub Actions con Chromium y axe, instalado únicamente como dependencia de desarrollo. Comprueban navegación, teclado, menú táctil, uso sin JavaScript, movimiento reducido, accesibilidad automática, texto al 200 %, estabilidad y tamaños de 320 a 1440 píxeles, incluida orientación horizontal. También comparan las páginas personales con la fuente y comprueban los destinos de contacto sin enviar mensajes. El CI conserva el informe y las capturas durante siete días.
 
 Para ejecutar esas pruebas voluntariamente en local, después del build:
 
@@ -50,6 +52,8 @@ npm run test:e2e
 Este comando instala el navegador de pruebas dentro de `node_modules/playwright-core/.local-browsers/`. Los comandos de desarrollo habituales no requieren esa descarga.
 
 `npm run check:links` comprueba los destinos locales de los enlaces y recursos del HTML generado, incluidos fragmentos y el prefijo de Pages. Los sitios externos no se consultan. No sustituye la revisión de accesibilidad ni la comprobación visual.
+
+`npm run check:quality` revisa metadatos, estructura, imágenes y presupuestos gzip de `dist/`, incluida la carga aislada del juego. Forma parte de `verify` y no añade código al sitio. Las auditorías de navegador guardan los resultados y el árbol accesible como adjuntos del informe.
 
 ## Organización
 
@@ -70,9 +74,9 @@ docs/               Plan e inventario de contenido de demostración
 .github/workflows/  CI y despliegue preparado
 ```
 
-`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()`, `projectHref()`, `gameHref()` y `postHref()` resuelven los enlaces. `src/pages/[section].astro` genera las secciones personales; Proyectos, Juegos y Blog contienen sus índices y rutas propias. El catálogo de proyectos carga sus filtros y diálogo; Cadete Roa carga su motor aislado en `src/games/cadete-roa/`. La colección Markdown del blog se consulta desde `src/data/blog.ts`.
+`site.config.mjs` centraliza la identidad derivada del perfil, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()`, `projectHref()`, `gameHref()` y `postHref()` resuelven los enlaces. `src/pages/[section].astro` genera las secciones personales; Proyectos, Juegos y Blog contienen sus índices y rutas propias. El catálogo de proyectos carga sus filtros y diálogo; Cadete Roa carga su motor aislado en `src/games/cadete-roa/`. La colección Markdown del blog se consulta desde `src/data/blog.ts`.
 
-Los textos ficticios de las páginas personales están en `src/data/personal-demo.ts`, separados de su presentación en `src/components/personal/`. `DemoNotice`, `PageIntro` y `PhotoPlaceholder` son componentes compartidos. Para revisar los textos de muestra, editar ese archivo de datos; para sustituirlos por información real, usar `docs/PERFIL_PUBLICO.md` como fuente y seguir la etapa 9 y el inventario de `docs/CONTENIDO_DEMO.md`. No hay fotografías de sustitución ni datos personales nuevos.
+Los componentes personales consumen `src/data/profile.ts`, que lee `docs/PERFIL_PUBLICO.md`. Se retiraron los textos ficticios y destinos de contacto de Feature3. `PhotoPlaceholder` conserva un marcador de fotografía pendiente; no se usan retratos de sustitución. El inventario de `docs/CONTENIDO_DEMO.md` recoge las muestras que aún faltan por sustituir.
 
 ## Ramas y comprobaciones
 
@@ -80,7 +84,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature4 y Feature6 ya se integraron en `dev`. `Feature5-blog` recupera el blog que quedó pendiente al adelantar los juegos. Después corresponde Feature7, revisión de calidad del esqueleto. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature6 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). `Feature7-calidad-esqueleto` incluye la revisión de calidad y, por autorización del propietario, la incorporación de su perfil en esta misma rama. Quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
@@ -106,5 +110,7 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Iconos y licencias](docs/ICONOS_TECNOLOGIAS.md)
 - [Catálogo y mantenimiento de juegos](docs/JUEGOS.md)
 - [Blog y proceso de publicación de entradas](docs/BLOG.md)
+- [Revisión de calidad y comprobaciones](docs/CALIDAD_ESQUELETO.md)
 - [Fuente principal de información personal](docs/PERFIL_PUBLICO.md)
+- [Mantenimiento del contenido personal](docs/CONTENIDO_PERSONAL.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

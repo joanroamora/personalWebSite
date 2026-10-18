@@ -29,11 +29,11 @@ jobs:
           cache: npm
       - name: Instalar dependencias locales
         run: npm ci
-      - name: Comprobar tipos, pruebas, build y enlaces
+      - name: Comprobar tipos, pruebas, build, enlaces y presupuestos
         run: npm run verify
       - name: Preparar Chromium dentro de node_modules
         run: npm run test:e2e:install
-      - name: Probar navegación y tamaños de pantalla
+      - name: Probar navegación, accesibilidad y estados interactivos
         run: npm run test:e2e
       - name: Guardar informe y capturas
         if: ${{ !cancelled() }}

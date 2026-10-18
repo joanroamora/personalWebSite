@@ -2,6 +2,8 @@
 export const technologyIcons: Partial<Record<string, { file: string; monochrome?: boolean }>> = {
   Python: { file: 'python' }, FastAPI: { file: 'fastapi' }, Gemini: { file: 'googlegemini', monochrome: true },
   GCP: { file: 'googlecloud' }, Terraform: { file: 'terraform' }, Kubernetes: { file: 'kubernetes' },
+  'Google Cloud Platform': { file: 'googlecloud' }, 'Microsoft Azure': { file: 'azure' },
+  'Docker Compose': { file: 'docker' },
   'Argo CD': { file: 'argocd' }, Ansible: { file: 'ansible' }, Grafana: { file: 'grafana' },
   AWS: { file: 'aws', monochrome: true }, 'AWS ECS': { file: 'aws', monochrome: true },
   PyTorch: { file: 'pytorch' }, Jenkins: { file: 'jenkins' }, Docker: { file: 'docker' },

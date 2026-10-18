@@ -7,9 +7,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
-  workers: process.env.CI ? 2 : undefined,
+  workers: 2,
   timeout: 30_000,
-  globalTimeout: 180_000,
+  globalTimeout: 300_000,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: 'http://127.0.0.1:4321',

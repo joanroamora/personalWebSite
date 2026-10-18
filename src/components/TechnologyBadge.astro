@@ -19,7 +19,8 @@ const glyphs = {
   <span>{name}</span>
 </span>
 <style>
-  .technology-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.38rem 0.58rem; border: 1px solid #2b3a37; border-radius: 0.4rem; background: #14211c66; font-size: 0.7rem; line-height: 1.3; color: #c4d1c8; white-space: nowrap; }
+  .technology-badge { display: inline-flex; align-items: center; gap: 0.4rem; max-width: 100%; padding: 0.38rem 0.58rem; border: 1px solid #2b3a37; border-radius: 0.4rem; background: #14211c66; font-size: 0.7rem; line-height: 1.3; color: #c4d1c8; }
+  .technology-badge > span { min-width: 0; }
   .technology-icon { display: block; flex: 0 0 16px; width: 16px; height: 16px; object-fit: contain; color: var(--cyan); }
   .monochrome { filter: brightness(0) invert(0.88); }
 </style>

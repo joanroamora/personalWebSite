@@ -4,6 +4,8 @@
 
 ## Uso como fuente del sitio
 
+La web ya lee este archivo durante su construcción. Conservar los títulos de los apartados y las etiquetas de sus campos al editar los datos. El funcionamiento y las comprobaciones están en [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
+
 - Consultar este archivo antes de redactar o modificar información personal de la web.
 - Conservar los nombres, fechas, instituciones, experiencias y canales proporcionados. Adaptar la presentación al tono personal del sitio sin inventar hechos ni cambiar su significado.
 - Usar [PROYECTOS_APROBADOS.md](PROYECTOS_APROBADOS.md) como referencia complementaria de los repositorios seleccionados.
@@ -22,11 +24,11 @@
 
 ### Perfil
 
-Ingeniero de sistemas con experiencia en DevOps y confiabilidad de plataformas.
+Ingeniero DevOps con experiencia en confiabilidad de plataformas.
 
 ### Introducción breve
 
-Soy Joan Ricardo Roa Mora, ingeniero de sistemas. Siempre me ha interesado la tecnología y entender qué podemos hacer con los avances que van apareciendo. Me gusta acercarme al desarrollo tecnológico con una mirada humanista y entender los contextos en los que se usa.
+Soy Joan Ricardo Roa Mora, ingeniero DevOps. Siempre me ha interesado la tecnología y entender qué podemos hacer con los avances que van apareciendo. Me gusta acercarme al desarrollo tecnológico con una mirada humanista y entender los contextos en los que se usa.
 
 Actualmente estoy en Estados Unidos, avanzando en mis estudios de maestría en tecnología y desarrollando soluciones con agentes de inteligencia artificial y modelos de frontera.
 

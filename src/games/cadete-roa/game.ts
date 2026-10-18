@@ -28,6 +28,7 @@ function mount(): void {
   let frame = 0, revealFrame = 0, last = 0, accumulator = 0, hudTime = 0, closeTimer = 0;
   let best = readRecord(), quality: 'auto' | 'eco' = 'auto', degraded = false, slowFrames = 0;
   let sound = false, audio: AudioContext | null = null, ownsFullscreen = false, contextLost = false;
+  let fullscreenRequest: Promise<void> | null = null;
   let pointer: { x: number; y: number; id: number } | null = null;
 
   function tone(frequency: number, duration = .08): void {
@@ -124,8 +125,11 @@ function mount(): void {
     tone(420); canvas.focus({ preventScroll:true });
     announcement.textContent = 'Run started. Left and right to move, up or space to jump. P to pause.';
     // On devices supporting it, the play gesture also hides browser chrome.
-    if (matchMedia('(max-width: 640px), (pointer: coarse)').matches && !document.fullscreenElement && document.documentElement.requestFullscreen) {
-      void document.documentElement.requestFullscreen().then(() => { ownsFullscreen = true; }).catch(() => {});
+    if (matchMedia('(max-width: 640px), (pointer: coarse)').matches && !document.fullscreenElement && !fullscreenRequest && document.documentElement.requestFullscreen) {
+      fullscreenRequest = document.documentElement.requestFullscreen()
+        .then(() => { ownsFullscreen = true; })
+        .catch(() => {})
+        .finally(() => { fullscreenRequest = null; });
     }
     frame = requestAnimationFrame(tick);
   }
@@ -147,15 +151,21 @@ function mount(): void {
     }
     startButton.focus({ preventScroll:true });
   }
+  async function leaveFullscreen(): Promise<void> {
+    // A quick close can arrive before the browser has finished entering fullscreen.
+    await fullscreenRequest;
+    if (ownsFullscreen && document.fullscreenElement) {
+      ownsFullscreen = false;
+      try { await document.exitFullscreen(); } catch { /* Navigation may already have left fullscreen. */ }
+    }
+    ownsFullscreen = false;
+  }
   function close(immediate = false): void {
     pause(); stopLoop();
     if (!dialog.open) return;
     const finish = async () => {
       // Finish leaving fullscreen before exposing links that can navigate away.
-      if (ownsFullscreen && document.fullscreenElement) {
-        ownsFullscreen = false;
-        try { await document.exitFullscreen(); } catch { /* Navigation may already have left fullscreen. */ }
-      }
+      await leaveFullscreen();
       if (dialog.open) dialog.close();
       dialog.classList.remove('is-closing');
     };
@@ -176,8 +186,7 @@ function mount(): void {
   dialog.addEventListener('close',() => {
     stopLoop(); document.documentElement.classList.remove('cadet-open');
     void audio?.suspend().catch(() => {});
-    if (ownsFullscreen && document.fullscreenElement) void document.exitFullscreen().catch(() => {});
-    ownsFullscreen = false; opener.focus({ preventScroll:true });
+    void leaveFullscreen(); opener.focus({ preventScroll:true });
   },on);
   dialog.addEventListener('keydown',event => {
     if (event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
