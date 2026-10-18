@@ -1,10 +1,12 @@
 ---
 import { repositoryName, type Project } from '../data/projects';
 import TechnologyBadge from './TechnologyBadge.astro';
+import { routeContext } from '../i18n/locales';
 interface Props { project: Project; standalone?: boolean; }
 const { project, standalone = false } = Astro.props;
 const Heading = standalone ? 'h1' : 'h2';
 const Subheading = standalone ? 'h2' : 'h3';
+const { locale } = routeContext(Astro.url.pathname,import.meta.env.BASE_URL);
 ---
 
 <article class="project-details" aria-labelledby={`${project.id}-detail-title`}>
@@ -13,11 +15,14 @@ const Subheading = standalone ? 'h2' : 'h3';
   <Heading id={`${project.id}-detail-title`} class="detail-title">{project.title}</Heading>
   <p class="detail-repository">{repositoryName(project)}</p>
   {project.academic && <aside class="academic-note" aria-label="Contexto académico"><span class="academic-symbol" aria-hidden="true">↗</span><div><p>{project.academic.context}</p><p>{project.academic.institution}</p></div></aside>}
-  <div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div>
+  {locale !== 'es' && <p class="detail-prose">{project.summary}</p>}
+  {locale !== 'es' && <details class="original-content"><summary>Descripción original en español</summary><div lang="es" dir="ltr" data-no-translate><div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div><ul class="detail-highlights">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul></div></details>}
+  {locale === 'es' && <div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div>}
+  {locale === 'es' &&
   <section class="detail-section" aria-labelledby={`${project.id}-focus-title`}>
     <Subheading id={`${project.id}-focus-title`}>Dentro del proyecto</Subheading>
     <ul class="detail-highlights">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul>
-  </section>
+  </section>}
   <section class="detail-section" aria-labelledby={`${project.id}-tech-title`}>
     <Subheading id={`${project.id}-tech-title`}>Hecho con</Subheading>
     <ul class="detail-technologies" role="list">{project.technologies.map(technology => <li><TechnologyBadge name={technology} /></li>)}</ul>

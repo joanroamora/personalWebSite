@@ -47,3 +47,5 @@ Las fichas de proyectos y la información personal ya están aprobadas para most
 - Retirar las etiquetas de vista previa y cambiar `isDemo` cuando no quede contenido de muestra por revisar.
 
 Durante el desarrollo, la cabecera indica «Vista previa» y los metadatos conservan `noindex, nofollow`. La activación de publicación es una decisión independiente del push de una Feature.
+
+Feature8 mantiene las mismas muestras en las seis versiones de idioma; traducir su interfaz y resúmenes no las convierte en publicaciones o juegos reales. Los cuerpos de entradas demo y descripciones extensas de proyectos conservan el original español identificado mientras se revisa la localización completa. La lista de decisiones está en [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).

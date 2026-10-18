@@ -1,0 +1,11 @@
+---
+import Page from '../[section].astro';
+import { translatedLocales } from '../../i18n/locales';
+import { navigation } from '../../data/navigation';
+export function getStaticPaths() {
+  return translatedLocales.flatMap(locale=>navigation.filter(section=>['about','journey','contact'].includes(section.id)).map(section=>({
+    params:{locale:locale.code,section:section.path.replace(/\/$/,'')},props:{section,position:navigation.indexOf(section)},
+  })));
+}
+---
+<Page {...Astro.props} />

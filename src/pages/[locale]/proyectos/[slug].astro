@@ -1,0 +1,7 @@
+---
+import Page from '../../proyectos/[slug].astro';
+import { translatedLocales } from '../../../i18n/locales';
+import { projects } from '../../../data/projects';
+export function getStaticPaths() { return translatedLocales.flatMap(locale=>projects.map(project=>({params:{locale:locale.code,slug:project.id},props:{project}}))); }
+---
+<Page {...Astro.props} />

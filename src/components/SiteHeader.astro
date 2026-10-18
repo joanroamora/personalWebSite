@@ -3,6 +3,7 @@ import { siteConfig } from '../../site.config.mjs';
 import { withBase } from '../utils/paths';
 import Navigation from './Navigation.astro';
 import { publicProfile } from '../data/profile';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 ---
 
 <header class="site-header container">
@@ -27,6 +28,7 @@ import { publicProfile } from '../data/profile';
     </summary>
     <Navigation id="mobile-navigation" variant="mobile" />
   </details>
+  <LanguageSwitcher />
 </header>
 
 <script>

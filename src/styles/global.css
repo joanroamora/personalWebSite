@@ -39,7 +39,7 @@ p { line-height: 1.65; }
 .container { width: min(100% - 2.5rem, var(--content-width)); margin-inline: auto; }
 .skip-link { position: absolute; inset: 0 auto auto 1rem; z-index: 10; padding: 0.9rem; background: var(--accent); color: var(--background); transform: translateY(-120%); }
 .skip-link:focus { transform: translateY(0); color: var(--background); }
-.site-header { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-2); padding-block: var(--space-3); border-bottom: 1px solid var(--line); }
+.site-header { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: .65rem; padding-block: var(--space-3); border-bottom: 1px solid var(--line); }
 .brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 .brand svg { color: var(--accent); flex-shrink: 0; }
 .brand-text > span { display: block; }
@@ -185,12 +185,24 @@ section[id] { scroll-margin-top: var(--space-4); }
 }
 
 @media (min-width: 70rem) {
-  .site-header { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); }
+  .site-header { grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto; gap: .8rem; }
   .desktop-navigation { display: block; justify-self: end; }
   .desktop-navigation .navigation-list { display: flex; gap: 0.15rem; }
   .desktop-navigation a { padding-inline: 0.65rem; font-size: 0.8rem; }
   .mobile-menu { display: none; }
 }
+
+html[dir="rtl"] { --font-editorial: ui-serif, Georgia, serif; }
+html:lang(hi),html:lang(ar),html:lang(zh-Hans) { letter-spacing:normal; }
+html:lang(hi) :is(h1,h2,h3,.eyebrow),html:lang(ar) :is(h1,h2,h3,.eyebrow),html:lang(zh-Hans) :is(h1,h2,h3,.eyebrow) { letter-spacing:normal; line-height:1.4; }
+html[dir="rtl"] .journey-list li { padding-inline:3.25rem 0; }
+html[dir="rtl"] .journey-marker { left:auto; right:0; }
+html[dir="rtl"] .journey-list li::before { left:auto; right:.9rem; }
+html[dir="rtl"] .detail-repository,html[dir="rtl"] .project-repository,html[dir="rtl"] .contact-list .text-link { direction:ltr; unicode-bidi:isolate; }
+.original-content { margin-block:1.5rem; padding:1rem; border:1px solid var(--line); border-radius:.65rem; }
+.original-content>summary { min-height:44px; cursor:pointer; font-size:.8rem; color:var(--cyan); }
+.original-content[open]>summary { margin-bottom:1rem; }
+.original-content[lang="es"] { direction:ltr; text-align:start; }
 
 @media (prefers-reduced-motion: reduce) {
   :root { --motion-fast: 0ms; }

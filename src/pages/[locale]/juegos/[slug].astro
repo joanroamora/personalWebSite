@@ -1,0 +1,7 @@
+---
+import Page from '../../juegos/[slug].astro';
+import { translatedLocales } from '../../../i18n/locales';
+import { games } from '../../../data/games';
+export function getStaticPaths() { return translatedLocales.flatMap(locale=>games.filter(game=>game.status==='development').map(game=>({params:{locale:locale.code,slug:game.id},props:{game}}))); }
+---
+<Page {...Astro.props} />
