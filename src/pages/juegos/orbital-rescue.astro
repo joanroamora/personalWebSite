@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import OrbitalRescue from '../../games/orbital-rescue/OrbitalRescue.astro';
+import {games} from '../../data/games';
+const game=games.find(game=>game.id==='orbital-rescue')!;
+---
+<PlayableGamePage game={game}><OrbitalRescue/></PlayableGamePage>

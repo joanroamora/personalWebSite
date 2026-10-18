@@ -144,7 +144,7 @@ test('táctil: joystick y bomba simultáneos, grúa diagonal y orientación @mob
 
 test('el catálogo nuevo funciona sin JavaScript y cada ficha conserva instrucciones',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false});const page=await context.newPage();await page.goto(base);
-  await expect(page.locator('.new-game')).toHaveCount(3);await expect(page.locator('canvas')).toHaveCount(0);
+  await expect(page.locator('.new-game')).toHaveCount(7);await expect(page.locator('canvas')).toHaveCount(0);
   for(const id of ['galactian','rail-crane','torque-trail']){await page.goto(`${base}${id}/`);await expect(page.locator('.arcade-noscript')).toBeVisible();await expect(page.locator('.arcade-page-instructions')).toBeVisible();}
   await context.close();
 });

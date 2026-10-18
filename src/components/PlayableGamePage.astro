@@ -10,7 +10,7 @@ const {game}=Astro.props;
   <section class="section-page arcade-page" aria-labelledby="arcade-page-title">
     <a class="back-link" href={sectionHref('games')}>← Volver a Juegos</a>
     <div class="arcade-page-grid"><div><p class="eyebrow">El pequeño arcade</p><h1 class="page-title" id="arcade-page-title">{game.title}</h1><p class="arcade-page-tagline" lang="en">{game.subtitle}</p><p class="arcade-page-summary">{game.summary}</p><slot /><p class="arcade-page-note">Sin instalación. Tu récord se guarda en este navegador.</p></div><div class="arcade-page-art"><GameArtwork game={game} /></div></div>
-    <div class="arcade-page-instructions" lang="en" data-no-translate><h2>Before your first round.</h2><ol>{game.instructions.map(instruction=><li>{instruction}</li>)}</ol><p>On desktop, the game opens in a portrait window. On mobile, it fills the viewport; Play also requests fullscreen when supported. Closing returns you to this page.</p></div>
+    <div class="arcade-page-instructions" lang="en" data-no-translate><h2>Before your first round.</h2><ol>{game.instructions.map(instruction=><li>{instruction}</li>)}</ol><p>{game.fullscreen===false?'On desktop, the game opens in a portrait window. On mobile, it fills the viewport without forcing fullscreen or orientation. Closing returns you to this page.':'On desktop, the game opens in a portrait window. On mobile, it fills the viewport; Play also requests fullscreen when supported. Closing returns you to this page.'}</p></div>
   </section>
 </SiteLayout>
 <style>

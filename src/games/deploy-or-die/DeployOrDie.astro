@@ -1,0 +1,33 @@
+---
+import ArcadeWindow from '../shared/ArcadeWindow.astro';
+import '../shared/operations.css';
+import '../shared/missions.css';
+const desktop=['Use the Platform and Release tabs. All actions work with a mouse or keyboard focus.','Scale Up boots a server in 6 seconds. Select a broken server to Repair; Restart clears a memory leak.','Database capacity limits the whole platform. Optimize Database temporarily helps a database bottleneck.','Run Tests → Deploy Canary → observe for 6 seconds → Promote. Rollback restores the last stable version in 3 seconds.'];
+const mobile=['Tap Platform or Release to switch panels. Important metrics stay visible above both.','Select a server card, then Repair hardware or Restart a leaking app. Scroll the panel if necessary.','Scale Up adds a server after 6 seconds. Database limits still apply; use Optimize Database when it slows down.','In Release, run tests, try a 10% canary and observe before Promote. Rollback is a useful, valid decision.'];
+---
+<ArcadeWindow id="deploy-or-die" title="Deploy or Die" mark="DD / ON-CALL DESK" tagline="Ship carefully. Breathe occasionally." description="Traffic rises. Releases arrive. Keep a tiny platform alive for a three-minute shift, without spending your entire budget on servers and optimism." desktop={desktop} mobile={mobile} fullscreen={false} guided layout="management" manual="On-call handbook">
+ <div slot="hud"><div class="ops-stats"><span>TRAFFIC<strong data-ops-traffic>90 req/s</strong></span><span>CAPACITY<strong data-ops-capacity>140 req/s</strong></span><span>LATENCY<strong data-ops-latency>90 ms</strong></span><span>ERROR BUDGET<strong data-ops-errors>100%</strong></span><span>BUDGET<strong data-ops-budget>$120</strong></span><span>SHIFT / SCORE<strong><span data-ops-time>3:15</span> · <span data-ops-score>0</span></strong></span></div><p class="ops-notice" data-ops-notice></p></div>
+ <div slot="board" class="ops-board">
+  <div class="ops-tabs"><button type="button" data-action="tab-platform" aria-pressed="true">Platform</button><button type="button" data-action="tab-release" aria-pressed="false">Release <span data-ops-release-tab>v1.1</span></button></div>
+  <div class="ops-board" data-ops-platform>
+   <div class="ops-panel"><h3>⇢ LOAD BALANCER</h3><p data-ops-queue>Queue 0 / 450 · Requests expire after 5s</p><div class="ops-request-flow" aria-hidden="true">··· → ROUTE → ··· → APPS → ···</div></div>
+   <div class="ops-grid">{Array.from({length:5},(_,i)=><button type="button" data-server-slot={i} data-action={`server-${i+1}`} aria-pressed={i===0?'true':'false'}><strong data-server-title>App {i+1}</strong><small data-server-health>Healthy</small><small data-server-load>70 req/s</small></button>)}</div>
+   <div class="ops-request-flow" aria-hidden="true">↓ QUERY STREAM ↓</div>
+   <button type="button" data-action="database" aria-pressed="false"><strong>▤ DATABASE</strong><small data-ops-db>185 req/s</small><small>App scaling cannot bypass this limit.</small></button>
+   <button type="button" data-action="optimize">Optimize Database / $18</button>
+   <div class="ops-panel"><p data-ops-availability>Served 0 · Failed 0</p><p>Server upkeep: $0.11/s each. Served requests earn budget. Emergency repair remains available at low funds.</p></div>
+  </div>
+  <div class="ops-board" data-ops-release hidden>
+   <div class="ops-panel"><div class="ops-row"><h3 data-ops-version>RELEASE v1.1</h3><span class="ops-caption" data-ops-rollout>Waiting</span></div><p data-ops-tests>Tests have not run.</p><p class="ops-alert" data-ops-canary>Canary sends 10% of traffic to the candidate.</p></div>
+   <div class="ops-grid"><button type="button" data-action="tests">Run Tests / $8</button><button type="button" data-action="canary">Deploy Canary / $10</button><button type="button" data-action="promote">Promote / $12</button><button type="button" data-action="rollback">Rollback / ≤$4</button></div>
+   <div class="ops-panel"><h3>RELEASE PLAYBOOK</h3><p>1. Run Tests for a useful signal.<br/>2. Observe a 10% canary for 6s.<br/>3. Promote healthy changes.<br/>4. Rollback errors. The release traits never change after your decision.</p><p data-ops-deployments>Healthy deployments 0 · Rollbacks 0</p></div>
+  </div>
+ </div>
+ <Fragment slot="controls"><p class="ops-selection" data-ops-selection>APP 1 / Healthy</p><button type="button" data-action="scale-up">Scale Up / $28</button><button type="button" data-action="scale-down">Scale Down</button><button type="button" data-action="repair" disabled>Repair / $18</button><button type="button" data-action="restart">Restart / $6</button></Fragment>
+</ArcadeWindow>
+<script>import './game';</script>
+<style is:global>
+ .theme-deploy-or-die{--game-bg:#192238;--game-accent:#a6d9f7}.theme-deploy-or-die .arcade-overlay{background:linear-gradient(160deg,#182c44f5,#2a2642ed)}
+ .theme-deploy-or-die .arcade-title{font-size:clamp(2.7rem,8vh,3.8rem)}.ops-tabs{position:sticky;top:0;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:.4rem;background:#192238;padding-bottom:.4rem}
+ .ops-tabs button{text-align:center}.theme-deploy-or-die [data-health="down"]{border-style:dashed;border-color:#ffaca3}.theme-deploy-or-die [data-health="leaking"]{border-style:dashed;border-color:#ffd395}
+</style>

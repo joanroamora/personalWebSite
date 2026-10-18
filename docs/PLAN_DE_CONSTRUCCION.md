@@ -10,6 +10,8 @@ La incorporación se ha adelantado por decisiones del propietario: proyectos rea
 
 ## 1. Resultado buscado
 
+**Ampliación Feature11:** Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue se implementan en `Feature11-cuatro-juegos`, creada desde `dev` tras Feature10. El catálogo llega a ocho juegos jugables, preservando los tres conceptos dummy. Controles, supuestos y validación en [FEATURE11_JUEGOS.md](FEATURE11_JUEGOS.md). El propietario autorizó su integración y push a `dev`; no incluye publicación ni despliegue.
+
 Construir primero un esqueleto estático, gratuito y adaptable a móvil y escritorio, con todas las rutas, componentes y estructuras de contenido previstas. Usará datos dummy mientras se define la información personal, los proyectos, los juegos, las fotografías y los enlaces reales. La versión pública final conservará la identidad visual minimalista, de inspiración alienígena/ovni y con transiciones suaves, sin enfoque de búsqueda de empleo.
 
 **Tecnología prevista:** Astro con salida estática, HTML/CSS y JavaScript para cada juego; GitHub Actions para comprobar y generar el sitio; GitHub Pages para publicarlo. Las entradas del blog serán archivos Markdown. No se necesita backend para la primera versión.

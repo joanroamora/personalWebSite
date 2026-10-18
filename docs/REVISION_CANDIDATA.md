@@ -1,4 +1,4 @@
-# Preparación de la candidata — actualizada en Feature10
+# Preparación de la candidata — actualizada en Feature11
 
 La candidata aún no está lista para publicación. Esta revisión no elimina muestras ni añade hechos personales por suposición.
 
@@ -10,7 +10,7 @@ La candidata aún no está lista para publicación. Esta revisión no elimina mu
 | Fotografía | Cuatro fotos aprobadas incorporadas en Feature10: Inicio, Sobre mí y Formación en Trayectoria. Revisar encuadres y textos alternativos localizados. Ver [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md). |
 | Frase personal | Inicio usa la biografía aprobada. Solo sustituirla si el propietario aporta una frase propia. |
 | Blog | Tres entradas demo y un borrador de prueba. Aportar textos propios o decidir retirar las muestras; no convertirlos en publicaciones reales cambiando su estado. |
-| Juegos | Cadete Roa es un prototipo. Feature9 añade Galactian y Rail Crane; Feature10 incorpora Torque Trail, moto lateral de 8 bits. Otros tres son conceptos dummy: decidir cuáles se conservarán o retirarán. |
+| Juegos | Ocho jugables: Cadete Roa, Galactian, Rail Crane, Torque Trail y los cuatro de [Feature11](FEATURE11_JUEGOS.md). Revisar dificultad y controles en dispositivos físicos. Otros tres son conceptos dummy: decidir cuáles se conservarán o retirarán. |
 | Contacto | Ubicación general y cuatro canales autorizados: correo, LinkedIn, GitHub y Flickr. El enlace a Flickr está incorporado desde la fuente, con etiqueta localizada. Sin formulario, envíos ni datos privados nuevos. |
 | Calidad final | Verificación automática y emulación móvil. Pendientes revisión en dispositivos físicos, lector de pantalla real y aprobación editorial del propietario. |
 | Publicación | No autorizada en esta entrega. `isDemo` permanece activo; se conserva `noindex`. No se toca `main`, la visibilidad del repositorio ni la variable de Pages. |

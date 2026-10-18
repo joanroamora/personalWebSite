@@ -1,5 +1,6 @@
 ---
 import type { Game } from '../data/games';
+import Feature11Artwork from './Feature11Artwork.astro';
 interface Props { game: Game }
 const { game } = Astro.props;
 ---
@@ -33,7 +34,7 @@ const { game } = Astro.props;
       <path d="m48 316 42-10m624 54 39-17" stroke="#b2ad85" stroke-width="9"/>
       <path d="M28 27h24m-24 0v24m744-24h-24m24 0v24M28 493h24m-24 0v-24m744 24h-24m24 0v-24" stroke="#e9e9c5" opacity=".5"/>
     </svg>
-  ) : game.symbol === 'galactian' ? (
+  ) : ['grid','deploy','packet','rescue'].includes(game.symbol) ? <Feature11Artwork symbol={game.symbol}/> : game.symbol === 'galactian' ? (
     <svg viewBox="0 0 600 360" fill="none" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges">
       <path fill="#263f3c" d="M0 0h600v360H0z"/><path fill="#354c42" d="M50 0h110v90H50zM400 0h130v100H400zM12 190h110v170H12zM430 210h140v150H430z"/><path fill="#647058" d="M275 0h50v360h-50z"/>
       {[30,90,150,210,270,330].map(y=><path fill="#9c9e72" d={`M298 ${y}h4v22h-4z`} />)}

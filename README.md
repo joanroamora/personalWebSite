@@ -1,6 +1,10 @@
 # personalWebSite
 
-Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y el arcade con Cadete Roa, Galactian, Rail Crane y Torque Trail. El blog y tres conceptos de juegos siguen con muestras identificadas.
+Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y ocho juegos: Cadete Roa, Galactian, Rail Crane, Torque Trail, Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue. El blog y tres conceptos de juegos siguen con muestras identificadas.
+
+## Feature11 — cuatro nuevos juegos
+
+Blackout Texas combina generación, batería y distribución eléctrica; Deploy or Die, capacidad, incidentes y despliegues; Packet Runner, rutas, amenazas y entregas con TTL; Orbital Rescue, inercia, rescates y acoplamiento. Comparten la integración del arcade, con reglas independientes, interfaces inglesas, teclado/táctil, tutoriales, audio opcional y récords locales. Sin dependencias nuevas. El build actual genera 289 páginas estáticas. Alcance, controles, supuestos y validación en [docs/FEATURE11_JUEGOS.md](docs/FEATURE11_JUEGOS.md). Rama: `Feature11-cuatro-juegos`, con integración y push a `dev` autorizados por el propietario; sin publicación ni despliegue.
 
 ## Feature10 — Fotografías personales y Torque Trail
 
@@ -140,4 +144,5 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Revisión de la candidata y decisiones pendientes](docs/REVISION_CANDIDATA.md)
 - [Fotografías personales y mantenimiento](docs/FEATURE10_FOTOGRAFIAS.md)
 - [Torque Trail: controles, física y arquitectura](docs/TORQUE_TRAIL.md)
+- [Feature11: cuatro juegos, controles y validación](docs/FEATURE11_JUEGOS.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import DeployOrDie from '../../games/deploy-or-die/DeployOrDie.astro';
+import {games} from '../../data/games';
+const game=games.find(game=>game.id==='deploy-or-die')!;
+---
+<PlayableGamePage game={game}><DeployOrDie/></PlayableGamePage>
