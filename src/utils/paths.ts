@@ -15,3 +15,7 @@ export function sectionHref(id: SectionId): string {
 export function projectHref(id: string): string {
   return `${sectionHref('projects')}${encodeURIComponent(id)}/`;
 }
+
+export function gameHref(id: string): string {
+  return `${sectionHref('games')}${encodeURIComponent(id)}/`;
+}

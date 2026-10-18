@@ -1,0 +1,10 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import GamesContent from '../../components/GamesContent.astro';
+import { navigation } from '../../data/navigation';
+const position = navigation.findIndex(section => section.id === 'games');
+---
+<SiteLayout title="Juegos" description="Un pequeño arcade: Cadete Roa, un runner 3D jugable, y conceptos de muestra en desarrollo.">
+  <section class="section-page" aria-labelledby="section-title"><PageIntro title="Juegos" description="Pequeñas pausas para explorar y jugar." position={position} state="En construcción" /><GamesContent /></section>
+</SiteLayout>
