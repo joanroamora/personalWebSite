@@ -21,7 +21,7 @@ if (browser) {
       item.hidden = !matches;
       if (matches) visible++;
     }
-    if (count) count.textContent = `${visible} ${visible === 1 ? 'proyecto' : 'proyectos'}${visible === items.length ? ' / Un archivo en movimiento' : ` de ${items.length}`}`;
+    if (count) count.textContent = `${visible} ${visible === 1 ? (count.dataset.countSingular ?? 'proyecto') : (count.dataset.countPlural ?? 'proyectos')}${visible === items.length ? (count.dataset.countSuffix ?? ' / Un archivo en movimiento') : `${count.dataset.countOf ?? ' de '}${items.length}`}`;
     if (empty) empty.hidden = visible > 0;
   };
 

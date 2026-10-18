@@ -2,6 +2,7 @@
 import { siteConfig } from '../../site.config.mjs';
 import { withBase } from '../utils/paths';
 import { publicProfile } from '../data/profile';
+import { locales, languageHref, routeContext } from '../i18n/locales';
 
 interface Props {
   title: string;
@@ -13,6 +14,7 @@ interface Props {
 const { title, description = siteConfig.description, isError = false, article } = Astro.props;
 const pageTitle = `${title} · ${publicProfile.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const { path } = routeContext(Astro.url.pathname, import.meta.env.BASE_URL);
 ---
 
 <meta charset="utf-8" />
@@ -23,6 +25,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <title>{pageTitle}</title>
 <link rel="icon" type="image/svg+xml" href={withBase('icons/orbit.svg')} />
 {!isError && <link rel="canonical" href={canonical} />}
+{!isError && locales.map(locale => <link rel="alternate" hreflang={locale.tag} href={new URL(languageHref(path,locale.code,import.meta.env.BASE_URL),Astro.site)} />)}
+{!isError && <link rel="alternate" hreflang="x-default" href={new URL(languageHref(path,'es',import.meta.env.BASE_URL),Astro.site)} />}
 {(siteConfig.isDemo || isError) && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:type" content={article ? 'article' : 'website'} />
 {article && <meta property="article:published_time" content={article.date} />}

@@ -30,3 +30,7 @@ El lector no ejecuta HTML del documento. Una sección obligatoria ausente o un e
 Ejecutar desde la raíz `npm run verify` y `npm run test:e2e`. Las pruebas comprueban el lector, la correspondencia entre la fuente y las páginas, los contactos, la accesibilidad y los tamaños de pantalla. Los contactos se verifican por sus destinos, sin enviar mensajes ni abrir el correo.
 
 La web sigue en vista previa y con `noindex`. Las entradas demo, los juegos dummy y la fotografía pendiente conservan su identificación. Incorporar el nombre real no activa GitHub Pages: siguen vigentes las reglas de integración y publicación del proyecto.
+
+## Versiones de idioma — Feature8
+
+El Markdown español continúa siendo la fuente de hechos. Las traducciones de `src/i18n/profile.ts` están ligadas a una revisión del perfil: después de modificar datos, revisar también sus cinco traducciones y actualizar el digest solo al finalizar esa revisión. Si los datos cambian sin revisar las traducciones, el build se detiene para evitar publicar versiones incoherentes. No se modifican ni traducen las direcciones de contacto. Ver [IDIOMAS.md](IDIOMAS.md) y [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).

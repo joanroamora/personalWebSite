@@ -2,7 +2,13 @@
 
 Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y Cadete Roa. El blog y tres conceptos de juegos siguen con muestras identificadas.
 
-## Estado de Feature7 — Calidad e información personal
+## Estado de Feature8 — Idiomas y revisión de contenido
+
+Feature8 añade una burbuja de idioma con inglés, español, mandarín simplificado, hindi, árabe y francés. Conserva la página al cambiar, recuerda la elección y funciona sin JavaScript mediante enlaces reales. El español mantiene las URLs actuales; los cinco idiomas derivados usan prefijos. Árabe tiene lectura RTL. Se generan 247 páginas estáticas, sin servicios externos de traducción ni dependencias nuevas.
+
+Se traducen la interfaz, el perfil y los títulos y resúmenes de proyectos y blog. Las descripciones extensas de proyectos y los cuerpos de las entradas de muestra conservan su original español, identificado; Cadete Roa continúa en inglés. Alcance y mantenimiento en [docs/IDIOMAS.md](docs/IDIOMAS.md). La revisión de la candidata y las decisiones pendientes están en [docs/REVISION_CANDIDATA.md](docs/REVISION_CANDIDATA.md).
+
+## Base integrada — Calidad e información personal
 
 42 páginas estáticas: las siete secciones principales, 404, 27 detalles de proyectos, cuatro fichas de juegos y tres entradas de blog demo. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
 
@@ -62,6 +68,8 @@ src/components/     Cabecera, pie y metadatos
 src/content/blog/   Entradas Markdown y borradores
 src/content.config.ts Esquema y cargador de la colección del blog
 src/layouts/        Estructura compartida
+src/i18n/           Idiomas y traducciones de compilación
+src/middleware.ts   Localización del HTML durante el prerenderizado
 src/pages/          Inicio, 404 y rutas estáticas generadas desde el menú
 src/data/           Fuente central de nombres, orden y rutas
 src/scripts/        Mejoras del menú nativo
@@ -84,7 +92,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature6 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). `Feature7-calidad-esqueleto` incluye la revisión de calidad y, por autorización del propietario, la incorporación de su perfil en esta misma rama. Quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature7 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público. Feature8 se desarrolla en `Feature8-idiomas-contenido`; quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
@@ -113,4 +121,6 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Revisión de calidad y comprobaciones](docs/CALIDAD_ESQUELETO.md)
 - [Fuente principal de información personal](docs/PERFIL_PUBLICO.md)
 - [Mantenimiento del contenido personal](docs/CONTENIDO_PERSONAL.md)
+- [Idiomas y mantenimiento de traducciones](docs/IDIOMAS.md)
+- [Revisión de la candidata y decisiones pendientes](docs/REVISION_CANDIDATA.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

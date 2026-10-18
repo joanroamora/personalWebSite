@@ -1,0 +1,42 @@
+---
+import { locales, languageHref, localeInfo, routeContext } from '../i18n/locales';
+const { locale, path } = routeContext(Astro.url.pathname, import.meta.env.BASE_URL);
+const current = localeInfo(locale);
+const pagePath = /^404(?:\.html)?\/?$/.test(path) ? '' : path;
+---
+<details class="language-switcher" data-language-switcher data-no-translate>
+  <summary aria-controls="language-options" aria-label={`Idioma / Language: ${current.short}`}>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.35" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></svg>
+    <span class="language-current" lang={current.tag}>{current.short}</span>
+    <svg class="language-chevron" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+  </summary>
+  <nav id="language-options" class="language-options" aria-label="Idioma / Language">
+    <p class="language-caption">LANGUAGE <span aria-hidden="true">/ 06</span></p>
+    <ul>{locales.map(item => <li>
+      <a href={languageHref(pagePath, item.code, import.meta.env.BASE_URL)} lang={item.tag} hreflang={item.tag} dir="auto" data-language={item.code} aria-current={item.code === locale ? 'true' : undefined}>
+        <span>{item.label}</span><span class="language-indicator" aria-hidden="true">{item.code === locale ? '✓' : '↗'}</span>
+      </a>
+    </li>)}</ul>
+  </nav>
+</details>
+<script>import '../scripts/languages';</script>
+<style>
+  .language-switcher { position:relative; flex-shrink:0; }
+  summary { display:flex; align-items:center; gap:.4rem; min-height:44px; padding:.6rem .75rem; border:1px solid #4c675c; border-radius:999px; color:var(--text); background:linear-gradient(135deg,#1c3029b3,#111d1d88); box-shadow:inset 0 1px #e8f0e906; cursor:pointer; list-style:none; transition:background var(--motion-fast),border-color var(--motion-fast); }
+  summary::-webkit-details-marker { display:none; }
+  summary:hover,details[open] summary { border-color:var(--accent); background:#21342b; }
+  summary>svg:first-child { color:var(--accent); }
+  .language-current { font:.65rem var(--font-body); letter-spacing:.02em; }
+  .language-chevron { color:var(--muted); transition:transform var(--motion-fast); }
+  details[open] .language-chevron { transform:rotate(180deg); }
+  .language-options { position:absolute; z-index:6; inset-inline-end:0; top:calc(100% + .7rem); width:min(15rem,calc(100vw - 2.5rem)); max-height:calc(100svh - 7rem); overflow-y:auto; overscroll-behavior:contain; padding:.75rem; border:1px solid #425d4d; border-radius:1rem; background:#111d1df5; backdrop-filter:blur(18px); box-shadow:0 20px 60px #0008,inset 0 1px #e8f0e906; animation:languages-in 150ms ease-out; }
+  .language-caption { display:flex; justify-content:space-between; margin:.25rem .5rem .65rem; color:var(--muted); font:.6rem var(--font-mono); letter-spacing:.12em; }
+  ul { list-style:none; margin:0; padding:0; display:grid; gap:.15rem; }
+  a { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:44px; padding:.7rem .6rem; border-radius:.5rem; font-size:.85rem; color:var(--muted); text-decoration:none; }
+  a:hover { background:#e8f0e908; color:var(--text); }
+  a[aria-current] { background:#a7e88b0e; color:var(--accent); }
+  .language-indicator { color:var(--accent); font-size:.8rem; }
+  @keyframes languages-in { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  @media(prefers-reduced-motion:reduce) { .language-options { animation:none; } }
+  @media(max-width:24rem) { summary { padding:.6rem; gap:.25rem; } .language-chevron { display:none; } }
+</style>

@@ -11,6 +11,8 @@
 .post-contents ol { margin:1rem 0 0; padding:0; list-style:none; }
 .post-contents a { display:flex; align-items:center; min-height:2.75rem; padding:.5rem 0; color:var(--muted); text-decoration:none; font-size:.8rem; line-height:1.5; }
 .post-contents a:hover { color:var(--accent); }.post-contents .subheading { padding-left:1rem; }
+.reading-content { min-width:0; }
+.original-language-note { margin-bottom:1.5rem; padding-block:.6rem; border-bottom:1px solid var(--line); color:var(--cyan); font:.7rem/1.6 var(--font-body); }
 .article-body { min-width:0; max-width:65ch; color:#c5d0c9; font-size:1.025rem; line-height:1.85; overflow-wrap:anywhere; }
 .article-body>:first-child { margin-top:0; }.article-body>*+* { margin-top:1.5rem; }
 .article-body p { line-height:1.85; }

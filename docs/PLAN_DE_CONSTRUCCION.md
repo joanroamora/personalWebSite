@@ -167,6 +167,8 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 ### Etapa 9 — Incorporar información personal aprobada
 
+**Feature8 en curso:** rama `Feature8-idiomas-contenido`, autorizada después de integrar Feature7. Prioridad añadida por el propietario: selector desplegable en forma de burbuja con inglés primero, español después y cuatro idiomas adicionales, incluido mandarín. La entrega incorpora versiones estáticas en inglés, mandarín simplificado, hindi, árabe y francés, conserva las URLs españolas y prepara la revisión editorial sin publicar. Los originales extensos que aún no se traducen se identifican en español. Alcance en [IDIOMAS.md](IDIOMAS.md); pendientes de contenido en [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).
+
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
 
 **Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Quedan fotografías, textos propios y revisión de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).

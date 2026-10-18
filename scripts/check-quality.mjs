@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { parse } from 'parse5';
 import { siteConfig } from '../site.config.mjs';
+import { localeInfo, routeContext } from '../src/i18n/locales.ts';
 
 const budgets = { html: 32 * 1024, javascript: 8 * 1024, gameJavascript: 24 * 1024, css: 12 * 1024 };
 const content = node => node.nodeName === '#text' ? node.value : (node.childNodes ?? []).map(content).join('');
@@ -20,6 +21,7 @@ export function inspectPage(html, { canonical, isError = false, isDemo = true, l
   const title = tags('title').map(content).join('').trim();
   if (tags('title').length !== 1 || !title) problems.push('Debe tener un título de página único y no vacío.');
   if (attributes(tags('html')[0] ?? {}).lang !== language) problems.push('El idioma del documento no coincide con el sitio.');
+  if (language === 'ar' && attributes(tags('html')[0] ?? {}).dir !== 'rtl') problems.push('La versión árabe debe indicar dirección rtl.');
   if (tags('main').length !== 1) problems.push('Debe tener un único contenido principal.');
   if (tags('h1').length !== 1 || !content(tags('h1')[0] ?? {}).trim()) problems.push('Debe tener un único h1 no vacío.');
   if (!metas.some(meta => meta.name === 'viewport' && meta.content?.includes('width=device-width'))) problems.push('Falta el viewport adaptable.');
@@ -78,10 +80,13 @@ export async function checkQuality({ directory, config = siteConfig }) {
     const path = relative(root, file).split(sep).join('/');
     const url = new URL(`${base}${path.replace(/index\.html$/, '')}`, origin);
     const html = await readFile(file, 'utf8');
-    const page = inspectPage(html, { canonical: url.href, isError: path === '404.html', isDemo: config.isDemo, language: config.language });
+    const context = routeContext(url.pathname,base);
+    const language = context.locale === 'es' ? config.language : localeInfo(context.locale).tag;
+    const page = inspectPage(html, { canonical: url.href, isError: path === '404.html', isDemo: config.isDemo, language });
     for (const problem of page.problems) problems.push(`${path}: ${problem}`);
-    if (titles.has(page.title)) problems.push(`${path}: título repetido con ${titles.get(page.title)}.`);
-    titles.set(page.title, path);
+    const titleKey = `${language}:${page.title}`;
+    if (titles.has(titleKey)) problems.push(`${path}: título repetido con ${titles.get(titleKey)}.`);
+    titles.set(titleKey, path);
     const modules = new Map();
     const visitModule = async moduleUrl => {
       if (modules.has(moduleUrl.href)) return;
@@ -101,7 +106,7 @@ export async function checkQuality({ directory, config = siteConfig }) {
         else await visitImports(script.body, url);
       }
       const css = await Promise.all(page.stylesheets.map(href => asset(new URL(href, url))));
-      const isGame = path === 'juegos/cadete-roa/index.html';
+      const isGame = context.path === 'juegos/cadete-roa/';
       const metrics = {
         html: gzipSync(html).length,
         javascript: [...modules.values(), ...page.scripts.filter(script => !script.src).map(script => script.body)].reduce((total, code) => total + gzipSync(code).length, 0),
@@ -120,7 +125,7 @@ export async function checkQuality({ directory, config = siteConfig }) {
   if (home && game) {
     const gameRoots = game.scriptRoots.filter(url => !home.modules.includes(url));
     if (!gameRoots.length) problems.push('Cadete Roa debe conservar su módulo de carga independiente.');
-    for (const page of pages.filter(page => page !== game)) {
+    for (const page of pages.filter(page => routeContext(`${base}${page.path}`,base).path !== 'juegos/cadete-roa/index.html')) {
       if (gameRoots.some(url => page.modules.includes(url))) problems.push(`${page.path}: carga el motor de Cadete Roa fuera de su ruta.`);
     }
   }
