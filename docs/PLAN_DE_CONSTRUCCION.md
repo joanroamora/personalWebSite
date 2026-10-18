@@ -6,7 +6,7 @@
 
 La prioridad inmediata es construir un esqueleto navegable con datos dummy y enlaces de prueba. Todo texto de demostración debe estar marcado como tal y conservarse separado de la información personal futura.
 
-La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Feature8 está integrada en `dev`. La ampliación autorizada Feature9 incorpora Galactian y Rail Crane en `Feature9-galactian-rail-crane`, sin publicación ni integración automática. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md). Las fotografías y los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
+La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Feature8 y Feature9 están integradas en `dev`; esta última incorpora Galactian y Rail Crane. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md). Feature10 incorpora las cuatro fotografías aportadas y, por ampliación posterior, Torque Trail como cuarto juego, en `Feature10-fotografias`. Alcance en [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md) y [TORQUE_TRAIL.md](TORQUE_TRAIL.md). Los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
 
 ## 1. Resultado buscado
 
@@ -171,7 +171,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
 
-**Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Quedan fotografías, textos propios y revisión de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
+**Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Feature10 añade las cuatro fotografías aprobadas en Inicio, Sobre mí y Trayectoria, con tamaños adaptables, pies y textos alternativos localizados. Quedan textos propios y revisión de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
 
 1. Usar `docs/PERFIL_PUBLICO.md` como fuente principal de la información personal del sitio. El documento aportado por el propietario se conserva junto a los otros Markdown de referencia en `docs/`. Completar únicamente los datos que aporte después: fotografías, frase personal, textos propios y cualquier exclusión de publicación. Conservar la información proporcionada y no inventar campos pendientes.
 2. Reemplazar los textos, fichas, enlaces e imágenes dummy por contenido aprobado.

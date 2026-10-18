@@ -51,6 +51,7 @@ for (const locale of translatedLocales) test(`versión ${locale.code}: contenido
   await expect(page.getByText(translate(publicProfile.summary,locale.code),{exact:true})).toBeVisible();
   await expect(page.getByText(translate(publicProfile.biography[0],locale.code),{exact:true})).toBeVisible();
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content',translate(publicProfile.summary,locale.code));
+  await expect(page.locator('[data-personal-photo="portrait"] img')).toHaveAttribute('alt',translate('Retrato de Joan Roa con gafas, traje oscuro y corbata azul.',locale.code));
   await expect(page.locator('link[rel="alternate"]')).toHaveCount(7);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href',new URL(languageHref('sobre-mi/',locale.code,base),siteConfig.site).href);
   await expect(page.locator('.brand')).toHaveAttribute('href',languageHref('',locale.code,base));
@@ -122,6 +123,6 @@ test.describe('sin JavaScript',()=>{
     await expect(page).toHaveURL(`${base}hi/contacto/`);
     await expect(page.locator('html')).toHaveAttribute('lang','hi');
     await expect(page.getByRole('heading',{level:1})).toHaveText('संपर्क');
-    await expect(page.locator('.contact-list a')).toHaveCount(3);
+    await expect(page.locator('.contact-list a')).toHaveCount(publicProfile.contact.channels.length);
   });
 });

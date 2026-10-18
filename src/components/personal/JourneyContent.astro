@@ -1,6 +1,7 @@
 ---
 import { publicProfile } from '../../data/profile';
 import { sectionHref } from '../../utils/paths';
+import PersonalPhoto from '../PersonalPhoto.astro';
 import '../../styles/profile.css';
 const experience = [...publicProfile.experience].reverse();
 ---
@@ -29,6 +30,10 @@ const experience = [...publicProfile.experience].reverse();
   <p class="eyebrow">Formación</p>
   <h2 id="education-title">Aprender sigue siendo parte del camino.</h2>
   <ul class="profile-education" role="list">{publicProfile.education.map(entry => <li><h3>{entry.title}</h3><p>{entry.description}</p></li>)}</ul>
+  <div class="journey-photos">
+    <PersonalPhoto photo="campus" variant="landscape" sizes="(min-width: 79rem) 36rem, (min-width: 45rem) calc((100vw - 7rem) / 2), calc(100vw - 2.5rem)" />
+    <PersonalPhoto photo="academic" variant="landscape" sizes="(min-width: 79rem) 36rem, (min-width: 45rem) calc((100vw - 7rem) / 2), calc(100vw - 2.5rem)" />
+  </div>
 </section>
 
 <section class="content-block divided-section" aria-labelledby="certifications-title">

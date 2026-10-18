@@ -4,7 +4,7 @@ import { siteConfig } from '../site.config.mjs';
 declare global { interface Window { arcadeCompleteFullscreen():void } }
 const base=`${siteConfig.base}juegos/`;
 
-for(const [id,title] of [['galactian','Galactian'],['rail-crane','Rail Crane']]){
+for(const [id,title] of [['galactian','Galactian'],['rail-crane','Rail Crane'],['torque-trail','Torque Trail']]){
   test(`${title}: presentación, instrucciones, pausa, reinicio, cierre e historial`,async({page},testInfo)=>{
     const errors:string[]=[];page.on('pageerror',error=>{if(!error.message.includes('ViewTransition'))errors.push(error.message);});
     await page.goto(`${base}${id}/`);
@@ -144,8 +144,8 @@ test('táctil: joystick y bomba simultáneos, grúa diagonal y orientación @mob
 
 test('el catálogo nuevo funciona sin JavaScript y cada ficha conserva instrucciones',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false});const page=await context.newPage();await page.goto(base);
-  await expect(page.locator('.new-game')).toHaveCount(2);await expect(page.locator('canvas')).toHaveCount(0);
-  for(const id of ['galactian','rail-crane']){await page.goto(`${base}${id}/`);await expect(page.locator('.arcade-noscript')).toBeVisible();await expect(page.locator('.arcade-page-instructions')).toBeVisible();}
+  await expect(page.locator('.new-game')).toHaveCount(3);await expect(page.locator('canvas')).toHaveCount(0);
+  for(const id of ['galactian','rail-crane','torque-trail']){await page.goto(`${base}${id}/`);await expect(page.locator('.arcade-noscript')).toBeVisible();await expect(page.locator('.arcade-page-instructions')).toBeVisible();}
   await context.close();
 });
 

@@ -18,7 +18,7 @@ La web ya lee este archivo durante su construcción. Conservar los títulos de l
 - **Idioma del contenido:** español.
 - **Propósito del sitio:** mostrar la persona, sus proyectos, juegos y textos, con un tono personal y sin enfoque de contratación.
 - **Proyectos seleccionados:** conservar la selección y los enlaces de [PROYECTOS_APROBADOS.md](PROYECTOS_APROBADOS.md). Los destacados de este documento complementan esa selección.
-- **Contenido pendiente de aportar:** fotografías y textos alternativos, frase personal de Inicio, entradas propias del blog y cualquier dato que no deba mostrarse. No completar estos campos con información inventada.
+- **Contenido pendiente de aportar:** frase personal de Inicio, entradas propias del blog y cualquier dato que no deba mostrarse. Las cuatro fotografías aportadas se incorporan en Feature10. No completar los campos pendientes con información inventada.
 
 ## Presentación
 
@@ -155,7 +155,21 @@ Actualmente curso mis programas de maestría en Estados Unidos y sigo avanzando 
 - **Correo:** [joanroamora@gmail.com](mailto:joanroamora@gmail.com)
 - **LinkedIn:** [linkedin.com/in/jrroam](https://www.linkedin.com/in/jrroam)
 - **GitHub:** [github.com/joanroamora](https://github.com/joanroamora)
+- **Flickr:** [Ver mis fotografías](https://www.flickr.com/photos/137785611@N06/)
 
 ### Invitación al contacto
 
 Si tienes un proyecto en mente o te interesa conversar sobre tecnología, inteligencia artificial o alguno de estos temas, escríbeme y lo conversamos.
+
+## Fotografías aprobadas — Feature10
+
+El propietario aportó cuatro fotos en `public/images/personal/` y autorizó incorporarlas a la web. Se conservan como fuentes en `src/assets/personal/`, con nombres normalizados, para generar versiones optimizadas durante el build. Los pies y textos alternativos describen las imágenes sin atribuir fechas, eventos ni instituciones no confirmadas.
+
+| Archivo fuente | Ubicación | Texto alternativo en español |
+| --- | --- | --- |
+| `joan-roa-casual.jpg` | Inicio, junto a la presentación | Joan Roa con chaqueta verde y gafas de sol frente a una fachada de ladrillo. |
+| `joan-roa-retrato.png` | Sobre mí, junto a la biografía | Retrato de Joan Roa con gafas, traje oscuro y corbata azul. |
+| `en-el-campus.jpg` | Trayectoria, en Formación | Joan Roa al aire libre, con gafas de sol y chaqueta negra, junto a un edificio de ladrillo y columnas blancas. |
+| `ambiente-academico.jpg` | Trayectoria, en Formación | Joan Roa con gafas y camisa clara junto a un panel de portadas y recortes de prensa. |
+
+La foto de ambiente académico conserva la orientación del original, incluido el texto reflejado del fondo. No se retocan rasgos ni se altera el contenido. Ver [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md) para el mantenimiento técnico.
