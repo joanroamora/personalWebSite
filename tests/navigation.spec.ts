@@ -135,7 +135,7 @@ test('pantallas pequeñas, intermedias, horizontales y escritorio sin desbordami
     await expect(page.locator('#desktop-navigation')).toBeVisible({ visible: viewport.width >= 1120 });
     await expect(page.locator(summarySelector)).toBeVisible({ visible: viewport.width < 1120 });
     await page.screenshot({ path: testInfo.outputPath(`inicio-${viewport.width}x${viewport.height}.png`), fullPage: true, animations: 'disabled' });
-    for (const section of navigation.filter(item => ['about', 'projects', 'games', 'journey', 'contact'].includes(item.id))) {
+    for (const section of navigation.filter(item => ['about', 'projects', 'games', 'blog', 'journey', 'contact'].includes(item.id))) {
       await page.goto(`${base}${section.path}`);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `${section.label} a ${viewport.width}px`).toBe(true);
     }

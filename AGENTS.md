@@ -73,7 +73,7 @@ La estructura exacta puede adaptarse a la versión de Astro elegida, pero conser
 
 ## Información del propietario
 
-En la etapa final de contenido, guardar los datos personales que se quieran **publicar** en un archivo separado, por ejemplo `PERFIL_PUBLICO.md`, y usarlo como fuente para sustituir los datos dummy. Ese archivo no es un requisito para construir el esqueleto. Conviene incluir:
+La fuente principal de información personal es `docs/PERFIL_PUBLICO.md`, aportada por el propietario. Consultarla para sustituir los datos dummy y para cualquier actualización del contenido personal. El documento se mantiene junto a los demás Markdown de referencia en `docs/`. Conviene incluir:
 
 - Nombre o seudónimo visible, pronombres si se desean e idioma del sitio.
 - Presentación corta (una o dos frases) y biografía larga.

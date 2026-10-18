@@ -64,7 +64,7 @@ test('presentación, partida, pausa, cierre y regreso mantienen una sola sesión
   await expect(dialog.locator('.cadet-stage')).toHaveAttribute('data-state','paused');
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
-  expect(await page.evaluate(() => document.fullscreenElement === null)).toBe(true);
+  await expect.poll(() => page.evaluate(() => document.fullscreenElement === null)).toBe(true);
   await expect(page.locator('html')).not.toHaveClass(/cadet-open/);
   await expect(page.locator('[data-game-open]')).toBeFocused();
   await page.locator('[data-game-open]').click();

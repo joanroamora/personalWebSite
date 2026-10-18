@@ -2,11 +2,13 @@
 
 Base de una web personal estática con Astro, preparada para GitHub Pages. Se construye por etapas con contenido dummy; la información personal se incorporará al final.
 
-## Estado de Feature6
+## Estado de Feature5 — Blog (después de Feature6)
 
-39 páginas estáticas: las siete secciones principales, 404, 27 detalles de proyectos y cuatro fichas de juegos. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
+42 páginas estáticas: las siete secciones principales, 404, 27 detalles de proyectos, cuatro fichas de juegos y tres entradas de blog demo. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
 
-Inicio incluye presentación y frase de muestra, espacios reservados para obra destacada y última entrada, y accesos a proyectos, juegos, blog y el resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales. Blog conserva su panel de preparación: Feature5 queda pendiente al adelantar Feature6 por petición del propietario.
+Inicio incluye presentación y frase de muestra, un espacio reservado para obra destacada, la última entrada del blog y accesos al resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales.
+
+Blog incorpora un índice editorial y lectura con índice de apartados, metadatos, etiquetas y enlaces entre entradas. Las entradas son Markdown con un slug permanente explícito y estados `draft`, `demo` y `published`. Los borradores no generan rutas; las demos se ocultan cuando `isDemo` es `false`. Inicio selecciona automáticamente la última entrada visible. No requiere dependencias nuevas ni JavaScript de lectura. Ver [docs/BLOG.md](docs/BLOG.md) y [la plantilla](docs/plantillas/entrada.md).
 
 Juegos incorpora Cadete Roa, prototipo jugable de runner 3D low poly con presentación en inglés, controles táctiles y de teclado, obstáculos y plataformas, récord local, pausa y reintento. Se abre en una ventana vertical en escritorio y ocupa la ventana del celular. WebGL y alternativa Canvas 2D, calidad automática/Eco y audio opcional, sin dependencias adicionales. Los otros tres juegos son fichas de muestra «En desarrollo». El motor solo se carga en la ruta de Cadete Roa. Ver `docs/JUEGOS.md`.
 
@@ -16,7 +18,7 @@ El proyecto energético se identifica como proyecto aplicado de grado en la UNAD
 
 El sistema visual comparte colores, tipografías, espaciado, foco y tamaños táctiles. Las transiciones nativas usan un desvanecimiento breve; se desactivan con movimiento reducido. La navegación sigue funcionando sin JavaScript ni soporte para transiciones.
 
-Los textos personales y el nombre «Archivo orbital» son de demostración; las fichas de Proyectos corresponden a repositorios reales aprobados. La web aún no está publicada.
+Los textos personales visibles y el nombre «Archivo orbital» son de demostración; las fichas de Proyectos corresponden a repositorios reales aprobados. [docs/PERFIL_PUBLICO.md](docs/PERFIL_PUBLICO.md) es la fuente principal de la información personal de la web: identidad, presentación, biografía, trayectoria, formación y contacto. Consultarlo al sustituir los textos de muestra o actualizar datos personales. La web aún no está publicada.
 
 ## Desarrollo local
 
@@ -53,6 +55,8 @@ Este comando instala el navegador de pruebas dentro de `node_modules/playwright-
 
 ```text
 src/components/     Cabecera, pie y metadatos
+src/content/blog/   Entradas Markdown y borradores
+src/content.config.ts Esquema y cargador de la colección del blog
 src/layouts/        Estructura compartida
 src/pages/          Inicio, 404 y rutas estáticas generadas desde el menú
 src/data/           Fuente central de nombres, orden y rutas
@@ -66,9 +70,9 @@ docs/               Plan e inventario de contenido de demostración
 .github/workflows/  CI y despliegue preparado
 ```
 
-`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()`, `projectHref()` y `gameHref()` resuelven los enlaces. `src/pages/[section].astro` genera las secciones personales y paneles de preparación; `src/pages/proyectos/` y `src/pages/juegos/` contienen sus catálogos y rutas propias. El catálogo de proyectos carga sus filtros y diálogo; Cadete Roa carga su motor aislado en `src/games/cadete-roa/`. Blog tendrá su colección en Feature5.
+`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()`, `projectHref()`, `gameHref()` y `postHref()` resuelven los enlaces. `src/pages/[section].astro` genera las secciones personales; Proyectos, Juegos y Blog contienen sus índices y rutas propias. El catálogo de proyectos carga sus filtros y diálogo; Cadete Roa carga su motor aislado en `src/games/cadete-roa/`. La colección Markdown del blog se consulta desde `src/data/blog.ts`.
 
-Los textos ficticios de las páginas personales están en `src/data/personal-demo.ts`, separados de su presentación en `src/components/personal/`. `DemoNotice`, `PageIntro` y `PhotoPlaceholder` son componentes compartidos. Para revisar los textos de muestra, editar ese archivo de datos; para sustituirlos por información real, seguir la etapa 9 y el inventario de `docs/CONTENIDO_DEMO.md`. No hay fotografías de sustitución ni datos personales nuevos.
+Los textos ficticios de las páginas personales están en `src/data/personal-demo.ts`, separados de su presentación en `src/components/personal/`. `DemoNotice`, `PageIntro` y `PhotoPlaceholder` son componentes compartidos. Para revisar los textos de muestra, editar ese archivo de datos; para sustituirlos por información real, usar `docs/PERFIL_PUBLICO.md` como fuente y seguir la etapa 9 y el inventario de `docs/CONTENIDO_DEMO.md`. No hay fotografías de sustitución ni datos personales nuevos.
 
 ## Ramas y comprobaciones
 
@@ -76,7 +80,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature4 ya se integraron en `dev`. `Feature6-juegos` parte de esa base y adelanta el catálogo por petición del propietario; Feature5-blog queda pendiente. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature4 y Feature6 ya se integraron en `dev`. `Feature5-blog` recupera el blog que quedó pendiente al adelantar los juegos. Después corresponde Feature7, revisión de calidad del esqueleto. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
@@ -101,4 +105,6 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Selección de proyectos aprobada](docs/PROYECTOS_APROBADOS.md)
 - [Iconos y licencias](docs/ICONOS_TECNOLOGIAS.md)
 - [Catálogo y mantenimiento de juegos](docs/JUEGOS.md)
+- [Blog y proceso de publicación de entradas](docs/BLOG.md)
+- [Fuente principal de información personal](docs/PERFIL_PUBLICO.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

@@ -34,8 +34,8 @@ Esta estrategia adapta la usada en el proyecto anterior. Los dos archivos compar
 
 Flujo habitual: `dev` → `Feature<N>-<descripcion>` → pull request a `dev` → comprobaciones y revisión → integración en `dev` → pull request de `dev` a `main` → revisión final → publicación automática.
 
-- Numerar las Features de manera consecutiva y usar nombres cortos, por ejemplo `Feature1-astro-base`, `Feature2-sistema-visual` y `Feature6-blog`.
-- Cada commit comienza con `Feature<N>: `, por ejemplo `Feature6: add blog collection`. Si se desea incluir un tipo, usar `Feature6: feat(blog): add post index`. Una validación estricta de Conventional Commits debe adaptarse a este prefijo; no activar ambas reglas sin conciliarlas.
+- Numerar las Features de manera consecutiva y usar nombres cortos, por ejemplo `Feature1-astro-base`, `Feature2-sistema-visual` y `Feature5-blog`.
+- Cada commit comienza con `Feature<N>: `, por ejemplo `Feature5: add blog collection`. Si se desea incluir un tipo, usar `Feature5: feat(blog): add post index`. Una validación estricta de Conventional Commits debe adaptarse a este prefijo; no activar ambas reglas sin conciliarlas.
 - Codex puede preparar ramas, commits, pushes y pull requests cuando se le pida trabajar en una etapa. **Las integraciones a `dev` y `main` requieren la decisión explícita del propietario.** Si trabaja solo, su acción de revisar y fusionar el PR en GitHub cuenta como esa decisión.
 - Configurar protección de `main` y, si resulta práctico, de `dev`: exigir pull request y comprobaciones correctas; impedir borrado y `force push`. No exigir una aprobación de otra persona si el repositorio solo tiene un colaborador, porque bloquearía el flujo.
 - Crear una comprobación de CI para PR hacia `dev` y `main`; ejecutar el despliegue únicamente al integrar en `main`.
@@ -54,7 +54,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 1. Confirmar las rutas del esqueleto: Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria y Contacto.
 2. Preparar datos dummy para cada sección, identificados claramente como demostración y sin presentarlos como hechos sobre el propietario.
 3. Crear fichas dummy de proyectos y juegos con enlaces funcionales a rutas internas de prueba. Usar destinos externos de ejemplo solo cuando se quiera probar ese comportamiento.
-4. Mantener preparados los campos que después necesitará `PERFIL_PUBLICO.md`, sin crear todavía el perfil personal.
+4. Mantener preparados los campos del perfil personal. La fuente aportada por el propietario ya está en `docs/PERFIL_PUBLICO.md`.
 5. Registrar qué textos, enlaces, imágenes y fichas deberán sustituirse antes de publicar.
 
 **Salida:** inventario de contenido dummy y rutas de prueba que permitan construir y revisar el sitio sin datos personales.
@@ -128,6 +128,8 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Rama sugerida:** `Feature5-blog`.
 
+**Entrega actual:** se retoma después de integrar Feature6 en `dev`. Colección Markdown validada, slugs permanentes, índice editorial, lectura con apartados, navegación entre entradas y última entrada automática en Inicio. Tres demos identificadas y un borrador excluido. Con `isDemo: false` solo se generan entradas `published`; las demos y borradores no aparecen en rutas, índices ni navegación. Plantilla y proceso en [BLOG.md](BLOG.md).
+
 1. Configurar una colección de contenido para entradas Markdown con título, fecha, resumen, etiquetas opcionales y estado `draft`, demo o publicado.
 2. Crear índice, página de entrada, navegación entre entradas si aporta valor y formato cómodo de lectura.
 3. Definir una plantilla de entrada y documentar el proceso: crear un archivo, escribir, revisar, abrir PR y publicar.
@@ -139,7 +141,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Rama sugerida:** `Feature6-juegos`.
 
-**Alcance actualizado por el propietario:** adelantar Feature6 dejando Feature5-blog pendiente. Crear Cadete Roa como primer prototipo jugable de endless runner 3D low poly, con interfaz en inglés, tres carriles, trincheras, granadas, contenedores y tanques. Abrir en una ventana vertical en escritorio y a tamaño completo en móvil, con controles de teclado y táctiles. Los otros tres juegos son fichas dummy, identificadas como «En desarrollo» y «Ficha de muestra».
+**Alcance actualizado por el propietario:** Feature6 se adelantó a Feature5-blog y ya se integró en `dev`; el blog se recupera en su propia rama antes de la revisión de calidad. Crear Cadete Roa como primer prototipo jugable de endless runner 3D low poly, con interfaz en inglés, tres carriles, trincheras, granadas, contenedores y tanques. Abrir en una ventana vertical en escritorio y a tamaño completo en móvil, con controles de teclado y táctiles. Los otros tres juegos son fichas dummy, identificadas como «En desarrollo» y «Ficha de muestra».
 
 1. Crear fichas dummy de juegos en una colección o archivo de datos, independientes de la navegación principal.
 2. Definir `src/games/<slug>/` para las rutas y recursos de prueba de cada minijuego; cada ficha tendrá instrucciones temporales y enlace para volver al catálogo.
@@ -165,7 +167,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
 
-1. Crear o completar `PERFIL_PUBLICO.md` con nombre o seudónimo, biografía, intereses, hitos, proyectos, juegos, textos y contactos autorizados.
+1. Usar `docs/PERFIL_PUBLICO.md` como fuente principal de la información personal del sitio. El documento aportado por el propietario se conserva junto a los otros Markdown de referencia en `docs/`. Completar únicamente los datos que aporte después: fotografías, frase personal, textos propios y cualquier exclusión de publicación. Conservar la información proporcionada y no inventar campos pendientes.
 2. Reemplazar los textos, fichas, enlaces e imágenes dummy por contenido aprobado.
 3. Retirar las rutas, datos y marcadores dummy que ya no sean necesarios.
 4. Comprobar que no aparecen datos privados, enlaces de prueba ni afirmaciones inventadas.
@@ -206,7 +208,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 - Juegos y textos del blog que se quieran publicar.
 - Canales de contacto que se harán públicos.
 - Fotografías autorizadas, textos alternativos y preferencias de uso.
-- Revisión completa de `PERFIL_PUBLICO.md` y aprobación explícita del contenido final.
+- Revisión completa de `docs/PERFIL_PUBLICO.md` y aprobación explícita del contenido final.
 
 ## 5. Fuentes técnicas para verificar al implementar
 

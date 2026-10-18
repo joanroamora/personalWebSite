@@ -19,3 +19,7 @@ export function projectHref(id: string): string {
 export function gameHref(id: string): string {
   return `${sectionHref('games')}${encodeURIComponent(id)}/`;
 }
+
+export function postHref(slug: string): string {
+  return `${sectionHref('blog')}${encodeURIComponent(slug)}/`;
+}

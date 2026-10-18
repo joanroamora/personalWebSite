@@ -1,5 +1,5 @@
 // Solo contenido ficticio de demostración. No describe al propietario.
-// Sustituirlo con PERFIL_PUBLICO.md en la etapa de contenido aprobado.
+// Fuente principal para sustituirlo: docs/PERFIL_PUBLICO.md.
 export const personalDemo = {
   notice: 'Contenido de muestra. Los textos, intereses e hitos son ficticios y no describen al propietario.',
   home: {

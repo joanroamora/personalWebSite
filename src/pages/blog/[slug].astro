@@ -1,0 +1,55 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import PostMeta from '../../components/blog/PostMeta.astro';
+import { getBlogPosts } from '../../data/blog';
+import { postHref, sectionHref } from '../../utils/paths';
+import { postDateISO } from '../../utils/blog';
+import '../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post, index) => ({
+    params: { slug: post.data.slug },
+    props: { post, newer: posts[index - 1], older: posts[index + 1] },
+  }));
+}
+interface Props {
+  post: CollectionEntry<'blog'>;
+  newer?: CollectionEntry<'blog'>;
+  older?: CollectionEntry<'blog'>;
+}
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const contents = headings.filter(heading => heading.depth === 2 || heading.depth === 3);
+---
+<SiteLayout title={post.data.title} description={post.data.summary} article={{ date: postDateISO(post.data.date), tags: post.data.tags }}>
+  <article class="blog-post" aria-labelledby="post-title">
+    <a class="back-to-blog" href={sectionHref('blog')}><span aria-hidden="true">←</span> Volver al blog</a>
+    <header class="post-header">
+      <p class="eyebrow">El cuaderno / {post.data.status === 'demo' ? 'Texto de muestra' : 'Blog'}</p>
+      <h1 id="post-title">{post.data.title}</h1>
+      <p class="post-deck">{post.data.summary}</p>
+      <PostMeta post={post} />
+      {post.data.tags.length > 0 && <ul class="article-tags" aria-label="Temas">{post.data.tags.map(tag => <li>{tag}</li>)}</ul>}
+    </header>
+    {post.data.status === 'demo' && <DemoNotice text="Texto y fecha de demostración. Esta entrada prueba el formato de lectura; no relata experiencias del propietario ni es una publicación suya." />}
+    <div class:list={['reading-layout', { 'without-contents': contents.length === 0 }]}>
+      {contents.length > 0 && <nav class="post-contents" aria-label="En esta entrada">
+        <p class="eyebrow">En esta entrada</p>
+        <ol>{contents.map(heading => <li class:list={{ 'subheading': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+      </nav>}
+      <div class="article-body"><Content /></div>
+    </div>
+    <footer class="post-footer">
+      <p class="eyebrow">Fin de la señal</p>
+      <p class="closing-note">A veces, una idea deja otra puerta abierta.</p>
+      {(older || newer) && <nav class="post-pagination" aria-label="Más entradas">
+        {older && <a href={postHref(older.data.slug)} rel="prev"><span>← Una nota anterior</span><strong>{older.data.title}</strong></a>}
+        {newer && <a href={postHref(newer.data.slug)} rel="next"><span>Una nota más reciente →</span><strong>{newer.data.title}</strong></a>}
+      </nav>}
+      <a class="text-link" href={sectionHref('blog')}>Todas las entradas <span aria-hidden="true">↗</span></a>
+    </footer>
+  </article>
+</SiteLayout>
