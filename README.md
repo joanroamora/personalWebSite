@@ -2,15 +2,19 @@
 
 Base de una web personal estática con Astro, preparada para GitHub Pages. Se construye por etapas con contenido dummy; la información personal se incorporará al final.
 
-## Estado de Feature3
+## Estado de Feature4
 
 Ocho páginas estáticas: Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria, Contacto y 404. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
 
-Inicio incluye presentación y frase de muestra, espacios reservados para obra destacada y última entrada, y accesos a proyectos, juegos, blog y el resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales. Proyectos, Juegos y Blog conservan sus paneles de preparación hasta sus respectivas Features.
+Inicio incluye presentación y frase de muestra, espacios reservados para obra destacada y última entrada, y accesos a proyectos, juegos, blog y el resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales. Juegos y Blog conservan sus paneles de preparación hasta sus respectivas Features.
+
+Proyectos incorpora 27 repositorios reales elegidos por el propietario. Cada tarjeta tiene un título editorial, el nombre original de GitHub como subtítulo y tecnologías con iconos locales. Al abrirla aparece un diálogo con descripción ampliada, contexto, tecnologías y enlace al código. El catálogo permite buscar y filtrar por tema. Cada proyecto tiene además una ruta estática propia que funciona sin JavaScript. La selección se mantiene en `src/data/projects.ts`, sin consultas a GitHub durante el build ni desde el navegador. Las fuentes se documentan en `docs/PROYECTOS_APROBADOS.md` y las licencias de los iconos en `docs/ICONOS_TECNOLOGIAS.md`. Los demás contenidos siguen siendo de muestra.
+
+El proyecto energético se identifica como proyecto aplicado de grado en la UNAD y FairLens como proyecto de Machine Learning Fundamentals en Indiana Wesleyan University, según la información aprobada por el propietario. Boris conserva su indicación de repositorio privado; el sitio no modifica permisos ni visibilidad en GitHub.
 
 El sistema visual comparte colores, tipografías, espaciado, foco y tamaños táctiles. Las transiciones nativas usan un desvanecimiento breve; se desactivan con movimiento reducido. La navegación sigue funcionando sin JavaScript ni soporte para transiciones.
 
-Los textos y el nombre «Archivo orbital» son de demostración. La web aún no está publicada.
+Los textos personales y el nombre «Archivo orbital» son de demostración; las fichas de Proyectos corresponden a repositorios reales aprobados. La web aún no está publicada.
 
 ## Desarrollo local
 
@@ -60,7 +64,7 @@ docs/               Plan e inventario de contenido de demostración
 .github/workflows/  CI y despliegue preparado
 ```
 
-`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()` resuelve los enlaces editoriales desde ese mismo mapa. `src/pages/[section].astro` genera las rutas y selecciona el componente personal o el panel de preparación correspondiente. Las colecciones de proyectos, blog y juegos se añadirán en sus etapas respectivas.
+`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()` y `projectHref()` resuelven enlaces desde ese mismo mapa. `src/pages/[section].astro` genera las secciones personales y paneles de preparación; `src/pages/proyectos/` contiene el catálogo y las rutas de detalle. Solo el catálogo carga la búsqueda, filtros y diálogo. Blog y juegos tendrán sus colecciones en sus etapas respectivas.
 
 Los textos ficticios de las páginas personales están en `src/data/personal-demo.ts`, separados de su presentación en `src/components/personal/`. `DemoNotice`, `PageIntro` y `PhotoPlaceholder` son componentes compartidos. Para revisar los textos de muestra, editar ese archivo de datos; para sustituirlos por información real, seguir la etapa 9 y el inventario de `docs/CONTENIDO_DEMO.md`. No hay fotografías de sustitución ni datos personales nuevos.
 
@@ -70,7 +74,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 y Feature2 ya se integraron en `dev`. `Feature3-paginas-personales` parte de esa base y se prepara para revisión mediante PR hacia `dev`; su integración requiere la decisión del propietario.
+Feature1, Feature2 y Feature3 ya se integraron en `dev`. `Feature4-proyectos` parte de esa base. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
@@ -92,4 +96,6 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Instrucciones para el agente](AGENTS.md)
 - [Plan de construcción y etapas](docs/PLAN_DE_CONSTRUCCION.md)
 - [Inventario de contenido dummy](docs/CONTENIDO_DEMO.md)
+- [Selección de proyectos aprobada](docs/PROYECTOS_APROBADOS.md)
+- [Iconos y licencias](docs/ICONOS_TECNOLOGIAS.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
