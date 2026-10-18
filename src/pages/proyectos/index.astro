@@ -1,0 +1,15 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ProjectsContent from '../../components/ProjectsContent.astro';
+import { navigation } from '../../data/navigation';
+const position = navigation.findIndex(section => section.id === 'projects');
+const section = navigation[position];
+const description = 'Una selección personal de proyectos sobre inteligencia artificial, infraestructura, datos y herramientas para explorar ideas.';
+---
+<SiteLayout title={section.label} description={description}>
+  <section class="section-page" aria-labelledby="section-title">
+    <PageIntro title={section.label} description={description} position={position} state="Selección personal" />
+    <ProjectsContent />
+  </section>
+</SiteLayout>

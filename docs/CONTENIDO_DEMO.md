@@ -1,6 +1,6 @@
 # Inventario del esqueleto y contenido dummy
 
-Este inventario permite construir sin información personal. Los textos de muestra se identifican en la interfaz; no describen al propietario. `PERFIL_PUBLICO.md` se incorporará en la etapa 9.
+Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. La excepción aprobada durante Feature4 es la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`. Las demás secciones siguen con contenido dummy. `PERFIL_PUBLICO.md` se incorporará en la etapa 9.
 
 ## Mapa de secciones
 
@@ -10,7 +10,7 @@ Las rutas comparten la base `/personalWebSite/`. Feature1 implementa Inicio y 40
 | --- | --- | --- |
 | Inicio | `/` | Presentación dummy, obra destacada y última entrada |
 | Sobre mí | `/sobre-mi/` | Biografía dummy e indicación de fotografía pendiente |
-| Proyectos | `/proyectos/` | Fichas de demostración y enlaces de prueba identificados |
+| Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
 | Juegos | `/juegos/` | Catálogo dummy y fichas con rutas internas de prueba |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
 | Trayectoria | `/trayectoria/` | Hitos ficticios etiquetados como muestra |
@@ -30,12 +30,14 @@ En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los tí
 
 ## Sustituciones antes de publicar
 
+Las fichas de `src/data/projects.ts` y sus enlaces están aprobados para mostrarse y no se consideran dummy. Mantener esta selección al retirar el contenido de muestra. Inicio conserva su espacio reservado de obra destacada hasta elegir una pieza para la portada.
+
 - Título provisional «Archivo orbital», presentación y textos en `site.config.mjs` y la portada.
 - Descripciones temporales de secciones en `src/data/navigation.ts`.
 - Texto «Esta sección está tomando forma» y paneles de `src/components/SectionPlaceholder.astro`.
 - Textos ficticios en `src/data/personal-demo.ts`, encabezados y textos de apoyo en Inicio y `src/components/personal/`.
 - Marcador `PhotoPlaceholder.astro` y destinos internos de contacto de Feature3.
-- Biografía, hitos, fichas de proyectos, juegos, entradas del blog y contactos añadidos en siguientes Features.
+- Biografía, hitos, fichas dummy de juegos, entradas de muestra del blog y contactos añadidos en siguientes Features.
 - Cualquier imagen de muestra; las fotografías personales quedan pendientes de selección y autorización.
 - Rutas y enlaces de prueba que no formen parte del sitio definitivo.
 - Etiquetas de muestra y valor `isDemo`, tras comprobar que el contenido personal está aprobado.

@@ -111,16 +111,18 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Salida:** las rutas personales tienen una estructura completa y dejan claro qué contenido deberá sustituirse antes de publicar.
 
-### Etapa 5 — Proyectos de código dummy
+### Etapa 5 — Proyectos de código seleccionados
 
 **Rama sugerida:** `Feature4-proyectos`.
 
-1. Crear una colección o archivo de datos para fichas de proyectos: título, resumen, tecnologías, repositorio dummy, demo opcional, imagen opcional y orden destacado.
-2. Construir el índice de proyectos y sus tarjetas o páginas de detalle si el contenido lo justifica.
-3. Añadir fichas de demostración sin atribuirlas al propietario ni presentarlas como proyectos reales.
-4. Comprobar que los enlaces dummy funcionan y están identificados como temporales.
+**Alcance actualizado por el propietario:** Feature4 utiliza los 27 repositorios reales de `PROYECTOS_APROBADOS.md`, con títulos editoriales, nombre de GitHub como subtítulo, iconos de tecnologías y descripciones ampliadas en un diálogo accesible. Cada detalle tiene una ruta estática alternativa. Se incorpora el contexto académico autorizado de UNAD e Indiana Wesleyan University. Las demás secciones siguen con datos dummy.
 
-**Salida:** selección de demostración fácil de sustituir por proyectos reales sin rehacer la navegación.
+1. Crear una colección o archivo de datos para fichas de proyectos: título, resumen, tecnologías, repositorio aprobado, demo opcional, imagen opcional y orden editorial.
+2. Construir el índice de proyectos y sus tarjetas o páginas de detalle si el contenido lo justifica.
+3. Incorporar únicamente los repositorios seleccionados, con descripciones verificadas en su documentación y sin métricas ni resultados inventados.
+4. Comprobar los enlaces reales, los estados vacíos y la presentación en móvil y escritorio.
+
+**Salida:** selección editorial de proyectos reales, separada de la presentación y fácil de ampliar sin rehacer la navegación.
 
 ### Etapa 6 — Blog modular con contenido dummy
 

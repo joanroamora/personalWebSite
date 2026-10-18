@@ -11,3 +11,7 @@ export function sectionHref(id: SectionId): string {
   if (!section) throw new Error(`Sección desconocida: ${id}`);
   return withBase(section.path);
 }
+
+export function projectHref(id: string): string {
+  return `${sectionHref('projects')}${encodeURIComponent(id)}/`;
+}
