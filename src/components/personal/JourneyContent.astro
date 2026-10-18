@@ -1,0 +1,31 @@
+---
+import { personalDemo } from '../../data/personal-demo';
+import { sectionHref } from '../../utils/paths';
+const { journey } = personalDemo;
+---
+
+<div class="journey-grid content-block">
+  <div class="prose journey-intro">
+    <p class="eyebrow">Relato de muestra / Sin fechas</p>
+    <h2 id="journey-title">{journey.title}</h2>
+    <p>{journey.description}</p>
+  </div>
+  <ol class="journey-list" aria-labelledby="journey-title">
+    {journey.chapters.map((chapter, index) => (
+      <li>
+        <span class="journey-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <div class="prose">
+          <p class="eyebrow">Capítulo de muestra {String(index + 1).padStart(2, '0')}</p>
+          <h3>{chapter.title}</h3>
+          <p>{chapter.description}</p>
+          <p class="journey-learning">{chapter.learning}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<div class="page-outro divided-section">
+  <p class="muted">Cada recorrido tiene sus propias preguntas.</p>
+  <a class="text-link" href={sectionHref('about')}>Volver a Sobre mí <span aria-hidden="true">↗</span></a>
+</div>

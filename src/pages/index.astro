@@ -1,7 +1,9 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { navigation } from '../data/navigation';
-import { withBase } from '../utils/paths';
+import { personalDemo } from '../data/personal-demo';
+import DemoNotice from '../components/DemoNotice.astro';
+import { sectionHref, withBase } from '../utils/paths';
 ---
 
 <SiteLayout title="Inicio">
@@ -9,8 +11,8 @@ import { withBase } from '../utils/paths';
     <div class="hero-copy">
       <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Primera señal / 001</p>
       <h1 id="intro-title">Ideas en<br /><em>órbita.</em></h1>
-      <p class="lead">Un lugar para el código, los pequeños juegos y las historias que todavía están por llegar.</p>
-      <a class="text-link" href="#por-explorar">Lo que viene <span aria-hidden="true">↓</span></a>
+      <p class="lead">{personalDemo.home.introduction}</p>
+      <a class="text-link" href={sectionHref('about')}>Conocer este espacio <span aria-hidden="true">↗</span></a>
     </div>
     <div class="orbital" aria-hidden="true">
       <div class="orbit orbit-one"></div>
@@ -19,6 +21,44 @@ import { withBase } from '../utils/paths';
       <div class="planet"></div>
       <span class="satellite"></span>
       <span class="orbital-caption">Una nueva órbita, por descubrir.</span>
+    </div>
+  </section>
+
+  <DemoNotice />
+
+  <section class="personal-note" aria-labelledby="personal-phrase-title">
+    <p id="personal-phrase-title" class="eyebrow">Una frase para empezar / Muestra</p>
+    <blockquote><p>{personalDemo.home.phrase}</p></blockquote>
+  </section>
+
+  <section class="home-highlights divided-section" aria-labelledby="highlights-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Del archivo / Espacios de muestra</p>
+        <h2 id="highlights-title">Algo que mirar.<br />Algo que leer.</h2>
+      </div>
+      <p class="muted">Un lugar reservado para la obra y los textos que vendrán.</p>
+    </div>
+    <div class="highlights-grid">
+      <article class="featured-placeholder" aria-labelledby="featured-title">
+        <div class="featured-orbit" aria-hidden="true"><span></span></div>
+        <div class="highlight-copy">
+          <p class="eyebrow">Obra destacada / Muestra</p>
+          <h3 id="featured-title">{personalDemo.home.featured.title}</h3>
+          <p>{personalDemo.home.featured.description}</p>
+          <a class="text-link" href={sectionHref('projects')}>Explorar proyectos <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="latest-placeholder" aria-labelledby="latest-title">
+        <p class="eyebrow">Última entrada / Espacio reservado</p>
+        <h3 id="latest-title">{personalDemo.home.latest.title}</h3>
+        <p>{personalDemo.home.latest.description}</p>
+        <a class="text-link" href={sectionHref('blog')}>Visitar el blog <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+    <div class="games-invitation">
+      <div><p class="eyebrow">Una pausa en el camino</p><h3>También habrá tiempo para jugar.</h3></div>
+      <a class="text-link" href={sectionHref('games')}>Explorar juegos <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 

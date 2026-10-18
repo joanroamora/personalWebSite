@@ -1,0 +1,11 @@
+---
+import { personalDemo } from '../data/personal-demo';
+
+interface Props { text?: string; }
+const { text = personalDemo.notice } = Astro.props;
+---
+
+<aside class="demo-notice" aria-label="Aviso de contenido de muestra">
+  <span class="signal-dot" aria-hidden="true"></span>
+  <p>{text}</p>
+</aside>

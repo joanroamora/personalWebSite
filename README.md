@@ -2,9 +2,11 @@
 
 Base de una web personal estática con Astro, preparada para GitHub Pages. Se construye por etapas con contenido dummy; la información personal se incorporará al final.
 
-## Estado de Feature2
+## Estado de Feature3
 
-Ocho páginas estáticas: Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria, Contacto y 404. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada. Inicio permite entrar a cada sección. Las seis secciones internas tienen contenido de muestra reservado para siguientes entregas.
+Ocho páginas estáticas: Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria, Contacto y 404. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada.
+
+Inicio incluye presentación y frase de muestra, espacios reservados para obra destacada y última entrada, y accesos a proyectos, juegos, blog y el resto de secciones. Sobre mí incorpora biografía, intereses, enfoque creativo y un marcador de fotografía futura. Trayectoria presenta tres capítulos ficticios, sin fechas ni experiencias atribuidas al propietario. Contacto ofrece dos enlaces internos de prueba con destinos explicados, sin direcciones ni perfiles personales. Proyectos, Juegos y Blog conservan sus paneles de preparación hasta sus respectivas Features.
 
 El sistema visual comparte colores, tipografías, espaciado, foco y tamaños táctiles. Las transiciones nativas usan un desvanecimiento breve; se desactivan con movimiento reducido. La navegación sigue funcionando sin JavaScript ni soporte para transiciones.
 
@@ -28,7 +30,7 @@ npm run verify   # tipos, pruebas del verificador, build y enlaces locales
 npm run preview  # sirve dist/ después del build
 ```
 
-Las pruebas de navegador se ejecutan en GitHub Actions con Chromium. Comprueban navegación, teclado, menú táctil, uso sin JavaScript, movimiento reducido y tamaños de 320 a 1440 píxeles, incluida orientación horizontal. El CI conserva el informe y las capturas durante siete días.
+Las pruebas de navegador se ejecutan en GitHub Actions con Chromium. Comprueban navegación, teclado, menú táctil, uso sin JavaScript, movimiento reducido y las cuatro páginas personales en tamaños de 320 a 1440 píxeles, incluida orientación horizontal. Los contactos de prueba deben llevar al destino visible y transferirle el foco incluso sin JavaScript. El CI conserva el informe y las capturas durante siete días.
 
 Para ejecutar esas pruebas voluntariamente en local, después del build:
 
@@ -58,7 +60,9 @@ docs/               Plan e inventario de contenido de demostración
 .github/workflows/  CI y despliegue preparado
 ```
 
-`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los nombres, el orden y las rutas; `src/pages/[section].astro` genera las páginas de muestra desde ese mapa. Las colecciones de proyectos, blog y juegos se añadirán en sus etapas respectivas.
+`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los identificadores, nombres, orden y rutas; `sectionHref()` resuelve los enlaces editoriales desde ese mismo mapa. `src/pages/[section].astro` genera las rutas y selecciona el componente personal o el panel de preparación correspondiente. Las colecciones de proyectos, blog y juegos se añadirán en sus etapas respectivas.
+
+Los textos ficticios de las páginas personales están en `src/data/personal-demo.ts`, separados de su presentación en `src/components/personal/`. `DemoNotice`, `PageIntro` y `PhotoPlaceholder` son componentes compartidos. Para revisar los textos de muestra, editar ese archivo de datos; para sustituirlos por información real, seguir la etapa 9 y el inventario de `docs/CONTENIDO_DEMO.md`. No hay fotografías de sustitución ni datos personales nuevos.
 
 ## Ramas y comprobaciones
 
@@ -66,7 +70,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature2 incorpora la base de Feature1 dentro de su rama porque el PR #1 todavía estaba pendiente al comenzar. Su PR hacia `dev` depende de la revisión e integración de Feature1. El diff específico de Feature2 puede revisarse comparando ambas ramas.
+Feature1 y Feature2 ya se integraron en `dev`. `Feature3-paginas-personales` parte de esa base y se prepara para revisión mediante PR hacia `dev`; su integración requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 
