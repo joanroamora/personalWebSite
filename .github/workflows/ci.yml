@@ -31,3 +31,16 @@ jobs:
         run: npm ci
       - name: Comprobar tipos, pruebas, build y enlaces
         run: npm run verify
+      - name: Preparar Chromium dentro de node_modules
+        run: npm run test:e2e:install
+      - name: Probar navegación y tamaños de pantalla
+        run: npm run test:e2e
+      - name: Guardar informe y capturas
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-evidence
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

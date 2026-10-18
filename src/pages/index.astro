@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { navigation } from '../data/navigation';
+import { withBase } from '../utils/paths';
 ---
 
 <SiteLayout title="Inicio">
@@ -25,17 +26,19 @@ import { navigation } from '../data/navigation';
     <div class="section-intro">
       <p class="eyebrow">Por explorar</p>
       <h2 id="explore-title">Todo tiene<br />su órbita.</h2>
-      <p class="muted">Contenido de demostración. El nombre, los textos y las secciones se completarán más adelante.</p>
+      <p class="muted">Contenido de demostración. Recorre las secciones de este espacio en construcción.</p>
     </div>
     <ol class="section-list">
       {navigation.slice(1).map((section, index) => (
         <li>
-          <span class="section-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-          <div>
-            <h3>{section.label}</h3>
-            <p>{section.description}</p>
-          </div>
-          <span class="upcoming">Próximamente</span>
+          <a class="section-entry" href={withBase(section.path)} aria-labelledby={`explore-section-${index}`}>
+            <span class="section-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 id={`explore-section-${index}`}>{section.label}</h3>
+              <p>{section.description}</p>
+            </div>
+            <span class="section-direction" aria-hidden="true">↗</span>
+          </a>
         </li>
       ))}
     </ol>

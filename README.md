@@ -2,9 +2,11 @@
 
 Base de una web personal estática con Astro, preparada para GitHub Pages. Se construye por etapas con contenido dummy; la información personal se incorporará al final.
 
-## Estado de Feature1
+## Estado de Feature2
 
-Portada temporal y página 404, layout y metadatos compartidos, estilos iniciales, icono local y configuración de rutas para `/personalWebSite/`. Las demás secciones se muestran como próximas; sus páginas y el menú completo corresponden a las siguientes Features.
+Ocho páginas estáticas: Inicio, Sobre mí, Proyectos, Juegos, Blog, Trayectoria, Contacto y 404. La cabecera muestra los siete enlaces en escritorio y un menú nativo en móvil, con la sección activa marcada. Inicio permite entrar a cada sección. Las seis secciones internas tienen contenido de muestra reservado para siguientes entregas.
+
+El sistema visual comparte colores, tipografías, espaciado, foco y tamaños táctiles. Las transiciones nativas usan un desvanecimiento breve; se desactivan con movimiento reducido. La navegación sigue funcionando sin JavaScript ni soporte para transiciones.
 
 Los textos y el nombre «Archivo orbital» son de demostración. La web aún no está publicada.
 
@@ -26,6 +28,17 @@ npm run verify   # tipos, pruebas del verificador, build y enlaces locales
 npm run preview  # sirve dist/ después del build
 ```
 
+Las pruebas de navegador se ejecutan en GitHub Actions con Chromium. Comprueban navegación, teclado, menú táctil, uso sin JavaScript, movimiento reducido y tamaños de 320 a 1440 píxeles, incluida orientación horizontal. El CI conserva el informe y las capturas durante siete días.
+
+Para ejecutar esas pruebas voluntariamente en local, después del build:
+
+```sh
+npm run test:e2e:install
+npm run test:e2e
+```
+
+Este comando instala el navegador de pruebas dentro de `node_modules/playwright-core/.local-browsers/`. Los comandos de desarrollo habituales no requieren esa descarga.
+
 `npm run check:links` comprueba los destinos locales de los enlaces y recursos del HTML generado, incluidos fragmentos y el prefijo de Pages. Los sitios externos no se consultan. No sustituye la revisión de accesibilidad ni la comprobación visual.
 
 ## Organización
@@ -33,23 +46,27 @@ npm run preview  # sirve dist/ después del build
 ```text
 src/components/     Cabecera, pie y metadatos
 src/layouts/        Estructura compartida
-src/pages/          Inicio y 404; siguientes rutas por implementar
-src/data/           Mapa central de futuras secciones
+src/pages/          Inicio, 404 y rutas estáticas generadas desde el menú
+src/data/           Fuente central de nombres, orden y rutas
+src/scripts/        Mejoras del menú nativo
 src/styles/         Estilos globales
 src/utils/          Enlaces que respetan la base de Pages
 public/icons/       Iconos locales
 scripts/            Comprobación del build y sus pruebas
+tests/              Pruebas de navegador y capturas en CI
 docs/               Plan e inventario de contenido de demostración
 .github/workflows/  CI y despliegue preparado
 ```
 
-`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los nombres, el orden y las rutas de las siete secciones. Las colecciones de proyectos, blog y juegos se añadirán en sus etapas respectivas.
+`site.config.mjs` centraliza el título de muestra, el repositorio, el idioma y la URL. `src/data/navigation.ts` conserva los nombres, el orden y las rutas; `src/pages/[section].astro` genera las páginas de muestra desde ese mapa. Las colecciones de proyectos, blog y juegos se añadirán en sus etapas respectivas.
 
 ## Ramas y comprobaciones
 
 Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `main`. Los commits llevan el prefijo `Feature<N>: `. El propietario decide las integraciones.
 
-GitHub Actions ejecuta `npm ci` y `npm run verify` en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
+GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
+
+Feature2 incorpora la base de Feature1 dentro de su rama porque el PR #1 todavía estaba pendiente al comenzar. Su PR hacia `dev` depende de la revisión e integración de Feature1. El diff específico de Feature2 puede revisarse comparando ambas ramas.
 
 ## Publicación futura en GitHub Pages
 
