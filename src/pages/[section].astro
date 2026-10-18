@@ -13,7 +13,7 @@ export function getStaticPaths() {
   return navigation.slice(1).map((section, index) => ({
     params: { section: section.path.replace(/\/$/, '') },
     props: { section, position: index + 1 },
-  })).filter(page => !['projects', 'games'].includes(page.props.section.id));
+  })).filter(page => !['projects', 'games', 'blog'].includes(page.props.section.id));
 }
 
 interface Props {

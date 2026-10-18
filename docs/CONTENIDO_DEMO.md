@@ -1,6 +1,6 @@
 # Inventario del esqueleto y contenido dummy
 
-Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. Las excepciones aprobadas son la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`, y Cadete Roa, prototipo jugable solicitado en Feature6. Las demás secciones y fichas de juegos siguen con contenido dummy. `PERFIL_PUBLICO.md` se incorporará en la etapa 9.
+Este inventario permite construir con textos de muestra identificados en la interfaz; no describen al propietario. Las excepciones aprobadas son la selección real de Proyectos, documentada en `PROYECTOS_APROBADOS.md`, y Cadete Roa, prototipo jugable solicitado en Feature6. Las demás secciones y fichas de juegos siguen con contenido dummy. [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), ubicado en `docs/`, es la fuente principal aportada por el propietario para sustituir el contenido personal de muestra.
 
 ## Mapa de secciones
 
@@ -24,9 +24,15 @@ Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las 
 - **Sobre mí:** biografía, tres intereses y enfoque creativo ficticios; aviso explícito de muestra. `PhotoPlaceholder.astro` reserva una fotografía mediante geometría y un pie que indica «Marcador temporal», sin cargar una imagen ni simular un retrato.
 - **Trayectoria:** tres capítulos ficticios numerados, con aprendizajes de muestra y sin fechas, empresas o credenciales.
 - **Contacto:** los enlaces de correo y perfil llevan a `/contacto/#correo-de-muestra` y `/contacto/#perfil-de-muestra` bajo la base de Pages. Los destinos indican que son pruebas; no se abre un cliente de correo, se envían mensajes ni se enlaza una cuenta personal.
-- **Componentes:** los avisos visibles de `DemoNotice.astro` y el encabezado de `PageIntro.astro` acompañan a las páginas personales. Proyectos y Juegos tienen catálogos propios; Blog mantiene `SectionPlaceholder.astro` hasta Feature5.
+- **Componentes:** los avisos visibles de `DemoNotice.astro` y el encabezado de `PageIntro.astro` acompañan a las páginas personales. Proyectos, Juegos y Blog tienen índices propios.
 
-En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los títulos y textos temporales de los componentes personales y de Inicio. También se reemplazarán los destinos de contacto por los canales públicos aprobados y los espacios vacíos de Inicio por la selección real de obra y entradas.
+## Entrega de Feature5
+
+El blog contiene tres textos ficticios y fechas de muestra en `src/content/blog/`: «Lo pequeño también tiene gravedad», «Un juego empieza antes de la primera partida» y «Dejar una idea por escrito». Todos usan `status: demo`, con aviso visible en índice y lectura. Inicio muestra automáticamente la última entrada visible, también identificada como muestra. `borrador-de-muestra.md` usa `status: draft` y no genera ninguna página ni aparece en los índices.
+
+Las demos se excluyen de rutas, índice, navegación entre entradas e Inicio al cambiar `siteConfig.isDemo` a `false`. Retirar o sustituir los textos demo durante la etapa de contenido. No atribuirlos al propietario ni convertirlos en publicaciones reales cambiando únicamente su estado. La plantilla está fuera de la colección, en `docs/plantillas/entrada.md`. Ver [BLOG.md](BLOG.md).
+
+En la etapa 9 se sustituirán tanto los datos de `personal-demo.ts` como los títulos y textos temporales de los componentes personales y de Inicio, usando `docs/PERFIL_PUBLICO.md` como fuente principal. También se reemplazarán los destinos de contacto por los canales públicos proporcionados en ese documento y los espacios vacíos de Inicio por la selección real de obra y entradas.
 
 ## Sustituciones antes de publicar
 
