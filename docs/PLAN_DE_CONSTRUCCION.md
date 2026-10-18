@@ -6,7 +6,7 @@
 
 La prioridad inmediata es construir un esqueleto navegable con datos dummy y enlaces de prueba. Todo texto de demostración debe estar marcado como tal y conservarse separado de la información personal futura.
 
-La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Las fotografías y los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
+La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Feature8 está integrada en `dev`. La ampliación autorizada Feature9 incorpora Galactian y Rail Crane en `Feature9-galactian-rail-crane`, sin publicación ni integración automática. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md). Las fotografías y los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
 
 ## 1. Resultado buscado
 
@@ -167,7 +167,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 ### Etapa 9 — Incorporar información personal aprobada
 
-**Feature8 en curso:** rama `Feature8-idiomas-contenido`, autorizada después de integrar Feature7. Prioridad añadida por el propietario: selector desplegable en forma de burbuja con inglés primero, español después y cuatro idiomas adicionales, incluido mandarín. La entrega incorpora versiones estáticas en inglés, mandarín simplificado, hindi, árabe y francés, conserva las URLs españolas y prepara la revisión editorial sin publicar. Los originales extensos que aún no se traducen se identifican en español. Alcance en [IDIOMAS.md](IDIOMAS.md); pendientes de contenido en [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).
+**Feature8 integrada en `dev`:** rama `Feature8-idiomas-contenido`, autorizada después de integrar Feature7. Prioridad añadida por el propietario: selector desplegable en forma de burbuja con inglés primero, español después y cuatro idiomas adicionales, incluido mandarín. La entrega incorpora versiones estáticas en inglés, mandarín simplificado, hindi, árabe y francés, conserva las URLs españolas y prepara la revisión editorial sin publicar. Los originales extensos que aún no se traducen se identifican en español. Alcance en [IDIOMAS.md](IDIOMAS.md); pendientes de contenido en [REVISION_CANDIDATA.md](REVISION_CANDIDATA.md).
 
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
 

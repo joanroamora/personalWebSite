@@ -106,7 +106,7 @@ export async function checkQuality({ directory, config = siteConfig }) {
         else await visitImports(script.body, url);
       }
       const css = await Promise.all(page.stylesheets.map(href => asset(new URL(href, url))));
-      const isGame = context.path === 'juegos/cadete-roa/';
+      const isGame = /^juegos\/(cadete-roa|galactian|rail-crane)\/$/.test(context.path);
       const metrics = {
         html: gzipSync(html).length,
         javascript: [...modules.values(), ...page.scripts.filter(script => !script.src).map(script => script.body)].reduce((total, code) => total + gzipSync(code).length, 0),
@@ -121,12 +121,13 @@ export async function checkQuality({ directory, config = siteConfig }) {
   }
   if (!pages.length) problems.push('No se encontraron páginas HTML para auditar.');
   const home = pages.find(page => page.path === 'index.html');
-  const game = pages.find(page => page.path === 'juegos/cadete-roa/index.html');
-  if (home && game) {
+  for (const id of ['cadete-roa','galactian','rail-crane']) {
+    const game = pages.find(page => page.path === `juegos/${id}/index.html`);
+    if (!home || !game) continue;
     const gameRoots = game.scriptRoots.filter(url => !home.modules.includes(url));
-    if (!gameRoots.length) problems.push('Cadete Roa debe conservar su módulo de carga independiente.');
-    for (const page of pages.filter(page => routeContext(`${base}${page.path}`,base).path !== 'juegos/cadete-roa/index.html')) {
-      if (gameRoots.some(url => page.modules.includes(url))) problems.push(`${page.path}: carga el motor de Cadete Roa fuera de su ruta.`);
+    if (!gameRoots.length) problems.push(`${id} debe conservar su módulo de carga independiente.`);
+    for (const page of pages.filter(page => routeContext(`${base}${page.path}`,base).path !== `juegos/${id}/index.html`)) {
+      if (gameRoots.some(url => page.modules.includes(url))) problems.push(`${page.path}: carga el motor de ${id} fuera de su ruta.`);
     }
   }
   return { problems, pages, budgets };

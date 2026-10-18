@@ -4,9 +4,9 @@ export interface Game {
   subtitle: string;
   summary: string;
   genre: string;
-  status: 'prototype' | 'development';
+  status: 'prototype' | 'playable' | 'development';
   color: string;
-  symbol: 'cadet' | 'orbit' | 'signal' | 'garden';
+  symbol: 'cadet' | 'galactian' | 'crane' | 'orbit' | 'signal' | 'garden';
   instructions: readonly string[];
 }
 
@@ -16,6 +16,18 @@ export const games: readonly Game[] = [
     summary: 'Un entrenamiento que nunca sigue el mismo camino. Corre entre trincheras, salta sobre contenedores y encuentra tu siguiente carril.',
     genre: 'Endless runner · 3D low poly', status: 'prototype', color: 'sand', symbol: 'cadet',
     instructions: ['Cambia de carril con ← y → o A y D. En el celular, desliza a los lados o usa los botones.', 'Salta con Espacio, ↑ o W. También puedes deslizar hacia arriba o tocar JUMP.', 'Evita las granadas y las trincheras. Puedes saltar y aterrizar sobre contenedores y tanques.', 'Recoge las insignias y supera tu distancia. P o Escape pausa la partida.'],
+  },
+  {
+    id: 'galactian', title: 'Galactian', subtitle: 'A small ship. A stubborn planet.',
+    summary: 'Un shooter vertical sobre un planeta ocupado por orcos. Combate en el aire, bombardea el terreno y aterriza en bases aliadas para reparar y reabastecer tu nave.',
+    genre: 'Arcade shooter · Pixel art', status: 'playable', color: 'green', symbol: 'galactian',
+    instructions: ['WASD or arrows to move. Hold Space to fire; B or X drops a ground bomb.', 'Hold Shift to slow down. Align inside an allied landing zone and press E to Land.', 'Wait for fuel, repairs and bombs, then press E to Take Off. P or Escape pauses.', 'On touchscreens: move with the joystick, fire automatically, and use Bomb, Slow and Land.'],
+  },
+  {
+    id: 'rail-crane', title: 'Rail Crane', subtitle: 'A long train. A short window.',
+    summary: 'Opera una grúa en una terminal ferroviaria: identifica la carga, recorre el tren y coloca cada contenedor en su posición antes de la salida. Nombre provisional.',
+    genre: 'Logistics arcade · Crane operation', status: 'playable', color: 'sand', symbol: 'crane',
+    instructions: ['WASD or arrows move the trolley and hook. Space picks up or releases a container.', 'Match the container ID and slot number. Raise the load before travelling, then lower and release over the wagon.', 'Q / E, separate View buttons or the yard slider explore the train. Moving sideways follows the crane again.', 'Correct misplaced loads by picking them up again. P or Escape pauses; touch buttons support simultaneous movement.'],
   },
   {
     id: 'orbita-de-bolsillo', title: 'Órbita de bolsillo', subtitle: 'Un pequeño sistema por descubrir.',

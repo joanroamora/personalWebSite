@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import RailCrane from '../../games/rail-crane/RailCrane.astro';
+import { games } from '../../data/games';
+const game=games.find(game=>game.id==='rail-crane')!;
+---
+<PlayableGamePage game={game}><RailCrane /></PlayableGamePage>

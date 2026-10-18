@@ -1,6 +1,12 @@
 # personalWebSite
 
-Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y Cadete Roa. El blog y tres conceptos de juegos siguen con muestras identificadas.
+Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y el arcade con Cadete Roa, Galactian y Rail Crane. El blog y tres conceptos de juegos siguen con muestras identificadas.
+
+## Feature9 — Galactian y Rail Crane
+
+Dos nuevos juegos completos en `src/games/`, con rutas propias y versiones bajo los seis idiomas del sitio. Sus interfaces siempre permanecen en inglés. Conservan el diálogo 9:16 de Cadete Roa en escritorio y la ventana completa en móvil. Galactian combina combate aéreo, bombas terrestres, combustible y aterrizajes de reabastecimiento. Rail Crane tiene una terminal de 16 vagones, órdenes válidas según la ocupación real, balanceo de carga, errores recuperables y operaciones progresivas.
+
+Reglas, controles y decisiones en [docs/FEATURE9_JUEGOS.md](docs/FEATURE9_JUEGOS.md). Se generan 259 páginas estáticas; cada motor se carga solo en su ruta, sin dependencias nuevas. La entrega se desarrolló en `Feature9-galactian-rail-crane`; el propietario autorizó su integración y push a `dev` después de la revisión local.
 
 ## Estado de Feature8 — Idiomas y revisión de contenido
 
@@ -92,7 +98,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature7 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público. Feature8 se desarrolla en `Feature8-idiomas-contenido`; quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature8 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público; Feature8 incorporó idiomas. La integración y el push de Feature9 desde su rama de juegos fueron autorizados tras la revisión local. Quedan fotografías, textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
 
 ## Publicación futura en GitHub Pages
 

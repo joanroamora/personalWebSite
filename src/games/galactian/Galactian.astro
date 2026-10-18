@@ -1,0 +1,14 @@
+---
+import ArcadeWindow from '../shared/ArcadeWindow.astro';
+const desktop=['WASD or arrows: move. Hold Space: fire unlimited primary shots.','B or X: bomb the ground inside your targeting ring. Guns only hit aircraft.','Hold Shift: slow down. Align with an allied landing zone, then press E to Land.','Wait for repairs and resupply, then press E to Take Off. P or Escape: pause.'];
+const mobile=['Use the left joystick to move. Your primary guns fire automatically in flight.','Tap Bomb to hit ground targets inside your targeting ring.','Hold Slow while aligning with an allied landing zone. Tap Land when it lights up.','Wait for repairs, then tap Take Off. The pause button stops the mission.'];
+---
+<ArcadeWindow id="galactian" title="Galactian" mark="GN / ORBITAL DEFENCE" tagline="A small ship. A stubborn planet." description="Launch above an orc-occupied world. Fight through the skies, bomb the ground and make it home for fuel, repairs and another flight." desktop={desktop} mobile={mobile}>
+  <div slot="hud">
+    <div class="arcade-stats"><span>SCORE <strong data-flight-score>000000</strong></span><span>BOMBS <strong data-flight-bombs>5</strong></span><span data-flight-base>BASE ↑</span></div>
+    <div class="arcade-gauges"><label>FUEL <meter data-flight-fuel min="0" max="100" low="25" optimum="100" value="100">100%</meter><span data-fuel-value>100%</span></label><label>HULL <meter data-flight-hull min="0" max="100" low="25" optimum="100" value="100">100%</meter><span data-hull-value>100%</span></label></div>
+    <p class="arcade-warning" data-flight-warning></p><progress data-flight-progress max="1" value="0" aria-label="Landing and resupply progress" hidden></progress>
+  </div>
+  <Fragment slot="controls"><div class="arcade-joystick" data-joystick role="group" aria-label="Flight joystick. Use WASD or arrow keys with a keyboard."><span class="arcade-stick"></span></div><div class="arcade-control-actions"><button type="button" data-action="bomb">Bomb / B</button><button type="button" data-hold="slow">Slow / Shift</button><button type="button" class="context-action" data-action="context" disabled>Land</button><button type="button" data-hold="fire" style="grid-column:1/-1">Fire / Space</button></div></Fragment>
+</ArcadeWindow>
+<script>import './game';</script>

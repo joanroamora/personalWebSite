@@ -1,4 +1,6 @@
-# Juegos — Feature6
+# Juegos — Feature6 y Feature9
+
+Feature9 incorpora Galactian y Rail Crane como juegos independientes con una capa de ventana y sesión compartida. Las reglas de Cadete Roa se conservan. Controles, recursos, progresión y supuestos de los dos nuevos juegos en [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md).
 
 Feature6 se adelantó por petición del propietario y el blog de Feature5 ya se completó. Cadete Roa es un prototipo jugable en desarrollo; Órbita de bolsillo, Señal perdida y Jardín lunar son conceptos dummy, no juegos terminados. No hay servicios externos ni cambios de publicación.
 

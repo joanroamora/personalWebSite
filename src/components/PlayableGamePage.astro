@@ -1,0 +1,18 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import GameArtwork from './GameArtwork.astro';
+import type { Game } from '../data/games';
+import { sectionHref } from '../utils/paths';
+interface Props { game:Game }
+const {game}=Astro.props;
+---
+<SiteLayout title={game.title} description={game.summary}>
+  <section class="section-page arcade-page" aria-labelledby="arcade-page-title">
+    <a class="back-link" href={sectionHref('games')}>← Volver a Juegos</a>
+    <div class="arcade-page-grid"><div><p class="eyebrow">El pequeño arcade</p><h1 class="page-title" id="arcade-page-title">{game.title}</h1><p class="arcade-page-tagline" lang="en">{game.subtitle}</p><p class="arcade-page-summary">{game.summary}</p><slot /><p class="arcade-page-note">Sin instalación. Tu récord se guarda en este navegador.</p></div><div class="arcade-page-art"><GameArtwork game={game} /></div></div>
+    <div class="arcade-page-instructions" lang="en" data-no-translate><h2>Before your first round.</h2><ol>{game.instructions.map(instruction=><li>{instruction}</li>)}</ol><p>On desktop, the game opens in a portrait window. On mobile, it fills the viewport; Play also requests fullscreen when supported. Closing returns you to this page.</p></div>
+  </section>
+</SiteLayout>
+<style>
+  .back-link{display:inline-flex;align-items:center;min-height:2.75rem;margin-bottom:2rem;color:var(--muted);text-decoration:none;font-size:.85rem}.arcade-page-grid{display:grid;gap:2rem;align-items:center}.page-title{margin:1.2rem 0;font-size:clamp(3rem,8vw,6rem)}.arcade-page-tagline{color:var(--cyan);font:italic 1.5rem var(--font-editorial)}.arcade-page-summary{max-width:30rem;margin-top:1rem;color:var(--muted);font-size:.95rem}.arcade-page-note{color:var(--muted);font-size:.75rem}.arcade-page-art{border:1px solid var(--line);border-radius:.8rem;overflow:hidden}.arcade-page-art :global(.game-art){aspect-ratio:1.4}.arcade-page-instructions{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line);max-width:48rem}.arcade-page-instructions h2{font-size:2rem}.arcade-page-instructions ol{padding-left:1.4rem;display:grid;gap:1rem;color:var(--muted);font-size:.9rem;line-height:1.7}.arcade-page-instructions>p{font-size:.8rem;color:var(--muted);margin-top:1.5rem}@media(min-width:50rem){.arcade-page-grid{grid-template-columns:1fr 1fr;gap:4rem}}
+</style>

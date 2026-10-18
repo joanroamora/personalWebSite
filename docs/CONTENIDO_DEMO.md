@@ -11,12 +11,14 @@ Las rutas comparten la base `/personalWebSite/`. El mapa de rutas se mantiene en
 | Inicio | `/` | Presentación real, pdfRoar destacado y última entrada demo identificada |
 | Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; fotografía pendiente |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
-| Juegos | `/juegos/` | Cadete Roa jugable en desarrollo y tres fichas de muestra con rutas propias |
+| Juegos | `/juegos/` | Cadete Roa, Galactian y Rail Crane jugables, más tres fichas de muestra con rutas propias |
 | Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
 | Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario |
 | Contacto | `/contacto/` | Correo, LinkedIn, GitHub y ubicación general autorizados |
 
 Feature6 incorpora `/juegos/cadete-roa/` como prototipo jugable autorizado. Las rutas `/juegos/orbita-de-bolsillo/`, `/juegos/senal-perdida/` y `/juegos/jardin-lunar/` son conceptos de muestra en desarrollo: no contienen un juego ni un botón falso de jugar. Sus títulos y descripciones son temporales. Datos en `src/data/games.ts`; mantenimiento en `JUEGOS.md`.
+
+Feature9 añade `/juegos/galactian/` y `/juegos/rail-crane/`, juegos autorizados y funcionales, con interfaces en inglés y gráficos originales. No sustituyen ni convierten en juegos los tres conceptos dummy. Rail Crane mantiene su indicación de nombre provisional. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md).
 
 ## Entrega original de Feature3 — sustituida en Feature7
 
