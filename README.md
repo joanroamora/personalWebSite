@@ -2,6 +2,10 @@
 
 Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos, dos ensayos y ocho juegos: Cadete Roa, Galactian, Rail Crane, Torque Trail, Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue. Los textos de prueba del blog y tres conceptos de juegos conservan sus avisos de muestra.
 
+## Feature13 — música ambiental
+
+Reproductor opcional con las cuatro pistas aportadas en `src/sounds/`: reproducción/pausa, siguiente, selección y volumen, con interfaz responsive y localizada. No descarga audio hasta activarlo; recuerda pista y posición al navegar, se suspende en juegos y pestañas ocultas, y trata los bloqueos de reproducción sin romper la web. Conserva la navegación estática: puede haber una pausa breve al cambiar de página. Rama `Feature13-musica-ambiental`, con integración y push a `dev` autorizados, sin publicación ni despliegue. Alcance y límites en [docs/FEATURE13_MUSICA.md](docs/FEATURE13_MUSICA.md).
+
 ## Feature12 — blog editorial y portafolio ilustrado
 
 Dos ensayos a partir de las propuestas del propietario: «Anatomía de una tragamonedas de bolsillo» y «El espejo programado». Portada y lectura responsive, fuentes primarias enlazadas, índice plegable, navegación sin JavaScript e ilustraciones originales generadas con IA e inspiradas en Toulouse-Lautrec. Astro produce WebP/JPEG adaptables y las imágenes para compartir. Los originales extensos permanecen en español, identificados en las seis versiones del sitio. Las demos se conservan en un archivo separado y no desplazan publicaciones reales. El build genera 301 páginas. Alcance, revisión factual y prompts en [docs/FEATURE12_BLOG.md](docs/FEATURE12_BLOG.md). Rama: `Feature12-blog-editorial`; sin publicación ni despliegue.

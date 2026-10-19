@@ -42,3 +42,5 @@ Las capturas y el navegador de pruebas permanecen fuera de Git. No se configura 
 Resultado local del 18 de octubre de 2026: `npm run verify` correcto, 21 pruebas unitarias, 247 páginas generadas y **91 pruebas de navegador correctas**. Se revisaron capturas del selector en móvil y escritorio y de la versión árabe; las seis portadas respondieron con HTTP 200 en la vista temporal. La suite detectó y permitió corregir un desbordamiento del nuevo contenedor de lectura con bloques de código. La emulación y las pruebas automáticas no sustituyen la revisión editorial ni las pruebas en dispositivos físicos.
 
 Referencias: [rutas estáticas e internacionalización de Astro](https://docs.astro.build/en/guides/internationalization/) y [rutas dinámicas de Astro](https://docs.astro.build/en/reference/routing-reference/).
+
+Feature13 añade los controles y estados del reproductor en `src/i18n/music.ts`, localizados en los seis idiomas. Los títulos y nombres musicales aportados se conservan sin traducir. Ver [FEATURE13_MUSICA.md](FEATURE13_MUSICA.md).
