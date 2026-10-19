@@ -1,0 +1,40 @@
+---
+import ArcadeWindow from '../shared/ArcadeWindow.astro';
+const desktop=['W / Up: throttle. S / Down: brake. Release the throttle to coast.','A / Left: lean back. D / Right: lean forward. Small adjustments work best.','Land with both wheels following the slope. Suspension and grip depend on the terrain.','Three attempts per trail. E: recover at the last flag after a crash. P / Escape: pause.'];
+const mobile=['Hold Gas to accelerate and Brake to slow down. Release both to coast.','Hold Lean Back or Lean Forward to balance the bike, including during a jump.','Use gas and balance together: the controls support multiple fingers.','After a crash, tap Recover to return to the last flag. Use the pause button to take a break.'];
+---
+<ArcadeWindow id="torque-trail" title="Torque Trail" mark="TT / DUST COUNTRY" tagline="8-bit trails. Real momentum." description="A little dirt bike with a lot to learn. Feel the suspension, find your grip and balance every landing across an original pixel-art trail." desktop={desktop} mobile={mobile}>
+  <div slot="hud">
+    <div class="arcade-stats"><span>SCORE <strong data-ride-score>00000</strong></span><span><strong data-ride-speed>0</strong> km/h</span><span>TRIES <strong data-ride-lives>3</strong></span></div>
+    <div class="ride-progress"><span data-ride-distance>Trail ahead</span><span data-ride-landings>0 clean landings</span></div>
+    <p class="arcade-warning" data-ride-warning></p>
+  </div>
+  <Fragment slot="controls">
+    <div class="ride-control-group"><span>RIDER BALANCE</span><div><button type="button" data-hold="left" aria-label="Lean back">←<br/>Lean Back</button><button type="button" data-hold="right" aria-label="Lean forward">→<br/>Lean Forward</button></div></div>
+    <div class="ride-control-group"><span>WHEEL CONTROL</span><div><button type="button" data-hold="down">Brake</button><button type="button" class="ride-gas" data-hold="up">Gas</button></div></div>
+    <button type="button" class="ride-recover" data-action="context" disabled>Checkpoint saved</button>
+  </Fragment>
+</ArcadeWindow>
+<script>import './game';</script>
+<style is:global>
+  .theme-torque-trail { --game-bg:#182039; --game-accent:#ffc98a; }
+  .theme-torque-trail .arcade-overlay { background:linear-gradient(160deg,#182039ed,#353049eb); }
+  .theme-torque-trail .arcade-title { font-family:var(--font-mono);font-size:clamp(2.4rem,7vh,3.5rem);letter-spacing:-.08em; }
+  .theme-torque-trail .arcade-playfield { top:8.3rem;bottom:11rem;background:#182039; }
+  .theme-torque-trail .arcade-controls { display:grid;grid-template-columns:1fr 1fr;gap:.7rem; }
+  .ride-progress { display:flex;justify-content:space-between;gap:.6rem;margin-top:.7rem;color:#e0ddcf;font-size:.55rem; }
+  .ride-control-group { min-width:0; }
+  .ride-control-group>span { display:block;margin-bottom:.4rem;color:#e0ddcf;font:.46rem var(--font-mono);letter-spacing:.07em; }
+  .ride-control-group>div { display:grid;grid-template-columns:1fr 1fr;gap:.4rem; }
+  .theme-torque-trail .ride-control-group button { min-height:3.6rem;line-height:1.5;font-size:.58rem; }
+  .theme-torque-trail .ride-gas { background:#a5ddc6;color:#14212b; }
+  .ride-recover { grid-column:1/-1; }
+  @media(max-height:640px) { .theme-torque-trail .arcade-playfield { top:8rem;bottom:10.5rem; } .theme-torque-trail .arcade-warning { font-size:.5rem; } }
+  @media(max-height:500px) and (min-width:500px) {
+    .theme-torque-trail .arcade-playfield { inset:3.6rem 11rem .5rem; }
+    .theme-torque-trail .arcade-controls { display:flex;gap:.7rem; }
+    .ride-control-group,.ride-recover { width:100%; }
+    .theme-torque-trail .arcade-title { font-size:2.5rem; }
+    .ride-progress { flex-wrap:wrap; }
+  }
+</style>

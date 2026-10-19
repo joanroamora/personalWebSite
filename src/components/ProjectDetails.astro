@@ -1,0 +1,69 @@
+---
+import { repositoryName, type Project } from '../data/projects';
+import TechnologyBadge from './TechnologyBadge.astro';
+import ProjectArtwork from './ProjectArtwork.astro';
+import { routeContext } from '../i18n/locales';
+interface Props { project: Project; standalone?: boolean; }
+const { project, standalone = false } = Astro.props;
+const Heading = standalone ? 'h1' : 'h2';
+const Subheading = standalone ? 'h2' : 'h3';
+const { locale } = routeContext(Astro.url.pathname,import.meta.env.BASE_URL);
+---
+
+<article class="project-details" aria-labelledby={`${project.id}-detail-title`}>
+  <div class="detail-signal" aria-hidden="true"><span></span><span></span><span></span></div>
+  <p class="eyebrow">{project.category}</p>
+  <Heading id={`${project.id}-detail-title`} class="detail-title">{project.title}</Heading>
+  <p class="detail-repository">{repositoryName(project)}</p>
+  <ProjectArtwork project={project} variant="detail" />
+  {project.academic && <aside class="academic-note" aria-label="Contexto académico"><span class="academic-symbol" aria-hidden="true">↗</span><div><p>{project.academic.context}</p><p>{project.academic.institution}</p></div></aside>}
+  {locale !== 'es' && <p class="detail-prose">{project.summary}</p>}
+  {locale !== 'es' && <details class="original-content"><summary>Descripción original en español</summary><div lang="es" dir="ltr" data-no-translate><div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div><ul class="detail-highlights">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul></div></details>}
+  {locale === 'es' && <div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div>}
+  {locale === 'es' &&
+  <section class="detail-section" aria-labelledby={`${project.id}-focus-title`}>
+    <Subheading id={`${project.id}-focus-title`}>Dentro del proyecto</Subheading>
+    <ul class="detail-highlights">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul>
+  </section>}
+  <section class="detail-section" aria-labelledby={`${project.id}-tech-title`}>
+    <Subheading id={`${project.id}-tech-title`}>Hecho con</Subheading>
+    <ul class="detail-technologies" role="list">{project.technologies.map(technology => <li><TechnologyBadge name={technology} /></li>)}</ul>
+  </section>
+  <div class="detail-footer">
+    <a class="repository-button" href={project.repository}>
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.58 4.95.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" /></svg>
+      {project.repositoryVisibility === 'private' ? 'Ver repositorio privado' : 'Explorar el código en GitHub'}
+      <span aria-hidden="true">↗</span>
+    </a>
+    {project.repositoryVisibility === 'private' && <p class="private-note">Repositorio privado. Requiere acceso autorizado en GitHub.</p>}
+    {project.demo && <a class="text-link" href={project.demo.url}>{project.demo.label} <span aria-hidden="true">↗</span></a>}
+  </div>
+</article>
+
+<style>
+  .project-details { position: relative; padding: clamp(1.5rem, 5vw, 3rem); overflow-wrap: anywhere; }
+  .detail-signal { position: absolute; top: 2rem; right: 4.5rem; display: flex; align-items: center; gap: 5px; height: 12px; opacity: 0.75; }
+  .detail-signal span { width: 3px; height: 5px; border-radius: 3px; background: var(--accent); }
+  .detail-signal span:nth-child(2) { height: 11px; }
+  .detail-signal span:nth-child(3) { height: 8px; }
+  .project-details > .eyebrow { padding-right: 5rem; font-size: 0.65rem; }
+  .detail-title { margin: 1.4rem 0 0.9rem; max-width: 35rem; font-size: clamp(1.9rem, 5vw, 2.8rem); font-weight: 450; letter-spacing: -0.045em; line-height: 1.12; }
+  .detail-repository { color: var(--cyan); font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.7; overflow-wrap: anywhere; }
+  .academic-note { display: flex; gap: 0.85rem; margin-top: 1.8rem; padding: 1rem; border: 1px solid #83c7c52b; border-radius: 0.65rem; background: #83c7c509; }
+  .academic-note p { font-size: 0.8rem; }
+  .academic-note p + p { color: var(--muted); font-size: 0.75rem; }
+  .academic-symbol { color: var(--cyan); font-size: 1.2rem; }
+  .detail-prose { display: grid; gap: 1rem; margin-top: 2rem; color: #bccac1; font-size: 0.95rem; }
+  .detail-prose p { line-height: 1.8; }
+  .detail-section { margin-top: 1.8rem; }
+  .detail-section :is(h2, h3) { margin: 0 0 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--text); letter-spacing: normal; }
+  .detail-highlights { padding-left: 1.1rem; margin: 0; display: grid; gap: 0.5rem; color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+  .detail-highlights li::marker { color: var(--accent); }
+  .detail-technologies { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+  .detail-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .repository-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem; min-height: 48px; padding: 0.85rem 1.1rem; background: var(--accent); color: var(--background); border: 1px solid var(--accent); border-radius: 0.55rem; text-decoration: none; font-size: 0.85rem; font-weight: 550; }
+  .repository-button:hover { background: #bef1a8; color: var(--background); }
+  .repository-button:focus-visible { outline-offset: 5px; }
+  .private-note { color: var(--muted); font-size: 0.75rem; margin-top: 0.8rem; }
+  @media (max-width: 30rem) { .repository-button { width: 100%; font-size: 0.8rem; } .detail-signal { display: none; } }
+</style>

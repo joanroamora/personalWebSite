@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import BlackoutTexas from '../../games/blackout-texas/BlackoutTexas.astro';
+import {games} from '../../data/games';
+const game=games.find(game=>game.id==='blackout-texas')!;
+---
+<PlayableGamePage game={game}><BlackoutTexas/></PlayableGamePage>

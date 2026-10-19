@@ -1,0 +1,92 @@
+---
+import { projects } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+
+const selection = [...projects].sort((first, second) => first.order - second.order);
+---
+
+<section class="projects-collection" aria-labelledby="projects-title" data-project-browser>
+  <div class="projects-heading">
+    <div>
+      <p class="eyebrow">Del archivo / Selección de código</p>
+      <h2 id="projects-title">Ideas que tomaron forma.</h2>
+    </div>
+    <p class="muted">Documentos, infraestructura, datos y otras preguntas convertidas en código.</p>
+  </div>
+  <div class="project-controls" data-project-controls hidden>
+    <div class="project-filters" role="group" aria-label="Filtrar proyectos por tema">
+      {[
+        { id: 'all', label: 'Todos' }, { id: 'ai', label: 'IA y voz' },
+        { id: 'data', label: 'Datos' }, { id: 'cloud', label: 'Cloud y DevOps' }, { id: 'tools', label: 'Herramientas' },
+      ].map(filter => <button type="button" data-project-filter={filter.id} aria-pressed={filter.id === 'all'}>{filter.label}</button>)}
+    </div>
+    <label class="project-search">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5" /></svg>
+      <input type="search" aria-label="Buscar proyectos" placeholder="Busca una idea o tecnología" data-project-search />
+    </label>
+  </div>
+  <p class="project-count" data-project-count role="status" aria-live="polite" aria-atomic="true">{selection.length} proyectos / Un archivo en movimiento</p>
+  {selection.length ? (
+    <ol class="projects-grid" role="list">
+      {selection.map((project, index) => <li data-project-item data-group={project.group} data-search={`${project.title} ${project.repository} ${project.summary} ${project.technologies.join(' ')} ${project.academic?.institution ?? ''} ${project.academic?.context ?? ''}`}><ProjectCard project={project} position={index + 1} /></li>)}
+    </ol>
+  ) : <p class="muted">La próxima selección de proyectos está en camino.</p>}
+  <div class="project-empty" data-project-empty hidden>
+    <p class="eyebrow">Otra frecuencia</p><h3>No hay proyectos en esta búsqueda.</h3>
+    <p class="muted">Prueba otro término o vuelve al archivo completo.</p>
+    <button type="button" data-project-reset>Ver todos los proyectos <span aria-hidden="true">↗</span></button>
+  </div>
+</section>
+
+<dialog id="project-dialog" class="project-dialog" aria-label="Detalle del proyecto">
+  <button type="button" class="project-dialog-close" data-project-close aria-label="Cerrar detalle" autofocus>
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+  </button>
+  <div data-project-detail-host></div>
+</dialog>
+
+<script>import '../scripts/projects';</script>
+
+<style>
+  .projects-collection { padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  .projects-heading { display: grid; gap: 0.5rem; margin-bottom: var(--space-4); }
+  .projects-grid { display: grid; gap: var(--space-3); list-style: none; padding: 0; margin: 0; }
+  .projects-grid > li { min-width: 0; }
+  .project-controls[hidden], .project-empty[hidden], .projects-grid > li[hidden] { display: none; }
+  .project-controls { display: grid; gap: 1rem; padding-block: 0.5rem 1.4rem; }
+  .project-filters { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .project-filters button, .project-empty button { font: inherit; min-height: 44px; padding: 0.65rem 0.85rem; border: 1px solid var(--line); border-radius: 0.45rem; color: var(--muted); background: transparent; cursor: pointer; font-size: 0.78rem; transition: background-color var(--motion-fast) ease, border-color var(--motion-fast) ease; }
+  .project-filters button[aria-pressed="true"] { color: var(--accent); background: #a7e88b0b; border-color: #527744; }
+  .project-filters button:hover { border-color: #527744; color: var(--text); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .project-search { display: flex; align-items: center; gap: 0.6rem; padding: 0.1rem 0.8rem; border: 1px solid var(--line); border-radius: 0.45rem; color: var(--muted); min-width: 0; }
+  .project-search input { width: 100%; min-width: 0; min-height: 44px; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 0.8rem; }
+  .project-search input::placeholder { color: var(--muted); opacity: 1; }
+  .project-search:focus-within { border-color: #8ab179; }
+  .project-count { margin-bottom: 1.5rem; color: var(--muted); font-family: var(--font-mono); font-size: 0.65rem; }
+  .project-empty { padding: 3rem 1.5rem; border: 1px dashed var(--line); border-radius: var(--radius); }
+  .project-empty h3 { margin-block: 1rem; font-size: 1.4rem; font-weight: 450; }
+  .project-empty button { margin-top: 1.5rem; color: var(--accent); }
+  .project-dialog { position: fixed; width: min(calc(100% - 2rem), 44rem); max-width: none; max-height: min(calc(100dvh - 3rem), 52rem); margin: auto; padding: 0; border: 1px solid #52704d; border-radius: 1.15rem; background: radial-gradient(ellipse at 100% 0, #20392788, transparent 50%), #0e1818; color: var(--text); box-shadow: 0 40px 120px #000b, 0 0 0 1px #e8f0e906; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #41594a transparent; }
+  .project-dialog[open] { animation: project-arrive 220ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .project-dialog::backdrop { background: #020809b3; backdrop-filter: blur(12px) saturate(0.7); animation: project-veil-in 180ms ease both; }
+  .project-dialog.is-closing { animation: project-depart 160ms ease-in both; }
+  .project-dialog.is-closing::backdrop { animation: project-veil-out 160ms ease-in both; }
+  .project-dialog-close { position: sticky; display: grid; place-items: center; top: 1rem; margin: 1rem 1rem -3.75rem auto; width: 44px; height: 44px; z-index: 2; border: 1px solid #405346; border-radius: 50%; background: #14201eeb; backdrop-filter: blur(8px); color: var(--text); cursor: pointer; }
+  .project-dialog-close:hover { background: #253c2d; border-color: var(--accent); }
+  :global(html.project-dialog-open) { overflow: hidden; }
+  :global(html) { scrollbar-gutter: stable; }
+  @keyframes project-arrive { from { opacity: 0; transform: translateY(16px) scale(0.975); } to { opacity: 1; transform: none; } }
+  @keyframes project-depart { to { opacity: 0; transform: translateY(8px) scale(0.985); } }
+  @keyframes project-veil-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes project-veil-out { to { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .project-dialog, .project-dialog::backdrop { animation: none !important; transition: none !important; }
+  }
+  @media (min-width: 45rem) {
+    .projects-heading { grid-template-columns: 1.4fr 1fr; align-items: end; gap: var(--space-5); }
+    .projects-heading .muted { margin-bottom: 1rem; }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 70rem) { .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .project-controls { grid-template-columns: 1fr 17rem; align-items: center; } }
+</style>

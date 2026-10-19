@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatPostDate, postDateISO, readingMinutes } from '../../utils/blog';
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+---
+<div class="post-meta">
+  {post.data.status === 'demo' && <span class="sample-label">Texto de muestra</span>}
+  <time datetime={postDateISO(post.data.date)}>{formatPostDate(post.data.date)}</time>
+  <span>{readingMinutes(post.body)} min de lectura aprox.</span>
+</div>
+<style>
+  .post-meta { display:flex; align-items:center; flex-wrap:wrap; gap:.6rem 1rem; color:var(--muted); font: .65rem/1.5 var(--font-mono); }
+  .sample-label { color:var(--accent); padding:.25rem .55rem; border:1px solid #a7e88b30; border-radius:2rem; background:#a7e88b08; }
+</style>

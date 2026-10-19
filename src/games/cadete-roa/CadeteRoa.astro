@@ -1,0 +1,94 @@
+<button type="button" class="launch-game" data-game-open hidden>Abrir Cadete Roa <span aria-hidden="true">↗</span></button>
+<noscript><p class="no-script">Cadete Roa necesita JavaScript para jugar. Puedes consultar las instrucciones de esta página y volver al catálogo.</p></noscript>
+<dialog class="cadet-window" id="cadete-window" aria-label="Cadete Roa — juego" dir="ltr" data-cadet-game>
+  <div class="cadet-stage" lang="en" data-state="ready">
+    <canvas class="cadet-canvas" aria-label="Three-lane 3D running course. Use the controls described below." tabindex="0"></canvas>
+    <div class="cadet-vignette" aria-hidden="true"></div>
+    <div class="cadet-topbar">
+      <span class="cadet-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m4 8 8-4 8 4-8 4-8-4Zm0 5 8 4 8-4M4 18l8 4 8-4"/></svg> CR / FIELD TEST</span>
+      <div class="cadet-window-actions"><button type="button" data-game-pause aria-label="Pause game" title="Pause game" hidden>Ⅱ</button><button type="button" data-game-close aria-label="Close game" title="Close game">✕</button></div>
+    </div>
+    <div class="cadet-hud" hidden>
+      <div><span>DISTANCE</span><strong data-distance>0000</strong><small>m</small></div>
+      <div class="cadet-tags"><span aria-hidden="true">◇</span><strong data-tokens>00</strong></div>
+    </div>
+    <section class="cadet-overlay" data-game-overlay aria-labelledby="cadet-screen-title">
+      <div class="cadet-screen-body">
+        <p class="cadet-overline" data-screen-label>AN ENDLESS FIELD RUN</p>
+        <h2 id="cadet-screen-title" class="cadet-title">CADETE<br/><em>ROA</em><span class="cadet-title-dot">.</span></h2>
+        <p class="cadet-screen-message" data-screen-message>Keep moving.<br/>Find your way.</p>
+        <div class="cadet-results" data-game-results hidden><div><span>DISTANCE</span><strong data-result-distance>0 m</strong></div><div><span>SCORE</span><strong data-result-score>0</strong></div></div>
+        <p class="cadet-best">PERSONAL BEST <span data-best>0</span></p>
+        <button type="button" class="cadet-primary" data-game-start autofocus>LET'S RUN <span aria-hidden="true">→</span></button>
+        <button type="button" class="cadet-secondary" data-game-restart hidden>START A NEW RUN</button>
+        <p class="cadet-input-tip" data-game-tip>SWIPE TO MOVE · SWIPE UP TO JUMP<br/>OR USE ← → + SPACE</p>
+        <div class="cadet-settings"><button type="button" data-game-sound aria-pressed="false">SOUND OFF</button><button type="button" data-game-quality>QUALITY AUTO</button></div>
+        <p class="cadet-prototype">PLAYABLE PROTOTYPE / IN DEVELOPMENT</p>
+      </div>
+    </section>
+    <div class="cadet-controls" aria-label="Game controls" hidden>
+      <button type="button" data-game-left aria-label="Move left">←</button>
+      <button type="button" data-game-jump aria-label="Jump"><svg viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 18V4m-6 6 6-6 6 6"/></svg><span>JUMP</span></button>
+      <button type="button" data-game-right aria-label="Move right">→</button>
+    </div>
+    <p class="cadet-announcement" role="status" aria-live="polite" data-game-announcement></p>
+    <div class="cadet-bottom" aria-hidden="true"><span>ROA / 001</span><span>KEEP GOING ↗</span></div>
+  </div>
+</dialog>
+<script>
+  import './game';
+</script>
+<style>
+  .launch-game { width:min(100%,25rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;min-height:3.4rem;margin:1.8rem 0;padding:1rem 1.2rem;border:0;border-radius:.4rem;background:var(--accent);color:#142016;font:600 .9rem var(--font-body);cursor:pointer; }
+  .launch-game:hover { background:#c0f4aa; }.launch-game:focus-visible { outline:2px solid var(--cyan);outline-offset:4px; }.launch-game[hidden] { display:none; }
+  .no-script { color:var(--cyan);margin:1.5rem 0; }
+  .cadet-window { --cadet-ink:#f2edcf;--cadet-lime:#d7ed9b;position:fixed;inset:0;padding:0;border:1px solid #b3bd8b4d;border-radius:1.1rem;margin:auto;width:min(27rem,calc((100dvh - 2.5rem)*.5625),calc(100vw - 2rem));height:auto;aspect-ratio:9/16;max-width:none;max-height:calc(100dvh - 2rem);overflow:hidden;color:var(--cadet-ink);background:#283d32;box-shadow:0 2rem 8rem #0009;font-family:var(--font-body); }
+  .cadet-window::backdrop { background:#030a0dc7;backdrop-filter:blur(12px) saturate(.65);animation:cadet-fade 200ms ease both; }
+  .cadet-window[open] { animation:cadet-enter 300ms cubic-bezier(.16,1,.3,1) both; }
+  .cadet-window.is-closing { animation:cadet-exit 160ms ease both; }.cadet-window.is-closing::backdrop { animation:cadet-fade 160ms ease reverse both; }
+  .cadet-stage { position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;background:#859b91; }
+  .cadet-canvas { width:100%;height:100%;display:block;touch-action:none;outline-offset:-4px; }
+  .cadet-canvas:focus-visible { outline:2px solid var(--cadet-lime); }
+  .cadet-vignette { position:absolute;inset:0;pointer-events:none;background:linear-gradient(#12281e99,transparent 32%,transparent 60%,#101d19bb); }
+  .cadet-topbar { position:absolute;inset:max(.9rem,env(safe-area-inset-top)) 1rem auto;display:flex;align-items:center;justify-content:space-between;gap:.5rem;z-index:3; }
+  .cadet-mark { display:flex;align-items:center;gap:.5rem;font: .56rem var(--font-mono);letter-spacing:.08em;color:#f2edcfe0; }.cadet-mark svg { width:1rem;height:1rem; }
+  .cadet-window button { color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent; }
+  .cadet-window button:focus-visible { outline:2px solid var(--cadet-lime);outline-offset:3px; }
+  .cadet-window-actions { display:flex;gap:.4rem; }.cadet-window-actions button { width:2.75rem;height:2.75rem;border:1px solid #d5dfbc45;background:#1b322d66;backdrop-filter:blur(5px);border-radius:50%;font-size:.9rem; }
+  .cadet-window-actions button:hover { background:#19352cee; }
+  .cadet-hud { position:absolute;top:4.8rem;left:1.3rem;right:1.3rem;display:flex;justify-content:space-between;align-items:center;pointer-events:none;text-shadow:0 2px 7px #0d2219; }
+  .cadet-hud>div>span:first-child { display:block;font:.55rem var(--font-mono);letter-spacing:.12em; }
+  .cadet-hud strong { font-size:2.1rem;letter-spacing:-.04em;font-variant-numeric:tabular-nums; }.cadet-hud small { font:.6rem var(--font-mono);margin-left:.4rem; }
+  .cadet-hud .cadet-tags { display:flex;align-items:center;gap:.4rem; }.cadet-hud .cadet-tags span { font-size:1.8rem;color:#f1cf80; }.cadet-hud .cadet-tags strong { font-size:1.4rem; }
+  .cadet-overlay { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:4.5rem 1.7rem 2.1rem;background:linear-gradient(150deg,#15352be8,#15352bb0 50%,#192e26c4);overflow:auto;overscroll-behavior:contain; }
+  .cadet-screen-body { width:100%;max-width:22rem;margin:auto; }
+  .cadet-overline { font:.6rem var(--font-mono);letter-spacing:.18em;color:#c9d4b0; }
+  .cadet-title { font-family:Impact,'Arial Black',var(--font-body);font-weight:900;font-size:clamp(3rem,10vh,5.5rem);line-height:.88;letter-spacing:-.035em;margin:1.2rem 0; }
+  .cadet-title em { font-style:normal;color:var(--cadet-lime); }.cadet-title-dot { color:#e2ac7d; }
+  .cadet-screen-message { color:#e3e4c8;font-size:1rem;line-height:1.55;max-width:18rem; }
+  .cadet-best { display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-top:1px solid #e3e4c836;border-bottom:1px solid #e3e4c836;margin:1.8rem 0 1rem;font:.57rem var(--font-mono);letter-spacing:.1em;color:#cad4b4; }.cadet-best span { color:var(--cadet-lime);font-variant-numeric:tabular-nums; }
+  .cadet-primary { border:0;border-radius:.28rem;min-height:3.5rem;padding:1rem 1.2rem;width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--cadet-lime);color:#253927!important;font:700 .8rem var(--font-body);letter-spacing:.04em;transition:background 160ms,transform 160ms; }
+  .cadet-primary:hover { background:#eaf7bf;transform:translateY(-2px); }
+  .cadet-primary:disabled { opacity:.6;cursor:wait;transform:none; }
+  .cadet-primary span { font-size:1.1rem; }
+  .cadet-secondary { border:1px solid #b8c79b5e;border-radius:.3rem;background:transparent;min-height:2.75rem;width:100%;margin-top:.7rem;font:.6rem var(--font-mono); }
+  .cadet-input-tip { text-align:center;font:.53rem/1.9 var(--font-mono);letter-spacing:.05em;margin:1rem 0;color:#c6d0b4; }
+  .cadet-settings { display:flex;justify-content:center;gap:1rem;margin-top:.5rem; }.cadet-settings button { padding:.6rem .4rem;min-height:2.75rem;background:transparent;border:0;border-bottom:1px solid #c6d0b43d;font:.53rem var(--font-mono);letter-spacing:.04em; }
+  .cadet-prototype { margin-top:.7rem;text-align:center;color:#c6d0b499;font:.47rem var(--font-mono);letter-spacing:.07em; }
+  .cadet-controls { position:absolute;bottom:max(2.5rem,calc(env(safe-area-inset-bottom) + 1.2rem));left:1rem;right:1rem;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:.65rem; }
+  .cadet-controls button { display:flex;align-items:center;justify-content:center;gap:.3rem;min-height:3.8rem;border:1px solid #e6ecc78c;background:#1e382dbd;backdrop-filter:blur(5px);border-radius:.6rem;font-size:1.5rem;user-select:none; }
+  .cadet-controls button[data-game-jump] { border-color:#d7ed9b99;background:#d7ed9b;color:#253927; }.cadet-controls button:active { transform:scale(.96); }.cadet-controls button svg { width:1.2rem;height:1.2rem; }.cadet-controls button span { font:700 .65rem var(--font-body); }
+  .cadet-bottom { position:absolute;inset:auto 1rem max(.65rem,env(safe-area-inset-bottom));display:flex;justify-content:space-between;color:#dae2bf99;font:.45rem var(--font-mono);letter-spacing:.12em;pointer-events:none; }
+  .cadet-announcement { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%); }
+  .cadet-results { display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0; }.cadet-results span { display:block;font:.55rem var(--font-mono);color:#c6d0b4; }.cadet-results strong { font-size:1.8rem;letter-spacing:-.04em; }
+  [data-state="paused"] .cadet-title,[data-state="over"] .cadet-title { font-size:3.5rem;line-height:1; }
+  .cadet-window [hidden] { display:none!important; }
+  :global(html.cadet-open) { overflow:hidden; }
+  @keyframes cadet-enter { from { opacity:0;transform:translateY(20px) scale(.97); } }
+  @keyframes cadet-exit { to { opacity:0;transform:translateY(8px) scale(.98); } }
+  @keyframes cadet-fade { from { opacity:0; } }
+  @media(max-width:40rem),(pointer:coarse) { .cadet-window { width:100vw;height:100dvh;max-height:100dvh;aspect-ratio:auto;border:0;border-radius:0; }.cadet-title { font-size:clamp(4rem,12vh,6.3rem); }.cadet-screen-body { max-width:22rem; } }
+  @media(max-height:580px) { .cadet-overlay { padding-top:4rem; }.cadet-title { font-size:3rem; }.cadet-best { margin:.8rem 0; }.cadet-screen-message { font-size:.85rem; }.cadet-input-tip { margin:.5rem 0; }.cadet-settings { margin:0; }.cadet-prototype { display:none; } }
+  @media(max-height:500px) and (pointer:coarse) and (min-width:500px) { .cadet-screen-body { max-width:36rem;display:grid;grid-template-columns:1fr 1fr;gap:.4rem 2rem;align-items:center; }.cadet-overline,.cadet-title,.cadet-screen-message { grid-column:1; }.cadet-title { margin:.3rem 0; }.cadet-best,.cadet-primary,.cadet-secondary,.cadet-input-tip,.cadet-settings,.cadet-results { grid-column:2;margin:0; }.cadet-best { grid-row:1; }.cadet-primary { grid-row:2; }.cadet-secondary { grid-row:3; }.cadet-input-tip { grid-row:4; }.cadet-settings { grid-row:5; }.cadet-results { grid-column:1; }.cadet-hud { top:4rem; }.cadet-controls { width:18rem;left:auto;bottom:1.7rem; }.cadet-controls button { min-height:3rem; } }
+  @media(prefers-reduced-motion:reduce) { .cadet-window[open],.cadet-window.is-closing,.cadet-window::backdrop,.cadet-window.is-closing::backdrop { animation:none!important; }.cadet-primary:hover { transform:none; } }
+</style>

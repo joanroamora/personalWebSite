@@ -1,0 +1,7 @@
+---
+import PlayableGamePage from '../../components/PlayableGamePage.astro';
+import Galactian from '../../games/galactian/Galactian.astro';
+import { games } from '../../data/games';
+const game=games.find(game=>game.id==='galactian')!;
+---
+<PlayableGamePage game={game}><Galactian /></PlayableGamePage>

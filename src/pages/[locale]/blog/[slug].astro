@@ -1,0 +1,11 @@
+---
+import Page from '../../blog/[slug].astro';
+import { translatedLocales } from '../../../i18n/locales';
+import { getBlogPosts } from '../../../data/blog';
+import { postNeighbors } from '../../../utils/blog';
+export async function getStaticPaths() {
+  const posts=await getBlogPosts();
+  return translatedLocales.flatMap(locale=>posts.map(post=>({params:{locale:locale.code,slug:post.data.slug},props:{post,...postNeighbors(posts,post)}})));
+}
+---
+<Page {...Astro.props} />

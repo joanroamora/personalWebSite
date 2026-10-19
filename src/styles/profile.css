@@ -1,0 +1,25 @@
+.profile-sidebar { min-width:0; display:grid; gap:2rem; }
+.profile-portrait { width:min(100%,22rem); }
+.journey-photos { display:grid; gap:2rem; margin-top:2rem; }
+.profile-location { width:min(100%,22rem); padding:1.5rem; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.profile-location>p:not(.eyebrow) { margin-top:.75rem; color:var(--muted); font-size:.9rem; }
+.profile-location .text-link { font-size:.8rem; margin-top:.75rem; }
+.profile-applications { display:grid; gap:1rem; list-style:none; padding:0; margin:2rem 0 0; }
+.profile-applications li { border-left:1px solid #547148; padding:.3rem 0 .3rem 1rem; font-size:.9rem; color:var(--muted); line-height:1.7; }
+.profile-toolkit { margin:2rem 0 0; }.profile-toolkit>div { display:grid; gap:1rem; padding-block:1.4rem; border-top:1px solid var(--line); }
+.profile-toolkit dt { color:var(--cyan); font-size:.85rem; line-height:1.6; }.profile-toolkit dd { margin:0; min-width:0; }
+.profile-toolkit ul { display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; padding:0; margin:0; }.profile-toolkit li { max-width:100%; }
+.profile-education,.profile-certifications { list-style:none; padding:0; margin:2rem 0 0; display:grid; gap:1rem; }
+.profile-education li,.profile-certifications li { min-width:0; padding:1.5rem; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.profile-education h3,.profile-certifications h3 { font-weight:450; font-size:1.1rem; line-height:1.4; letter-spacing:-.02em; }
+.profile-education p,.profile-certifications p { color:var(--muted); font-size:.85rem; margin-top:.75rem; }
+.contact-location { margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--line); }.contact-location>p+p { margin-top:.75rem; }
+.contact-list .text-link { max-width:100%; margin-top:0; overflow-wrap:anywhere; }.contact-list h3 { margin-bottom:.5rem; }
+@media(min-width:45rem) {
+  .journey-photos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .profile-applications { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem 2rem; }
+  .profile-toolkit>div { grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:2rem; }
+  .profile-education { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .profile-certifications { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .profile-sidebar { justify-items:end; }
+}

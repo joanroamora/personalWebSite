@@ -1,0 +1,66 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import DemoNotice from '../../components/DemoNotice.astro';
+import PostMeta from '../../components/blog/PostMeta.astro';
+import PostCover from '../../components/blog/PostCover.astro';
+import { publicProfile } from '../../data/profile';
+import { getBlogPosts } from '../../data/blog';
+import { postHref, sectionHref } from '../../utils/paths';
+import { postDateISO, postNeighbors } from '../../utils/blog';
+import '../../styles/blog.css';
+import { routeContext } from '../../i18n/locales';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map(post => ({
+    params: { slug: post.data.slug },
+    props: { post, ...postNeighbors(posts,post) },
+  }));
+}
+interface Props {
+  post: CollectionEntry<'blog'>;
+  newer?: CollectionEntry<'blog'>;
+  older?: CollectionEntry<'blog'>;
+}
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const contents = headings.filter(heading => heading.depth === 2 || heading.depth === 3);
+const { locale } = routeContext(Astro.url.pathname,import.meta.env.BASE_URL);
+const shareImage=post.data.cover?await getImage({src:post.data.cover.src,width:1280,format:'jpg',quality:80}):undefined;
+const image=shareImage&&post.data.cover?{url:new URL(shareImage.src,Astro.site).href,alt:post.data.cover.alt,width:1280,height:Math.round(post.data.cover.src.height/post.data.cover.src.width*1280)}:undefined;
+---
+<SiteLayout title={post.data.title} description={post.data.summary} article={{ date: postDateISO(post.data.date), tags: post.data.tags }} image={image}>
+  <article class:list={['blog-post',{'editorial-post':post.data.status==='published'}]} aria-labelledby="post-title">
+    <a class="back-to-blog" href={sectionHref('blog')}><span aria-hidden="true">←</span> Volver al blog</a>
+    <header class="post-header">
+      <p class="eyebrow"><span>El cuaderno /</span> <span>{post.data.status === 'demo' ? 'Texto de muestra' : post.data.series??'Blog'}</span></p>
+      <h1 id="post-title">{post.data.title}</h1>
+      {post.data.subtitle&&<p class="post-subtitle">{post.data.subtitle}</p>}
+      <p class="post-deck">{post.data.summary}</p>
+      <PostMeta post={post} />
+      {post.data.status==='published'&&<p class="post-author"><span>Por</span> {publicProfile.name} <span aria-hidden="true">/</span> <span>Ensayo de divulgación y opinión</span></p>}
+      {post.data.tags.length > 0 && <ul class="article-tags" aria-label="Temas">{post.data.tags.map(tag => <li>{tag}</li>)}</ul>}
+    </header>
+    {post.data.cover&&<div class="post-hero"><PostCover post={post} priority caption/></div>}
+    {post.data.status === 'demo' && <DemoNotice text="Texto y fecha de demostración. Esta entrada prueba el formato de lectura; no relata experiencias del propietario ni es una publicación suya." />}
+    <div class:list={['reading-layout', { 'without-contents': contents.length === 0 }]}>
+      {contents.length > 0 && <nav class="post-contents" aria-label="En esta entrada" lang={locale === 'es' ? undefined : 'es'} dir="ltr" data-no-translate>
+        <details open><summary>En esta entrada</summary>
+        <ol>{contents.map(heading => <li class:list={{ 'subheading': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+        </details>
+      </nav>}
+      <div class="reading-content"><p class="original-language-note" hidden={locale === 'es'}>{post.data.status === 'demo' ? 'Texto original de muestra en español' : 'Texto original en español'}</p>{post.data.takeaway&&<aside class="post-takeaway" lang="es" dir="ltr" data-no-translate><p class="eyebrow">En una línea</p><p>{post.data.takeaway}</p></aside>}<div class="article-body" lang="es" dir="ltr" data-no-translate><Content /></div></div>
+    </div>
+    <footer class="post-footer">
+      <p class="eyebrow">Fin de la señal</p>
+      <p class="closing-note">A veces, una idea deja otra puerta abierta.</p>
+      {(older || newer) && <nav class="post-pagination" aria-label="Más entradas">
+        {older && <a href={postHref(older.data.slug)} rel="prev"><span>← Una nota anterior</span><strong>{older.data.title}</strong></a>}
+        {newer && <a href={postHref(newer.data.slug)} rel="next"><span>Una nota más reciente →</span><strong>{newer.data.title}</strong></a>}
+      </nav>}
+      <a class="text-link" href={sectionHref('blog')}>Todas las entradas <span aria-hidden="true">↗</span></a>
+    </footer>
+  </article>
+</SiteLayout>

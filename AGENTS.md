@@ -2,7 +2,7 @@
 
 ## Estado y propósito
 
-Este documento define el marco de una futura web personal. **Aún no hay que construirla ni publicarla.** Cuando el propietario solicite la primera versión, usar estas instrucciones junto con su información personal aprobada.
+El trabajo autorizado consiste en construir el esqueleto de la web por etapas, con datos dummy claramente identificados. La información personal aprobada se incorporará al final, antes de la publicación. Seguir el alcance de cada Feature en `docs/PLAN_DE_CONSTRUCCION.md`.
 
 La web es un espacio para mostrar quién es el propietario y su obra: código, minijuegos y textos. No es una página orientada a buscar empleo. Evitar mensajes comerciales, métricas inventadas, testimonios y llamadas a la acción como «Contrátame».
 
@@ -38,6 +38,10 @@ En escritorio, usar una cabecera compacta con enlaces visibles. En móvil, usar 
 - Los minijuegos se desarrollarán como módulos JavaScript independientes, con recursos propios. Evitar que un juego cargue su código y sus imágenes en el resto del sitio.
 - Para las transiciones, empezar con las transiciones nativas entre documentos cuando el soporte y la experiencia lo permitan. Evaluar el router de transiciones de Astro solo si mejora de forma verificable la navegación; probar especialmente la inicialización y limpieza de los juegos al entrar, salir y volver. Mantener una navegación normal como alternativa.
 - Configurar correctamente `site` y, si corresponde, `base` para la URL concreta de GitHub Pages. No asumir un dominio propio.
+- Objetivo de publicación: GitHub Pages, el servicio de páginas estáticas de GitHub, mediante GitHub Actions desde `main`. El despliegue se habilitará al aprobar la publicación mediante la variable de repositorio `PAGES_DEPLOY_ENABLED=true`.
+- No instalar paquetes, CLI ni dependencias del proyecto de forma global. Declarar las dependencias en `package.json` y el lockfile, ejecutar los comandos mediante scripts o herramientas locales y hacer que GitHub Actions use esas mismas versiones.
+- Usar el Node.js existente y las dependencias locales de `node_modules/`, excluidas de Git. Instalar de forma reproducible con `npm ci`; ejecutar `npm run verify` antes de subir una Feature.
+- Crear las ramas `Feature<N>-<descripcion>` desde `dev` y usar el prefijo `Feature<N>: ` en los commits. La integración en `dev` o `main` requiere la decisión explícita del propietario.
 
 ## Organización prevista del proyecto
 
@@ -69,7 +73,7 @@ La estructura exacta puede adaptarse a la versión de Astro elegida, pero conser
 
 ## Información del propietario
 
-Guardar los datos personales que se quieran **publicar** en un archivo separado, por ejemplo `PERFIL_PUBLICO.md`, y usarlo como fuente de contenido para la primera versión. Conviene incluir:
+La fuente principal de información personal es `docs/PERFIL_PUBLICO.md`, aportada por el propietario. Consultarla para sustituir los datos dummy y para cualquier actualización del contenido personal. El documento se mantiene junto a los demás Markdown de referencia en `docs/`. Conviene incluir:
 
 - Nombre o seudónimo visible, pronombres si se desean e idioma del sitio.
 - Presentación corta (una o dos frases) y biografía larga.

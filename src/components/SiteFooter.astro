@@ -1,0 +1,9 @@
+---
+import { siteConfig } from '../../site.config.mjs';
+import { publicProfile } from '../data/profile';
+---
+
+<footer class="site-footer container">
+  <p>{publicProfile.name} · Código, juegos y textos.</p>
+  <a href={siteConfig.repository}>Código del sitio <span aria-hidden="true">↗</span></a>
+</footer>

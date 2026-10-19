@@ -1,0 +1,78 @@
+---
+import { games } from '../data/games';
+import { gameHref } from '../utils/paths';
+import GameArtwork from './GameArtwork.astro';
+const featured = games[0];
+const playable = games.filter(game => game.status === 'playable');
+const upcoming = games.filter(game => game.status === 'development');
+const number=(value:number)=>String(value).padStart(2,'0');
+---
+<div class="arcade-heading"><div><p class="eyebrow">El pequeño arcade</p><h2>Un rato fuera de órbita.</h2></div><p>Experimentos para entrar, jugar y perder la noción del tiempo. Ocho juegos para explorar y unas cuantas ideas en construcción.</p></div>
+<article class="featured-game" aria-labelledby="featured-game-title">
+  <div class="featured-image"><GameArtwork game={featured} /><span class="image-label">FIELD TEST / 001</span><span class="image-caption">LOW POLY. HIGH SPIRITS.</span></div>
+  <div class="featured-copy">
+    <p class="game-state playable"><span></span> Prototipo jugable · En desarrollo</p>
+    <p class="game-genre">{featured.genre}</p>
+    <h3 id="featured-game-title">{featured.title}</h3><p class="game-tagline" lang="en">{featured.subtitle}</p>
+    <p class="game-summary">{featured.summary}</p>
+    <ul class="game-features" aria-label="Compatible con"><li>↔ Teclado + táctil</li><li>◇ Partidas infinitas</li><li>↗ Móvil + escritorio</li></ul>
+    <a class="play-link" href={gameHref(featured.id)}>Jugar Cadete Roa <span aria-hidden="true">↗</span></a>
+    <p class="play-note">Sin instalación. Tu récord se guarda en este navegador.</p>
+  </div>
+</article>
+<div class="next-heading"><h2>Más partidas por descubrir.</h2><p>Otros mundos. La misma curiosidad.</p><span aria-hidden="true">02 — {number(playable.length+1)}</span></div>
+<ul class="playable-grid" aria-label="Más juegos disponibles">
+  {playable.map((game,index)=><li><article class="new-game">
+    <div class="new-game-art"><GameArtwork game={game} /><span class="new-game-number" aria-hidden="true">{number(index+2)} / PLAYABLE</span></div>
+    <div class="new-game-copy"><p class="game-genre">{game.genre}</p><h3>{game.title}</h3><p class="game-tagline" lang="en">{game.subtitle}</p><p class="game-summary">{game.summary}</p><a class="play-link" href={gameHref(game.id)}>Jugar {game.title}<span aria-hidden="true">↗</span></a><p class="play-note">Teclado + táctil · Móvil + escritorio</p></div>
+  </article></li>)}
+</ul>
+<div class="next-heading"><h2>En el radar.</h2><p>Conceptos de muestra. Todavía en desarrollo.</p><span aria-hidden="true">{number(playable.length+2)} — {number(playable.length+1+upcoming.length)}</span></div>
+<ul class="games-grid" aria-label="Juegos en desarrollo">
+  {upcoming.map((game,index) => <li><article class="upcoming-game" aria-labelledby={`${game.id}-title`}>
+    <div class="upcoming-art"><GameArtwork game={game} /><span class="upcoming-number">{number(index+playable.length+2)}</span><span class="game-state">En desarrollo</span></div>
+    <div class="upcoming-copy"><p class="game-genre">{game.genre}</p><h3 id={`${game.id}-title`}><a href={gameHref(game.id)}>{game.title}</a></h3><p>{game.summary}</p><span class="upcoming-footer">Una idea tomando forma <span aria-hidden="true">↗</span></span></div>
+  </article></li>)}
+</ul>
+<style>
+  .arcade-heading { display:grid; gap:1rem; margin-bottom:2.3rem; }
+  .arcade-heading h2 { max-width:35rem; font-size:clamp(2.3rem,5vw,3.7rem); margin:.8rem 0 0; }
+  .arcade-heading>p { max-width:25rem; color:var(--muted); font-size:.95rem; }
+  .featured-game { overflow:hidden; border:1px solid #526150; border-radius:1rem; background:#131e1a; }
+  .featured-image { position:relative; overflow:hidden; min-width:0; }
+  .featured-image :global(.game-art) { height:100%; min-height:18rem; }
+  .featured-image :global(svg) { min-height:18rem; object-fit:cover; }
+  .image-label,.image-caption,.game-state,.game-genre,.upcoming-number,.upcoming-footer { font-family:var(--font-mono); }
+  .image-label,.image-caption { position:absolute; left:1.4rem; font-size:.6rem; letter-spacing:.12em; color:#ecedcf; }
+  .image-label { top:1.3rem; }.image-caption { bottom:1.2rem; }
+  .featured-copy { padding:1.6rem; }
+  .game-state { display:inline-flex; align-items:center; gap:.5rem; color:var(--muted); font-size:.62rem; letter-spacing:.025em; }
+  .playable { color:#c5dbad; }.playable span { width:.35rem;height:.35rem;border-radius:50%;background:#a7e88b; }
+  .game-genre { color:var(--cyan); font-size:.62rem; margin-top:1.8rem; }
+  .featured-copy h3 { font-size:clamp(2.8rem,6vw,4rem);font-weight:500;letter-spacing:-.06em;margin:.65rem 0 .3rem;line-height:1.08; }
+  .game-tagline { font-family:var(--font-editorial);color:#d1c49e;font-size:1.3rem; font-style:italic; }
+  .game-summary { color:var(--muted);font-size:.9rem;margin-top:1.35rem;max-width:28rem; }
+  .game-features { list-style:none;margin:1.5rem 0;padding:0;display:flex;flex-wrap:wrap;gap:.7rem 1rem;color:#b5c2b2;font-size:.66rem; }
+  .play-link { min-height:3.25rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:.9rem 1.1rem;background:var(--accent);color:#142016;text-decoration:none;border-radius:.35rem;font-size:.85rem;font-weight:600;transition:background 160ms,transform 160ms; }
+  .play-link:hover { background:#c0f4aa; color:#142016;transform:translateY(-2px); }.play-link span { font-size:1.3rem; }
+  .play-note { margin:.8rem 0 0;color:var(--muted);font-size:.65rem; }
+  .playable-grid{list-style:none;margin:0;padding:0;display:grid;gap:1.2rem}.playable-grid>li{min-width:0}.new-game{height:100%;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:#111d22}.new-game-art{position:relative;display:block}.new-game-art :global(.game-art){aspect-ratio:1.7}.new-game-number{position:absolute;top:1rem;left:1.2rem;font:.6rem var(--font-mono);letter-spacing:.1em;color:#e6ecda}.new-game-copy{padding:1.6rem}.new-game-copy .game-genre{margin-top:0}.new-game-copy h3{font-size:2.5rem;margin:.8rem 0 .5rem;letter-spacing:-.05em}.new-game-copy .game-tagline{font-size:1.1rem}.new-game-copy .game-summary{min-height:5rem;margin-bottom:1.5rem}.new-game-art:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+  @media(min-width:45rem){.playable-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(min-width:65rem){.playable-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .next-heading { margin:3.5rem 0 1.5rem; display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem 1.5rem; }
+  .next-heading h2 { font-size:1.7rem;margin:0; }.next-heading p { color:var(--muted);font-size:.8rem; }.next-heading>span { margin-left:auto;color:var(--muted);font: .65rem var(--font-mono); }
+  .games-grid { list-style:none;margin:0;padding:0;display:grid;gap:1.2rem; }
+  .games-grid>li { min-width:0; }
+  .upcoming-game { position:relative;height:100%;border:1px solid var(--line);border-radius:.8rem;overflow:hidden;background:#0e1718;transition:border-color 180ms,transform 180ms; }
+  .upcoming-game:hover { transform:translateY(-3px);border-color:#53685a; }
+  .upcoming-art { position:relative;border-bottom:1px solid var(--line); }.upcoming-art :global(.game-art) { aspect-ratio:1.7; }
+  .upcoming-number { position:absolute;top:1rem;left:1.1rem;color:var(--muted);font-size:.65rem; }
+  .upcoming-art .game-state { position:absolute;right:1rem;top:1rem;font-size:.55rem;border:1px solid #55615a;border-radius:2rem;padding:.3rem .5rem;background:#0c1619aa; }
+  .upcoming-copy { padding:1.4rem; }.upcoming-copy .game-genre { margin:0; }.upcoming-copy h3 { font-size:1.45rem;font-weight:450;letter-spacing:-.03em;margin:.7rem 0; }
+  .upcoming-copy h3 a { text-decoration:none; }.upcoming-copy h3 a::after { content:'';position:absolute;inset:0; }
+  .upcoming-copy h3 a:focus-visible::after { outline:2px solid var(--accent);outline-offset:-3px;border-radius:.8rem; }
+  .upcoming-copy>p:not(.game-genre) { font-size:.8rem;color:var(--muted); }
+  .upcoming-footer { margin-top:1.8rem;padding-top:1rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:.58rem;color:var(--muted); }
+  @media(min-width:45rem) { .arcade-heading { grid-template-columns:1.4fr 1fr;align-items:end;gap:3rem; }.featured-game { display:grid;grid-template-columns:1.15fr 1fr; }.featured-copy { padding:2.5rem; }.featured-image :global(svg) { width:100%;height:100%;position:absolute;inset:0; }.games-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.upcoming-copy { padding:1.2rem; } }
+  @media(prefers-reduced-motion:reduce) { .play-link:hover,.upcoming-game:hover { transform:none; } }
+</style>

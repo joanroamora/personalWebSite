@@ -1,0 +1,26 @@
+---
+import { navigation } from '../data/navigation';
+import { withBase } from '../utils/paths';
+import { routeContext } from '../i18n/locales';
+
+interface Props {
+  id: string;
+  variant: 'desktop' | 'mobile';
+}
+
+const { id, variant } = Astro.props;
+const { path } = routeContext(Astro.url.pathname, import.meta.env.BASE_URL);
+const pathname = withBase(`${path.replace(/\/$/, '')}${path ? '/' : ''}`);
+---
+
+<nav id={id} class={`${variant}-navigation`} aria-label="Navegación principal">
+  <ul class="navigation-list">
+    {navigation.map(section => {
+      const href = withBase(section.path);
+      const active = section.path === '' ? pathname === href : pathname.startsWith(href);
+      return (
+        <li><a href={href} aria-current={active ? 'page' : undefined}>{section.label}</a></li>
+      );
+    })}
+  </ul>
+</nav>

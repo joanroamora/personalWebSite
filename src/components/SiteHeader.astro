@@ -1,0 +1,36 @@
+---
+import { siteConfig } from '../../site.config.mjs';
+import { withBase } from '../utils/paths';
+import Navigation from './Navigation.astro';
+import { publicProfile } from '../data/profile';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+---
+
+<header class="site-header container">
+  <a class="brand" href={withBase()}>
+    <svg viewBox="0 0 32 32" width="32" height="32" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="7" stroke="currentColor" />
+      <ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-30 16 16)" stroke="currentColor" />
+      <circle cx="27" cy="9" r="2" fill="currentColor" />
+    </svg>
+    <span class="brand-text">
+      <span>{publicProfile.name}</span>
+      {siteConfig.isDemo && <span class="demo-label">Vista previa</span>}
+    </span>
+  </a>
+  <Navigation id="desktop-navigation" variant="desktop" />
+  <details class="mobile-menu" data-navigation-disclosure>
+    <summary aria-controls="mobile-navigation">
+      <span>Menú</span>
+      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="none">
+        <path d="M4 7h12M4 13h12" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+    </summary>
+    <Navigation id="mobile-navigation" variant="mobile" />
+  </details>
+  <LanguageSwitcher />
+</header>
+
+<script>
+  import '../scripts/navigation';
+</script>

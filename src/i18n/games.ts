@@ -1,0 +1,57 @@
+import type { Translation } from './locales';
+
+/** Only the website's editorial copy is localized. The playable interfaces stay in English. */
+export const gameTranslations:Record<string,Translation>={
+  'Experimentos para entrar, jugar y perder la noción del tiempo. Ocho juegos para explorar y unas cuantas ideas en construcción.':['Experiments to step into, play and lose track of time. Eight games to explore, with more ideas taking shape.','走进游戏，忘记时间。八款游戏等你探索，还有更多构思正在成长。','खेलें और समय भूल जाएँ। आठ खेल तैयार हैं, और कई विचार आकार ले रहे हैं।','تجارب للعب ونسيان الوقت. ثماني ألعاب للاستكشاف وأفكار أخرى قيد التطوير.','Des expériences pour jouer et oublier le temps. Huit jeux à explorer et d’autres idées en construction.'],
+  'Jugar Blackout Texas':['Play Blackout Texas','游玩 Blackout Texas','Blackout Texas खेलें','العب Blackout Texas','Jouer à Blackout Texas'],
+  'Jugar Deploy or Die':['Play Deploy or Die','游玩 Deploy or Die','Deploy or Die खेलें','العب Deploy or Die','Jouer à Deploy or Die'],
+  'Jugar Packet Runner':['Play Packet Runner','游玩 Packet Runner','Packet Runner खेलें','العب Packet Runner','Jouer à Packet Runner'],
+  'Jugar Orbital Rescue':['Play Orbital Rescue','游玩 Orbital Rescue','Orbital Rescue खेलें','العب Orbital Rescue','Jouer à Orbital Rescue'],
+  'Una red eléctrica ficticia de Texas en hora pico. Equilibra generación, batería y cuatro distritos; anticipa eventos y envía la cuadrilla antes de que se apaguen las luces.':[
+    'A fictional Texas grid at peak demand. Balance generation, battery storage and four districts; anticipate events and dispatch the crew before the lights go out.',
+    '在高峰需求下管理虚构的得克萨斯州电网。平衡发电、电池储能和四个地区的供电，预判事件，并在停电前派出维修队。',
+    'पीक मांग के समय टेक्सस का काल्पनिक बिजली ग्रिड। उत्पादन, बैटरी और चार जिलों में संतुलन रखें; घटनाओं का अनुमान लगाएँ और बिजली जाने से पहले मरम्मत दल भेजें।',
+    'شبكة كهرباء خيالية في تكساس وقت الذروة. وازن التوليد والبطارية وأربعة أحياء، واستبق الأحداث وأرسل فريق الإصلاح قبل انطفاء الأنوار.',
+    'Un réseau électrique texan fictif à l’heure de pointe. Équilibrez production, batterie et quatre quartiers ; anticipez les événements et envoyez les techniciens avant la panne.',
+  ],
+  'Un pequeño centro de operaciones bajo presión. Escala servidores, atiende incidentes y prueba versiones en canary sin agotar el presupuesto ni la paciencia de la plataforma.':[
+    'A small operations centre under pressure. Scale servers, respond to incidents and test canary releases without exhausting the budget or the platform’s patience.',
+    '一个承压的小型运维中心。扩容服务器、处理故障并测试金丝雀版本，别耗尽预算或平台的耐心。',
+    'दबाव में एक छोटा ऑपरेशन सेंटर। सर्वर बढ़ाएँ, घटनाएँ सँभालें और कैनरी रिलीज़ जाँचें, बिना बजट या प्लेटफ़ॉर्म का धैर्य खत्म किए।',
+    'مركز عمليات صغير تحت الضغط. وسّع الخوادم وعالج الحوادث واختبر الإصدارات تدريجيًا دون استنزاف الميزانية أو صبر المنصة.',
+    'Un petit centre d’exploitation sous pression. Ajustez les serveurs, gérez les incidents et testez les versions canary sans épuiser le budget ni la patience de la plateforme.',
+  ],
+  'Lleva un paquete por una red de laberintos conectados. Elige rutas, evita patrullas y usa portales para llegar al destino correcto antes de que se agote su tiempo de vida.':[
+    'Carry a packet through connected network mazes. Choose routes, evade patrols and use portals to reach the right destination before its time to live runs out.',
+    '带着数据包穿越相连的网络迷宫。选择路线、躲避巡逻并利用传送门，在生存时间耗尽前抵达正确目的地。',
+    'जुड़े नेटवर्क भूलभुलैयों में पैकेट पहुँचाएँ। रास्ते चुनें, गश्त से बचें और समय खत्म होने से पहले सही गंतव्य तक पहुँचने के लिए पोर्टल इस्तेमाल करें।',
+    'انقل حزمة عبر متاهات شبكة مترابطة. اختر المسار وتجنب الدوريات واستخدم البوابات للوصول إلى الوجهة الصحيحة قبل انتهاء عمرها.',
+    'Transportez un paquet dans des labyrinthes en réseau. Choisissez votre route, évitez les patrouilles et utilisez les portails pour atteindre la bonne destination avant expiration.',
+  ],
+  'Pilota una nave con inercia, rescata astronautas y vuelve a la estación. Aprende a frenar, cuida el combustible y alinea el acoplamiento antes de explorar misiones más lejanas.':[
+    'Pilot a ship with inertia, rescue astronauts and return to the station. Learn to brake, manage fuel and align your docking approach before exploring farther missions.',
+    '驾驶具有惯性的飞船，营救宇航员并返回空间站。先学会制动、管理燃料和对准停靠，再探索更远的任务。',
+    'जड़त्व वाले यान को उड़ाएँ, अंतरिक्ष यात्रियों को बचाएँ और स्टेशन लौटें। दूर की यात्राओं से पहले ब्रेक लगाना, ईंधन सँभालना और डॉकिंग मिलाना सीखें।',
+    'قد سفينة ذات قصور ذاتي وأنقذ رواد الفضاء ثم عد إلى المحطة. تعلم الكبح وإدارة الوقود ومحاذاة الالتحام قبل خوض مهام أبعد.',
+    'Pilotez un vaisseau avec inertie, sauvez des astronautes et regagnez la station. Apprenez à freiner, gérer le carburant et aligner l’amarrage avant des missions plus lointaines.',
+  ],
+  'Experimentos para entrar, jugar y perder la noción del tiempo. Cuatro juegos para explorar y unas cuantas ideas en construcción.':['Experiments to step into, play and lose track of time. Four games to explore, with more ideas taking shape.','走进游戏，忘记时间。四款游戏等你探索，还有更多构思正在成长。','खेलें और समय भूल जाएँ। चार खेल तैयार हैं, और कई विचार आकार ले रहे हैं।','تجارب للعب ونسيان الوقت. أربع ألعاب للاستكشاف وأفكار أخرى قيد التطوير.','Des expériences pour jouer et oublier le temps. Quatre jeux à explorer et d’autres idées en construction.'],
+  'Más partidas por descubrir.':['More games to discover.','更多游戏等你探索。','और खेल खोजें।','المزيد من الألعاب لاكتشافها.','D’autres parties à découvrir.'],
+  'Jugar Torque Trail':['Play Torque Trail','游玩 Torque Trail','Torque Trail खेलें','العب Torque Trail','Jouer à Torque Trail'],
+  'Una moto de tierra en 8 bits, con suspensión, agarre e inercia. Acelera, frena e inclina al piloto para superar rampas, baches y saltos entre puntos de control.':[
+    'An 8-bit dirt bike with suspension, grip and inertia. Accelerate, brake and shift your balance across ramps, bumps and jumps between checkpoints.',
+    '一辆拥有悬架、抓地力和惯性的 8 位越野摩托车。加速、刹车并调整骑手重心，跨越检查点之间的斜坡、颠簸和跳台。',
+    'सस्पेंशन, पकड़ और जड़त्व वाली 8-बिट डर्ट बाइक। चेकपॉइंट के बीच रैंप, गड्ढे और छलांग पार करने के लिए गति बढ़ाएँ, ब्रेक लगाएँ और संतुलन बदलें।',
+    'دراجة ترابية برسوم 8 بت مع نظام تعليق وتماسك وقصور ذاتي. تسارع واكبح ووازن الراكب لتجاوز المنحدرات والمطبات والقفزات بين نقاط الحفظ.',
+    'Une moto tout-terrain en 8 bits avec suspension, adhérence et inertie. Accélérez, freinez et équilibrez le pilote sur les rampes, bosses et sauts entre les points de contrôle.',
+  ],
+  'Experimentos para entrar, jugar y perder la noción del tiempo. Tres juegos para explorar y unas cuantas ideas en construcción.':['Experiments to step into, play and lose track of time. Three games to explore, with more ideas taking shape.','走进游戏，忘记时间。三款游戏等你探索，还有更多构思正在成长。','खेलें और समय भूल जाएँ। तीन खेल तैयार हैं, और कई विचार आकार ले रहे हैं।','تجارب للعب ونسيان الوقت. ثلاث ألعاب للاستكشاف وأفكار أخرى قيد التطوير.','Des expériences pour jouer et oublier le temps. Trois jeux à explorer et d’autres idées en construction.'],
+  'Dos nuevas partidas.':['Two new adventures.','两场全新冒险。','दो नए रोमांच।','مغامرتان جديدتان.','Deux nouvelles aventures.'],
+  'Otros mundos. La misma curiosidad.':['Other worlds. The same curiosity.','不同世界，同样好奇。','नई दुनिया। वही जिज्ञासा।','عوالم أخرى. الفضول نفسه.','D’autres mondes. La même curiosité.'],
+  'Más juegos disponibles':['More playable games','更多可玩游戏','और खेलने योग्य खेल','المزيد من الألعاب المتاحة','D’autres jeux disponibles'],
+  'Jugar Galactian':['Play Galactian','游玩 Galactian','Galactian खेलें','العب Galactian','Jouer à Galactian'],
+  'Jugar Rail Crane':['Play Rail Crane','游玩 Rail Crane','Rail Crane खेलें','العب Rail Crane','Jouer à Rail Crane'],
+  'Teclado + táctil · Móvil + escritorio':['Keyboard + touch · Mobile + desktop','键盘与触控 · 手机与电脑','कीबोर्ड + टच · मोबाइल + कंप्यूटर','لوحة مفاتيح ولمس · هاتف وحاسوب','Clavier + tactile · Mobile + ordinateur'],
+  'Un shooter vertical sobre un planeta ocupado por orcos. Combate en el aire, bombardea el terreno y aterriza en bases aliadas para reparar y reabastecer tu nave.':['A vertical shooter over an orc-occupied planet. Fight in the air, bomb ground targets and land at allied bases to repair and resupply.','在被兽人占领的星球上展开纵向射击。空战、轰炸地面目标，并在盟军基地降落维修补给。','ऑर्क के कब्ज़े वाले ग्रह पर वर्टिकल शूटर। हवाई युद्ध करें, ज़मीनी लक्ष्यों पर बम गिराएँ और मित्र अड्डे पर उतरकर मरम्मत और आपूर्ति लें।','لعبة إطلاق نار عمودية فوق كوكب تحتله الأورك. قاتل جوًا واقصف الأرض واهبط في قواعد الحلفاء للإصلاح والتزود.','Un jeu de tir vertical sur une planète occupée par des orcs. Combattez dans les airs, bombardez le sol et rejoignez les bases alliées pour réparer et ravitailler votre vaisseau.'],
+  'Opera una grúa en una terminal ferroviaria: identifica la carga, recorre el tren y coloca cada contenedor en su posición antes de la salida. Nombre provisional.':['Operate a rail-yard crane: identify cargo, explore the train and load every container into its numbered slot before departure. Working title.','操作铁路货场起重机：识别货物、沿列车移动，并在发车前将集装箱放入指定编号位置。暂定名称。','रेल टर्मिनल की क्रेन चलाएँ: माल पहचानें, ट्रेन के साथ आगे बढ़ें और रवाना होने से पहले हर कंटेनर सही स्थान पर रखें। अस्थायी नाम।','شغّل رافعة محطة الشحن: حدّد الحمولة وتنقّل على طول القطار وضع كل حاوية في موضعها قبل المغادرة. اسم مؤقت.','Pilotez une grue ferroviaire : identifiez le chargement, parcourez le train et placez chaque conteneur avant le départ. Titre provisoire.'],
+};

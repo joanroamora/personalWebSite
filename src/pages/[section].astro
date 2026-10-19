@@ -1,0 +1,38 @@
+---
+import { navigation, type SectionId } from '../data/navigation';
+import { publicProfile } from '../data/profile';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import AboutContent from '../components/personal/AboutContent.astro';
+import JourneyContent from '../components/personal/JourneyContent.astro';
+import ContactContent from '../components/personal/ContactContent.astro';
+
+export function getStaticPaths() {
+  return navigation.slice(1).map((section, index) => ({
+    params: { section: section.path.replace(/\/$/, '') },
+    props: { section, position: index + 1 },
+  })).filter(page => !['projects', 'games', 'blog'].includes(page.props.section.id));
+}
+
+interface Props {
+  section: (typeof navigation)[number];
+  position: number;
+}
+
+const { section, position } = Astro.props;
+const personalPages = new Map<SectionId, { component: typeof AboutContent; introduction: string }>([
+  ['about', { component: AboutContent, introduction: publicProfile.summary }],
+  ['journey', { component: JourneyContent, introduction: 'Infraestructura, datos y tecnología al servicio de las personas. Un recorrido entre experiencias, proyectos y preguntas.' }],
+  ['contact', { component: ContactContent, introduction: 'Para conversar sobre tecnología, inteligencia artificial y las ideas que conectan este espacio.' }],
+]);
+const personalPage = personalPages.get(section.id);
+const Content = personalPage?.component;
+if (!Content || !personalPage) throw new Error(`Falta el contenido de la sección ${section.id}.`);
+---
+
+<SiteLayout title={section.label} description={personalPage.introduction}>
+    <section class="section-page" aria-labelledby="section-title">
+      <PageIntro title={section.label} description={personalPage.introduction} position={position} state={section.id === 'about' ? publicProfile.name : 'Archivo personal'} />
+      <Content />
+    </section>
+</SiteLayout>

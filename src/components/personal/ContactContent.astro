@@ -1,0 +1,23 @@
+---
+import { publicProfile } from '../../data/profile';
+import '../../styles/profile.css';
+const { contact } = publicProfile;
+---
+
+<section class="contact-grid content-block" aria-labelledby="contact-title">
+  <div class="prose">
+    <p class="eyebrow">Canales públicos</p>
+    <h2 id="contact-title">Cruzar una señal.</h2>
+    <p>{contact.invitation}</p>
+    <div class="contact-location"><p class="eyebrow">Ubicación</p><p>{contact.location}</p></div>
+  </div>
+  <ul class="contact-list" role="list">
+    {contact.channels.map(channel => (
+      <li>
+        <p class="eyebrow">{channel.title === 'Correo' ? 'Una conversación empieza aquí' : 'Para seguir el rastro'}</p>
+        <h3>{channel.title}</h3>
+        <a class="text-link" href={channel.href}>{channel.label} <span aria-hidden="true">↗</span></a>
+      </li>
+    ))}
+  </ul>
+</section>

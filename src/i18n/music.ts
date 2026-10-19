@@ -1,0 +1,20 @@
+import type { Translation } from './locales';
+export const musicTranslations:Record<string,Translation> = {
+  'Música del sitio':['Site music','网站音乐','साइट का संगीत','موسيقى الموقع','Musique du site'],
+  'Música':['Music','音乐','संगीत','الموسيقى','Musique'],
+  'La banda sonora':['The soundtrack','背景音乐','साउंडट्रैक','الموسيقى المصاحبة','La bande-son'],
+  'Un poco de jazz.':['A little jazz.','来点爵士乐。','थोड़ा जैज़।','قليل من الجاز.','Un peu de jazz.'],
+  'Cerrar reproductor':['Close player','关闭播放器','प्लेयर बंद करें','إغلاق المشغّل','Fermer le lecteur'],
+  'Solo suena si tú quieres.':['Only if you feel like listening.','想听时再播放。','सिर्फ़ जब आप सुनना चाहें।','تعمل فقط إذا رغبت في الاستماع.','Seulement si vous en avez envie.'],
+  'Preparando la pista…':['Getting the track ready…','正在准备音轨…','ट्रैक तैयार हो रहा है…','جارٍ تجهيز المقطوعة…','Préparation du morceau…'],
+  'Sonando ahora.':['Now playing.','正在播放。','अभी बज रहा है।','قيد التشغيل.','En cours de lecture.'],
+  'En pausa.':['Paused.','已暂停。','रुका हुआ।','متوقفة مؤقتًا.','En pause.'],
+  'En pausa mientras juegas.':['Paused while you play.','游戏期间暂停。','खेलते समय रुका हुआ।','متوقفة أثناء اللعب.','En pause pendant le jeu.'],
+  'Pulsa reproducir para continuar.':['Press play to continue.','点击播放以继续。','जारी रखने के लिए प्ले दबाएँ।','اضغط تشغيل للمتابعة.','Appuyez sur lecture pour continuer.'],
+  'No se pudo reproducir. Prueba otra pista.':['Could not play. Try another track.','无法播放，请尝试其他音轨。','नहीं चला सके। दूसरा ट्रैक आज़माएँ।','تعذّر التشغيل. جرّب مقطوعة أخرى.','Lecture impossible. Essayez un autre morceau.'],
+  'Activar música':['Play music','播放音乐','संगीत चलाएँ','تشغيل الموسيقى','Lancer la musique'],
+  'Pausar música':['Pause music','暂停音乐','संगीत रोकें','إيقاف الموسيقى مؤقتًا','Mettre la musique en pause'],
+  'Siguiente pista':['Next track','下一首','अगला ट्रैक','المقطوعة التالية','Morceau suivant'],
+  'Elegir pista':['Choose a track','选择音轨','ट्रैक चुनें','اختيار مقطوعة','Choisir un morceau'],
+  'Volumen':['Volume','音量','आवाज़','مستوى الصوت','Volume'],
+};

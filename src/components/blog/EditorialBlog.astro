@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postHref } from '../../utils/paths';
+import PostMeta from './PostMeta.astro';
+import PostCover from './PostCover.astro';
+interface Props { posts: CollectionEntry<'blog'>[]; }
+const {posts}=Astro.props;
+const published=posts.filter(post=>post.data.status==='published');
+const samples=posts.filter(post=>post.data.status==='demo');
+const [latest,...archive]=published;
+---
+{latest && <>
+ <div class="journal-line"><span>Lecturas para mirar de nuevo.</span><span>TECNOLOGÍA / PERSONAS / CULTURA</span></div>
+ <article class="featured-post" aria-labelledby="featured-post-title">
+  <div class="featured-art">{latest.data.cover?<PostCover post={latest} priority sizes="(min-width: 74rem) 36rem, (min-width: 52rem) 48vw, calc(100vw - 2.5rem)"/>:<div class="sample-art" aria-hidden="true"><span>CUADERNO / 001</span></div>}</div>
+  <div class="featured-text">
+   <p class="eyebrow">{latest.data.series??'La nota más reciente'}</p>
+   <PostMeta post={latest}/>
+   <h2 id="featured-post-title"><a href={postHref(latest.data.slug)}>{latest.data.title}</a></h2>
+   {latest.data.subtitle&&<p class="post-subtitle">{latest.data.subtitle}</p>}
+   <p class="post-summary">{latest.data.summary}</p>
+   {latest.data.tags.length>0&&<ul class="post-tags" aria-label="Temas">{latest.data.tags.map(tag=><li>{tag}</li>)}</ul>}
+   <span class="read-cue" aria-hidden="true">Leer el ensayo <span>↗</span></span>
+  </div>
+ </article>
+ {archive.length>0&&<section class="blog-archive" aria-labelledby="archive-title">
+  <div class="archive-heading"><h2 id="archive-title">Otra forma de mirar.</h2><p>Para leer a tu ritmo.</p></div>
+  <ol class="post-list">{archive.map((post,index)=><li><article class="archive-post" aria-labelledby={`post-${post.data.slug}`}>
+   {post.data.cover?<div class="archive-art"><PostCover post={post} sizes="(min-width: 52rem) 22rem, calc(100vw - 2.5rem)"/></div>:<span class="post-number" aria-hidden="true">{String(index+2).padStart(2,'0')}</span>}
+   <div class="archive-copy"><PostMeta post={post}/><h3 id={`post-${post.data.slug}`}><a href={postHref(post.data.slug)}>{post.data.title}</a></h3>{post.data.subtitle&&<p class="post-subtitle">{post.data.subtitle}</p>}<p class="post-summary">{post.data.summary}</p><ul class="post-tags" aria-label="Temas">{post.data.tags.map(tag=><li>{tag}</li>)}</ul><span class="read-cue" aria-hidden="true">Leer el ensayo <span>↗</span></span></div>
+  </article></li>)}</ol>
+ </section>}
+ <div class="journal-pause"><span aria-hidden="true">◎</span><p>Sin scroll infinito. Una idea merece su propio tiempo.</p></div>
+ {samples.length>0&&<details class="demo-archive"><summary>Archivo de pruebas <span>Textos de muestra</span></summary><p>Estos textos se conservan para probar el formato. No son publicaciones del autor.</p><ul>{samples.map(post=><li><span class="sample-label">Texto de muestra</span><a href={postHref(post.data.slug)}>{post.data.title}</a></li>)}</ul></details>}
+</>}
+<style>
+ .journal-line{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.1rem 0;border-block:1px solid var(--line);margin:2rem 0 1.2rem;font:.65rem/1.6 var(--font-mono);color:var(--muted)}.journal-line>span:last-child{color:var(--cyan);font-size:.56rem;letter-spacing:.06em}
+ .featured-post{position:relative;display:grid;border:1px solid #3b4b43;border-radius:1rem;background:linear-gradient(145deg,#14201f,#10191b);overflow:hidden}.featured-art{padding:.7rem;min-width:0}.featured-text{padding:1.4rem;min-width:0}.featured-text>.eyebrow{margin-bottom:1rem;color:var(--cyan)}
+ .featured-text h2{font:400 clamp(2rem,4vw,3.35rem)/1.08 var(--font-editorial);letter-spacing:-.045em;margin:1.25rem 0 1rem;text-wrap:balance}h2 a,h3 a{text-decoration:none}h2 a::after,h3 a::after{content:'';position:absolute;inset:0;border-radius:.8rem}h2 a:focus-visible::after,h3 a:focus-visible::after{outline:2px solid var(--accent);outline-offset:-3px}
+ .post-subtitle{color:var(--text);font-size:1rem;line-height:1.5;margin-bottom:.9rem}.post-summary{color:var(--muted);font-size:.9rem;max-width:42rem}.post-tags{display:flex;flex-wrap:wrap;gap:.45rem .8rem;margin:1.2rem 0 0;padding:0;list-style:none;color:var(--cyan);font:.6rem/1.6 var(--font-mono)}
+ .read-cue{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #34483d;margin-top:1.6rem;padding-top:1rem;color:var(--accent);font-size:.8rem}.read-cue>span{transition:transform var(--motion-fast) ease}.featured-post:hover .read-cue>span,.archive-post:hover .read-cue>span{transform:translate(2px,-2px)}
+ .blog-archive{margin-top:3rem}.archive-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:.6rem 2rem;margin-bottom:1.5rem}.archive-heading h2{font:400 1.8rem var(--font-editorial)}.archive-heading p{color:var(--muted);font-size:.8rem}.post-list{list-style:none;padding:0;margin:0;display:grid;gap:2rem}.archive-post{position:relative;display:grid;gap:1.5rem;padding-bottom:2rem;border-bottom:1px solid var(--line)}.archive-copy{min-width:0}.archive-copy h3{font:400 clamp(1.8rem,3vw,2.65rem)/1.15 var(--font-editorial);letter-spacing:-.035em;margin:1rem 0}.post-number{font:.7rem var(--font-mono);color:var(--muted)}
+ .journal-pause{display:flex;gap:1rem;align-items:center;margin:3rem 0;color:var(--muted);font-size:.8rem}.journal-pause>span{color:var(--accent);font-size:1.7rem}.demo-archive{border-top:1px solid var(--line);padding-top:1rem;color:var(--muted)}.demo-archive summary{display:flex;justify-content:space-between;gap:1rem;align-items:center;min-height:44px;cursor:pointer;font-size:.8rem}.demo-archive summary::before{content:'+';color:var(--accent)}.demo-archive[open] summary::before{content:'−'}.demo-archive summary span,.sample-label{font:.58rem var(--font-mono);color:var(--cyan)}.demo-archive>p{font-size:.8rem;margin:1rem 0;max-width:48rem}.demo-archive ul{list-style:none;padding:0;margin:0;display:grid}.demo-archive li{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;border-top:1px solid var(--line)}.demo-archive li a{padding:1rem 0;min-height:44px;font-size:.8rem}
+ .sample-art{min-height:19rem;background:radial-gradient(ellipse,#2c4535,#0d191c);padding:1.5rem;color:var(--muted);font:.6rem var(--font-mono)}
+ @media(min-width:52rem){.featured-post{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}.featured-art{display:flex;align-items:center;padding:1rem}.featured-text{padding:2.2rem 2rem}.archive-post:has(.archive-art){grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:2.5rem;align-items:center}.archive-art{max-width:25rem}}
+ @media(prefers-reduced-motion:reduce){.read-cue>span{transition:none}.featured-post:hover .read-cue>span,.archive-post:hover .read-cue>span{transform:none}}
+</style>

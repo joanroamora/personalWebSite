@@ -1,0 +1,9 @@
+---
+interface Props { text?: string; }
+const { text = 'Contenido de muestra, pendiente de sustituir por contenido propio.' } = Astro.props;
+---
+
+<aside class="demo-notice" aria-label="Aviso de contenido de muestra">
+  <span class="signal-dot" aria-hidden="true"></span>
+  <p>{text}</p>
+</aside>

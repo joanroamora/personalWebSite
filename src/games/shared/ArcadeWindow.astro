@@ -1,0 +1,38 @@
+---
+import './arcade.css';
+interface Props {
+  id: string; title: string; mark: string; tagline: string; description: string;
+  desktop: readonly string[]; mobile: readonly string[];
+  fullscreen?: boolean; guided?: boolean; layout?: 'canvas' | 'management'; manual?: string;
+}
+const { id, title, mark, tagline, description, desktop, mobile, fullscreen=true, guided=false, layout='canvas', manual='Flight manual' } = Astro.props;
+---
+<button type="button" class="arcade-launch" data-arcade-open={id} hidden>Open {title} <span aria-hidden="true">↗</span></button>
+<noscript><p class="arcade-noscript">{title} needs JavaScript to play. The instructions and game catalogue remain available.</p></noscript>
+<dialog id={`${id}-window`} class:list={['arcade-window',`theme-${id}`]} data-arcade={id} data-layout={layout} data-allow-fullscreen={String(fullscreen)} data-guided={String(guided)} data-manual={manual} aria-label={`${title} — game`} lang="en" dir="ltr" data-no-translate>
+  <div class="arcade-stage" data-phase="ready">
+    <div class="arcade-playfield" tabindex={layout==='management'?-1:undefined} role={layout==='management'?'region':undefined} aria-label={layout==='management'?`${title} control room`:undefined}><canvas width="360" height="480" tabindex="0" aria-label={`${title} playfield. Game instructions are available in How to Play.`} hidden={layout==='management'}></canvas><slot name="board" /></div>
+    <header class="arcade-topbar"><span class="arcade-mark">{mark}</span><div class="arcade-window-actions"><button type="button" data-arcade-pause aria-label="Pause game" title="Pause game" hidden>Ⅱ</button><button type="button" data-arcade-close aria-label="Close game" title="Close game">✕</button></div></header>
+    <div class="arcade-hud" hidden><slot name="hud" /></div>
+    <section class="arcade-overlay" aria-labelledby={`${id}-screen-title`}>
+      <div class="arcade-screen-body">
+        <p class="arcade-overline" data-screen-label>{tagline}</p>
+        <h2 class="arcade-title" id={`${id}-screen-title`}>{title}</h2>
+        <p class="arcade-description" data-screen-message>{description}</p>
+        <div class="arcade-instructions" hidden>
+          <div class="desktop-instructions"><h3>Keyboard controls</h3><ul>{desktop.map(text=><li>{text}</li>)}</ul></div>
+          <div class="touch-instructions"><h3>Touch controls</h3><ul>{mobile.map(text=><li>{text}</li>)}</ul></div>
+        </div>
+        <div class="arcade-record"><span>PERSONAL BEST</span><strong data-arcade-best>0</strong></div>
+        <button type="button" class="arcade-primary" data-arcade-start autofocus>Play <span aria-hidden="true">→</span></button>
+        <button type="button" class="arcade-secondary" data-arcade-help>How to Play</button>
+        <button type="button" class="arcade-secondary" data-arcade-restart hidden>Restart</button>
+        <button type="button" class="arcade-secondary" data-arcade-next hidden>Next Operation</button>
+        <button type="button" class="arcade-secondary" data-arcade-exit hidden>Exit</button>
+      </div>
+    </section>
+    <div class="arcade-controls" aria-label="Game controls" hidden><slot name="controls" /></div>
+    <div class="arcade-footer"><span>ROA / ARCADE</span><button type="button" data-arcade-sound aria-pressed="false">Sound off</button></div>
+    <p class="arcade-announcement" role="status" aria-live="polite"></p>
+  </div>
+</dialog>

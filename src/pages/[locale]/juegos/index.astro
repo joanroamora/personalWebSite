@@ -1,0 +1,6 @@
+---
+import Page from '../../juegos/index.astro';
+import { translatedLocales } from '../../../i18n/locales';
+export function getStaticPaths() { return translatedLocales.map(locale=>({params:{locale:locale.code}})); }
+---
+<Page />

@@ -1,0 +1,48 @@
+---
+import { publicProfile } from '../../data/profile';
+import { sectionHref } from '../../utils/paths';
+import PersonalPhoto from '../PersonalPhoto.astro';
+import '../../styles/profile.css';
+const experience = [...publicProfile.experience].reverse();
+---
+
+<div class="journey-grid content-block">
+  <div class="prose journey-intro">
+    <p class="eyebrow">Experiencias que se conectan</p>
+    <h2 id="journey-title">Un camino entre sistemas y personas.</h2>
+    <p>{publicProfile.biography[2]}</p>
+  </div>
+  <ol class="journey-list" aria-labelledby="journey-title">
+    {experience.map((chapter, index) => (
+      <li>
+        <span class="journey-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <div class="prose">
+          <p class="eyebrow">{chapter.period}</p>
+          <h3>{chapter.title}</h3>
+          {chapter.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<section class="content-block divided-section" aria-labelledby="education-title">
+  <p class="eyebrow">Formación</p>
+  <h2 id="education-title">Aprender sigue siendo parte del camino.</h2>
+  <ul class="profile-education" role="list">{publicProfile.education.map(entry => <li><h3>{entry.title}</h3><p>{entry.description}</p></li>)}</ul>
+  <div class="journey-photos">
+    <PersonalPhoto photo="campus" variant="landscape" sizes="(min-width: 79rem) 36rem, (min-width: 45rem) calc((100vw - 7rem) / 2), calc(100vw - 2.5rem)" />
+    <PersonalPhoto photo="academic" variant="landscape" sizes="(min-width: 79rem) 36rem, (min-width: 45rem) calc((100vw - 7rem) / 2), calc(100vw - 2.5rem)" />
+  </div>
+</section>
+
+<section class="content-block divided-section" aria-labelledby="certifications-title">
+  <p class="eyebrow">Certificaciones</p>
+  <h2 id="certifications-title">Otras estaciones del recorrido.</h2>
+  <ul class="profile-certifications" role="list">{publicProfile.certifications.map(entry => <li><h3>{entry.title}</h3><p>{entry.description}</p></li>)}</ul>
+</section>
+
+<div class="page-outro divided-section">
+  <p class="muted">Cada recorrido tiene sus propias preguntas.</p>
+  <a class="text-link" href={sectionHref('about')}>Volver a Sobre mí <span aria-hidden="true">↗</span></a>
+</div>
