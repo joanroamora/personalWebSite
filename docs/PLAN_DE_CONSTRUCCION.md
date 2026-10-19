@@ -10,6 +10,8 @@ La incorporación se ha adelantado por decisiones del propietario: proyectos rea
 
 ## 1. Resultado buscado
 
+**Feature13:** música ambiental opcional con las cuatro pistas aportadas en `src/sounds/`, controles de reproducción, selección y volumen, persistencia de la sesión y pausa durante los juegos. El propietario autorizó su integración y push a `dev`, no la publicación. Ver [FEATURE13_MUSICA.md](FEATURE13_MUSICA.md).
+
 **Ampliación Feature12:** dos primeras entradas reales del blog, desarrolladas a partir de las propuestas del propietario. Diseño editorial responsive, ilustraciones originales generadas con IA e inspiradas en Toulouse-Lautrec, fuentes primarias y aclaraciones de alcance. Las demos se conservan separadas; la web sigue sin publicarse. Rama `Feature12-blog-editorial`; ver [FEATURE12_BLOG.md](FEATURE12_BLOG.md).
 
 **Segunda ampliación Feature12:** los 27 proyectos reciben una ilustración conceptual original de estética Da Vinci, compartida por catálogo, detalle e Inicio. El destacado rota aleatoriamente cada tres segundos con controles de pausa y siguiente, carga diferida y movimiento reducido. Ver [FEATURE12_PORTAFOLIO.md](FEATURE12_PORTAFOLIO.md).

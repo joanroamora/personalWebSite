@@ -12,7 +12,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "test": "node --test scripts/check-build.test.mjs scripts/game-model.test.mjs scripts/arcade-model.test.mjs scripts/torque-model.test.mjs scripts/feature11-model.test.mjs scripts/blog.test.mjs scripts/check-quality.test.mjs scripts/profile.test.mjs scripts/i18n.test.mjs scripts/project-rotation.test.mjs",
+    "test": "node --test scripts/check-build.test.mjs scripts/game-model.test.mjs scripts/arcade-model.test.mjs scripts/torque-model.test.mjs scripts/feature11-model.test.mjs scripts/blog.test.mjs scripts/check-quality.test.mjs scripts/profile.test.mjs scripts/i18n.test.mjs scripts/project-rotation.test.mjs scripts/music-state.test.mjs",
     "test:e2e": "node scripts/browser-tests.mjs test",
     "test:e2e:install": "node scripts/browser-tests.mjs install chromium",
     "build": "astro build",

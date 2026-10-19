@@ -7,11 +7,12 @@ import { gameTranslations } from './games.ts';
 import { photoTranslations } from './photos.ts';
 import { blogTranslations } from './blog.ts';
 import { portfolioTranslations } from './portfolio.ts';
+import { musicTranslations } from './music.ts';
 import { languageHref, localeInfo, normalizeText, routeContext, translatedText, type Locale } from './locales.ts';
 
 type Node = DefaultTreeAdapterTypes.Node;
 type Element = DefaultTreeAdapterTypes.Element;
-const catalog = { ...ui, ...profileTranslations, ...projectTranslations, ...editorialTranslations, ...gameTranslations, ...photoTranslations, ...blogTranslations, ...portfolioTranslations };
+const catalog = { ...ui, ...profileTranslations, ...projectTranslations, ...editorialTranslations, ...gameTranslations, ...photoTranslations, ...blogTranslations, ...portfolioTranslations, ...musicTranslations };
 export const translate = (source: string, locale: Locale) => translatedText(source, locale, catalog);
 const attr = (node: Element, name: string) => node.attrs.find(item => item.name === name)?.value;
 const setAttr = (node: Element, name: string, value: string) => {
