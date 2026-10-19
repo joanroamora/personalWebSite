@@ -1,0 +1,36 @@
+---
+import { projects } from '../data/projects';
+import { featuredProjects } from '../data/profile';
+import FeaturedProjectSlide from './FeaturedProjectSlide.astro';
+const [initial] = featuredProjects;
+---
+<article class="featured-placeholder" aria-labelledby="featured-title" aria-roledescription="carrusel" data-featured-projects>
+  <div data-featured-host><FeaturedProjectSlide project={initial} summary={initial.personalSummary} /></div>
+  <div class="featured-controls" data-featured-controls hidden>
+    <p><span data-featured-count>01</span><span aria-hidden="true"> / </span><span>{projects.length}</span></p>
+    <div class="featured-buttons">
+      <button type="button" data-featured-toggle>
+        <span data-rotation-pause>Pausar rotación</span><span data-rotation-play hidden>Activar rotación</span>
+      </button>
+      <button type="button" data-featured-next aria-label="Siguiente proyecto"><span aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+  <p class="sr-only" role="status" aria-live="polite" data-featured-announcement></p>
+  {projects.map(project => <template data-featured-template={project.id}><FeaturedProjectSlide project={project} /></template>)}
+</article>
+<script>import '../scripts/featured-projects';</script>
+<style>
+  .featured-placeholder { display:flex; flex-direction:column; }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+  .featured-controls { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; margin-top:auto; padding:0 var(--space-4) 1.25rem; }
+  .featured-controls[hidden], [hidden] { display:none; }
+  .featured-controls > p { display:flex; gap:.4rem; color:var(--muted); font:.65rem/1.5 var(--font-mono); }
+  .featured-buttons { display:flex; gap:.4rem; }
+  button { min-height:44px; min-width:44px; padding:.6rem .8rem; color:var(--text); border:1px solid var(--line); border-radius:.5rem; background:transparent; font:inherit; font-size:.7rem; cursor:pointer; }
+  button:hover { border-color:var(--accent); }
+  button:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+  [data-featured-next] { color:var(--accent); font-size:1.2rem; }
+  :global([data-featured-host].is-changing) { animation:featured-arrive 180ms ease-out; }
+  @keyframes featured-arrive { from { opacity:.25; transform:translateY(3px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce) { :global([data-featured-host].is-changing) { animation:none; } }
+</style>

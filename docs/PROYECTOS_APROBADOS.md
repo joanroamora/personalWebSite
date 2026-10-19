@@ -4,6 +4,8 @@ El propietario autorizó 27 repositorios para las fichas de Proyectos durante Fe
 
 Las fichas se mantienen manualmente en `src/data/projects.ts`, en el orden recibido. Los títulos son nombres editoriales para la web; el subtítulo conserva exactamente el nombre del repositorio en GitHub. Las descripciones son resúmenes en español de los README o del código disponible, no citas ni declaraciones de producción. No se atribuyen resultados, métricas, garantías de cumplimiento ni demos desplegadas.
 
+Feature12 añade una ilustración conceptual original para cada ficha y un destacado aleatorio en Inicio. Son metáforas gráficas inspiradas en cuadernos de ingeniería, no diagramas técnicos verificados; el catálogo sigue siendo manual y aprobado. Recursos, prompts y mantenimiento en [FEATURE12_PORTAFOLIO.md](FEATURE12_PORTAFOLIO.md).
+
 ## Fuentes de las fichas
 
 | Proyecto | Repositorio autorizado | Fuente para descripción y tecnologías |

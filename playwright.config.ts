@@ -9,7 +9,9 @@ export default defineConfig({
   retries: 0,
   workers: 2,
   timeout: 30_000,
-  globalTimeout: 300_000,
+  // The full site now includes eight games plus long-form editorial regressions.
+  // Keep per-test limits; allow the complete two-worker suite enough total time.
+  globalTimeout: 600_000,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: 'http://127.0.0.1:4321',

@@ -5,11 +5,13 @@ import { projectTranslations } from './projects.ts';
 import { editorialTranslations } from './editorial.ts';
 import { gameTranslations } from './games.ts';
 import { photoTranslations } from './photos.ts';
+import { blogTranslations } from './blog.ts';
+import { portfolioTranslations } from './portfolio.ts';
 import { languageHref, localeInfo, normalizeText, routeContext, translatedText, type Locale } from './locales.ts';
 
 type Node = DefaultTreeAdapterTypes.Node;
 type Element = DefaultTreeAdapterTypes.Element;
-const catalog = { ...ui, ...profileTranslations, ...projectTranslations, ...editorialTranslations, ...gameTranslations, ...photoTranslations };
+const catalog = { ...ui, ...profileTranslations, ...projectTranslations, ...editorialTranslations, ...gameTranslations, ...photoTranslations, ...blogTranslations, ...portfolioTranslations };
 export const translate = (source: string, locale: Locale) => translatedText(source, locale, catalog);
 const attr = (node: Element, name: string) => node.attrs.find(item => item.name === name)?.value;
 const setAttr = (node: Element, name: string, value: string) => {
@@ -59,7 +61,7 @@ export function localizeHTML(html: string, locale: Locale, base: string): string
         const {path} = routeContext(attribute.value,base);
         if (!/^(?:_astro|images|icons)\//.test(path) && !path.endsWith('.md')) attribute.value = languageHref(path,locale,base);
       }
-      if (!skip && ['aria-label','placeholder','alt','title','data-search'].includes(attribute.name)) attribute.value = text(attribute.value);
+      if (!skip && ['aria-label','aria-roledescription','placeholder','alt','title','data-search'].includes(attribute.name)) attribute.value = text(attribute.value);
       if (element.tagName === 'meta' && ['description','og:title','og:description','article:tag'].includes(attr(element,'name') ?? attr(element,'property') ?? '') && attribute.name === 'content') attribute.value = text(attribute.value);
     }
     if (element.tagName === 'time' && attr(element,'datetime')) {

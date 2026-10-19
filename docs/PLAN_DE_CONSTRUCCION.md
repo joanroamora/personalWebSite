@@ -6,9 +6,15 @@
 
 La prioridad inmediata es construir un esqueleto navegable con datos dummy y enlaces de prueba. Todo texto de demostración debe estar marcado como tal y conservarse separado de la información personal futura.
 
-La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Feature8 y Feature9 están integradas en `dev`; esta última incorpora Galactian y Rail Crane. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md). Feature10 incorpora las cuatro fotografías aportadas y, por ampliación posterior, Torque Trail como cuarto juego, en `Feature10-fotografias`. Alcance en [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md) y [TORQUE_TRAIL.md](TORQUE_TRAIL.md). Los textos propios del blog siguen pendientes. El sitio aún no se considera la versión pública definitiva.
+La incorporación se ha adelantado por decisiones del propietario: proyectos reales en Feature4, Cadete Roa en Feature6 y perfil personal en la misma rama de Feature7. Feature8 y Feature9 están integradas en `dev`; esta última incorpora Galactian y Rail Crane. Ver [FEATURE9_JUEGOS.md](FEATURE9_JUEGOS.md). Feature10 incorpora las cuatro fotografías aportadas y, por ampliación posterior, Torque Trail como cuarto juego. Alcance en [FEATURE10_FOTOGRAFIAS.md](FEATURE10_FOTOGRAFIAS.md) y [TORQUE_TRAIL.md](TORQUE_TRAIL.md). Feature11 está integrada en `dev` y amplía el arcade a ocho juegos. Feature12 desarrolla las dos primeras entradas reales del blog. El sitio aún no se considera la versión pública definitiva.
 
 ## 1. Resultado buscado
+
+**Ampliación Feature12:** dos primeras entradas reales del blog, desarrolladas a partir de las propuestas del propietario. Diseño editorial responsive, ilustraciones originales generadas con IA e inspiradas en Toulouse-Lautrec, fuentes primarias y aclaraciones de alcance. Las demos se conservan separadas; la web sigue sin publicarse. Rama `Feature12-blog-editorial`; ver [FEATURE12_BLOG.md](FEATURE12_BLOG.md).
+
+**Segunda ampliación Feature12:** los 27 proyectos reciben una ilustración conceptual original de estética Da Vinci, compartida por catálogo, detalle e Inicio. El destacado rota aleatoriamente cada tres segundos con controles de pausa y siguiente, carga diferida y movimiento reducido. Ver [FEATURE12_PORTAFOLIO.md](FEATURE12_PORTAFOLIO.md).
+
+El propietario autorizó el commit y la integración y push de Feature12 a `dev` el 18 de octubre de 2026, conservando la rama remota de Feature. No autoriza cambios en `main` ni publicación o despliegue.
 
 **Ampliación Feature11:** Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue se implementan en `Feature11-cuatro-juegos`, creada desde `dev` tras Feature10. El catálogo llega a ocho juegos jugables, preservando los tres conceptos dummy. Controles, supuestos y validación en [FEATURE11_JUEGOS.md](FEATURE11_JUEGOS.md). El propietario autorizó su integración y push a `dev`; no incluye publicación ni despliegue.
 
@@ -173,7 +179,7 @@ La numeración de Features cuenta entregas de código: **Feature1** corresponde 
 
 **Objetivo:** sustituir el contenido dummy por la información que el propietario apruebe para publicar.
 
-**Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Feature10 añade las cuatro fotografías aprobadas en Inicio, Sobre mí y Trayectoria, con tamaños adaptables, pies y textos alternativos localizados. Quedan textos propios y revisión de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
+**Estado:** identidad, presentación, biografía, ámbitos, herramientas, trayectoria, formación, certificaciones y contactos ya incorporados en la ampliación autorizada de Feature7. La fuente es `docs/PERFIL_PUBLICO.md`. Feature10 añade las cuatro fotografías aprobadas en Inicio, Sobre mí y Trayectoria, con tamaños adaptables, pies y textos alternativos localizados. Feature12 incorpora dos ensayos propios; queda su revisión editorial y la de la candidata antes de publicar. Ver [CONTENIDO_PERSONAL.md](CONTENIDO_PERSONAL.md).
 
 1. Usar `docs/PERFIL_PUBLICO.md` como fuente principal de la información personal del sitio. El documento aportado por el propietario se conserva junto a los otros Markdown de referencia en `docs/`. Completar únicamente los datos que aporte después: fotografías, frase personal, textos propios y cualquier exclusión de publicación. Conservar la información proporcionada y no inventar campos pendientes.
 2. Reemplazar los textos, fichas, enlaces e imágenes dummy por contenido aprobado.

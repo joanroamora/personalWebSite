@@ -1,6 +1,7 @@
 ---
 import { repositoryName, type Project } from '../data/projects';
 import TechnologyBadge from './TechnologyBadge.astro';
+import ProjectArtwork from './ProjectArtwork.astro';
 import { routeContext } from '../i18n/locales';
 interface Props { project: Project; standalone?: boolean; }
 const { project, standalone = false } = Astro.props;
@@ -14,6 +15,7 @@ const { locale } = routeContext(Astro.url.pathname,import.meta.env.BASE_URL);
   <p class="eyebrow">{project.category}</p>
   <Heading id={`${project.id}-detail-title`} class="detail-title">{project.title}</Heading>
   <p class="detail-repository">{repositoryName(project)}</p>
+  <ProjectArtwork project={project} variant="detail" />
   {project.academic && <aside class="academic-note" aria-label="Contexto académico"><span class="academic-symbol" aria-hidden="true">↗</span><div><p>{project.academic.context}</p><p>{project.academic.institution}</p></div></aside>}
   {locale !== 'es' && <p class="detail-prose">{project.summary}</p>}
   {locale !== 'es' && <details class="original-content"><summary>Descripción original en español</summary><div lang="es" dir="ltr" data-no-translate><div class="detail-prose">{project.description.map(paragraph => <p>{paragraph}</p>)}</div><ul class="detail-highlights">{project.highlights.map(highlight => <li>{highlight}</li>)}</ul></div></details>}

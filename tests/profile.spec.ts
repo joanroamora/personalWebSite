@@ -6,13 +6,15 @@ import { siteConfig } from '../site.config.mjs';
 const profile = parsePublicProfile(readFileSync(new URL('../docs/PERFIL_PUBLICO.md', import.meta.url), 'utf8'));
 const base = siteConfig.base;
 
-test('la identidad y el proyecto destacado son reales; el blog conserva su etiqueta de muestra', async ({ page }) => {
+test('la identidad, el proyecto destacado y la última entrada son reales', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(base);
   await expect(page.locator('.brand')).toContainText(profile.name);
   await expect(page.locator('.hero .lead')).toHaveText(profile.introduction[0]);
   await expect(page.locator('.featured-placeholder h3')).toContainText(profile.featuredProjects[0].name);
   await expect(page.locator('.featured-placeholder a')).toHaveAttribute('href', `${base}proyectos/pdf-roar/`);
-  await expect(page.locator('.latest-placeholder')).toContainText('Texto de muestra');
+  await expect(page.locator('.latest-placeholder')).toContainText('Anatomía de una tragamonedas de bolsillo');
+  await expect(page.locator('.latest-placeholder')).not.toContainText('Texto de muestra');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
   await expect(page).toHaveTitle(new RegExp(profile.name));
   await expect(page.locator('.hero')).not.toContainText('Este podría ser');

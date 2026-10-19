@@ -1,14 +1,13 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { navigation } from '../data/navigation';
-import { publicProfile, featuredProjects } from '../data/profile';
-import TechnologyBadge from '../components/TechnologyBadge.astro';
+import { publicProfile } from '../data/profile';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
 import PersonalPhoto from '../components/PersonalPhoto.astro';
 import PostMeta from '../components/blog/PostMeta.astro';
 import { getBlogPosts } from '../data/blog';
-import { postHref, projectHref, sectionHref, withBase } from '../utils/paths';
+import { postHref, sectionHref, withBase } from '../utils/paths';
 const [latestPost] = await getBlogPosts();
-const [featured] = featuredProjects;
 ---
 
 <SiteLayout title="Inicio">
@@ -44,16 +43,7 @@ const [featured] = featuredProjects;
       <p class="muted">Proyectos propios, experimentos y un cuaderno que empieza a tomar forma.</p>
     </div>
     <div class="highlights-grid">
-      <article class="featured-placeholder" aria-labelledby="featured-title">
-        <div class="featured-orbit" aria-hidden="true"><span></span></div>
-        <div class="highlight-copy">
-          <p class="eyebrow">Proyecto destacado</p>
-          <h3 id="featured-title">{featured.title}</h3>
-          <p>{featured.personalSummary}</p>
-          <ul class="home-technologies" aria-label={`Tecnologías de ${featured.title}`} role="list">{featured.technologies.map(technology => <li><TechnologyBadge name={technology} /></li>)}</ul>
-          <a class="text-link" href={projectHref(featured.id)}>Descubrir el proyecto <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
+      <FeaturedProjects />
       <article class="latest-placeholder" aria-labelledby="latest-title">
         <p class="eyebrow">Última entrada / El cuaderno</p>
         {latestPost ? <>
@@ -101,5 +91,4 @@ const [featured] = featuredProjects;
   .hero-portrait .orbital { position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; overflow:visible; z-index:-1; opacity:.7; }
   .hero-portrait :global(.personal-photo) { max-width:22rem; margin-inline:auto; }
   .personal-perspective { margin-top:1.25rem; font:400 clamp(1.35rem,3vw,2rem)/1.5 var(--font-editorial); letter-spacing:-.02em; }
-  .home-technologies { display:flex; flex-wrap:wrap; gap:.5rem; margin:1.4rem 0 0; padding:0; list-style:none; }
 </style>

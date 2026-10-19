@@ -85,7 +85,10 @@ test('Packet Runner: entrega por enlaces reales, TTL, fallos, récord y nueva pa
 });
 
 test('Orbital Rescue: lanzamiento, inercia, frenado y recogida con teclado @desktop',async({page},testInfo)=>{
- await slowFrames(page);await play(page,'orbital-rescue');await page.keyboard.down('ArrowUp');await page.clock.runFor(2000);await page.keyboard.up('ArrowUp');expect(parseFloat((await page.locator('[data-rescue-speed]').textContent())!)).toBeGreaterThan(25);
+ await slowFrames(page);await play(page,'orbital-rescue');
+ // Assertions and screenshots must not add uncontrolled coasting between burns.
+ await page.clock.pauseAt((await page.evaluate(()=>Date.now()))+100);
+ await page.keyboard.down('ArrowUp');await page.clock.runFor(2000);await page.keyboard.up('ArrowUp');expect(parseFloat((await page.locator('[data-rescue-speed]').textContent())!)).toBeGreaterThan(25);
  await page.keyboard.down('ArrowDown');await page.clock.runFor(4200);await page.keyboard.up('ArrowDown');await expect(page.locator('[data-rescue-passengers]')).toHaveText('1 / 2');expect(parseFloat((await page.locator('[data-rescue-speed]').textContent())!)).toBeLessThan(2);await page.screenshot({path:testInfo.outputPath('orbital-first-rescue.png')});
 });
 

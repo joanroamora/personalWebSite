@@ -1,6 +1,7 @@
 ---
 import { repositoryName, type Project } from '../data/projects';
-import { projectHref, withBase } from '../utils/paths';
+import { projectHref } from '../utils/paths';
+import ProjectArtwork from './ProjectArtwork.astro';
 import TechnologyBadge from './TechnologyBadge.astro';
 import ProjectDetails from './ProjectDetails.astro';
 
@@ -13,10 +14,7 @@ const { project, position } = Astro.props;
 ---
 
 <article id={project.id} class="project-card" aria-labelledby={`${project.id}-title`} data-project-card>
-  {project.image && (
-    <img class="project-image" src={withBase(project.image.path)} alt={project.image.alt}
-      width={project.image.width} height={project.image.height} loading="lazy" decoding="async" />
-  )}
+  <ProjectArtwork project={project} />
   <div class="project-body">
     <div class="project-meta">
       <p class="eyebrow">{project.category}</p>
@@ -54,7 +52,6 @@ const { project, position } = Astro.props;
   .project-title-link::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); z-index: 1; }
   .project-title-link:focus-visible { outline: none; }
   .project-title-link:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 4px; }
-  .project-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0; }
   .project-body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; min-width: 0; padding: var(--space-3); }
   .project-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; width: 100%; }
   .project-meta .eyebrow { font-size: 0.6rem; letter-spacing: 0.06em; line-height: 1.7; }
