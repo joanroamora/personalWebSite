@@ -68,3 +68,11 @@ Primera misión de entrenamiento: dos astronautas cercanos, sin oxígeno limitad
 Resultado local: 66 pruebas de reglas/contenido y 56 casos de navegador de los cuatro conjuntos del arcade. Se corrigió una expectativa antigua de Torque Trail: la prueba separa el frenado antes de una rampa del recorrido completo desde una partida nueva; las físicas no se modificaron. Verificación de tipos sin errores, advertencias ni sugerencias; build, enlaces, aislamiento y presupuestos correctos.
 
 Las pruebas de navegador emulan pantallas y tacto en Chromium; no sustituyen la revisión en dispositivos físicos ni en Safari/Firefox antes de publicar. Las capturas/servidores de comprobación son locales y no forman parte del repositorio. No se han añadido despliegues ni servicios externos.
+
+## Corrección responsive de Orbital Rescue antes de publicar
+
+El fallo de CI se reprodujo forzando objetivo y aviso a dos líneas: en 320 × 568, el HUD terminaba en y=220,98 y el campo comenzaba en y=196,80, un solapamiento real de unos 24 px. Un desplazamiento fijo en rem no reservaba la altura variable del texto entre fuentes y sistemas.
+
+Orbital Rescue usa ahora una cuadrícula interna: HUD de altura intrínseca, campo flexible y controles en su propia fila. Conserva el diálogo externo 9:16 en escritorio y la ventana móvil. En móvil horizontal mantiene tres columnas; la ventana baja de escritorio usa una composición vertical compacta. Se explicitan las alturas de línea y se elimina el desplazamiento fijo del campo; no se modifican físicas, reglas ni el resto de juegos.
+
+Las pruebas toman las tres cajas en una misma lectura de layout y esperan su estabilización tras un cambio de tamaño. Se conservan las mismas tolerancias de separación, el campo mínimo de 40 px y los controles mínimos de 44 px. Una nueva regresión comprueba textos de dos líneas, fuentes Arial/Georgia y tamaños 320 × 568, 768 × 1024 y 844 × 390 en escritorio y táctil. Fallaba antes del ajuste y pasa después. No se omiten pruebas ni se añaden reintentos globales.

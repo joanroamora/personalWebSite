@@ -11,6 +11,19 @@ async function play(page:Page,id:string){
 }
 async function slowFrames(page:Page){await page.clock.install();await page.addInitScript(()=>{window.requestAnimationFrame=callback=>window.setTimeout(()=>callback(performance.now()),100);window.cancelAnimationFrame=window.clearTimeout.bind(window);});}
 async function until(page:Page,selector:string,remaining:number){const value=await page.locator(selector).textContent();const [m,s]=value!.split(':').map(Number);await page.clock.runFor(Math.max(0,(m*60+s-remaining)*1000)+500);}
+async function assertArcadeLayout(page:Page,label:string){
+ await expect(async()=>{
+  // One layout snapshot: resize and HUD updates cannot occur between measurements.
+  const layout=await page.locator('[data-arcade]').evaluate(root=>{
+   const box=(selector:string)=>{const {x,y,width,height}=root.querySelector(selector)!.getBoundingClientRect();return{x,y,width,height};};
+   return{field:box('.arcade-playfield'),hud:box('.arcade-hud'),controls:box('.arcade-controls')};
+  });
+  const {field,hud,controls}=layout,details=`${label}: ${JSON.stringify(layout)}`;
+  expect(field.width,details).toBeGreaterThan(40);expect(field.height,details).toBeGreaterThan(40);
+  expect(field.y+field.height<=controls.y+2||field.x+field.width<=controls.x+2,details).toBe(true);
+  expect(hud.y+hud.height<=field.y+3||hud.x+hud.width<=field.x+2,details).toBe(true);
+ }).toPass({timeout:2000});
+}
 
 for(const [id,title] of entries){
  test(`${title}: contenedor, tutorial, pausa, reinicio, salida y regreso`,async({page},testInfo)=>{
@@ -43,10 +56,7 @@ for(const [id,title] of entries){
   audit=await new AxeBuilder({page}).include('[data-arcade]').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   for(const size of [{width:320,height:568},{width:768,height:1024},{width:844,height:390}]){
    await page.setViewportSize(size);await expect(page.locator('.arcade-stage')).toHaveAttribute('data-phase','running');
-   const field=(await page.locator('.arcade-playfield').boundingBox())!,hud=(await page.locator('.arcade-hud').boundingBox())!,controls=(await page.locator('.arcade-controls').boundingBox())!;
-   expect(field.width).toBeGreaterThan(40);expect(field.height).toBeGreaterThan(40);
-   expect(field.y+field.height<=controls.y+2||field.x+field.width<=controls.x+2).toBe(true);
-   expect(hud.y+hud.height<=field.y+3||hud.x+hud.width<=field.x+2).toBe(true);
+   await assertArcadeLayout(page,`${id} ${size.width}x${size.height}`);
    for(const control of await page.locator('.arcade-controls button').all()){const b=(await control.boundingBox())!;expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);}
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }
@@ -54,6 +64,24 @@ for(const [id,title] of entries){
   await expect(page.locator('.arcade-playfield')).toHaveAttribute('inert','');await page.locator('[data-arcade-exit]').click();await expect(dialog).not.toBeVisible();
  });
 }
+
+test('Orbital Rescue: HUD de dos líneas no invade el campo con distintas fuentes',async({page},testInfo)=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await play(page,'orbital-rescue');
+ await page.clock.install();await page.clock.pauseAt((await page.evaluate(()=>Date.now()))+100);
+ for(const font of ['Arial, sans-serif','Georgia, serif']){
+  for(const size of [{width:320,height:568},{width:768,height:1024},{width:844,height:390}]){
+   await page.setViewportSize(size);
+   await page.locator('[data-arcade]').evaluate((root,font)=>{
+    (root as HTMLElement).style.setProperty('--font-body',font);
+    (root as HTMLElement).style.setProperty('--font-mono','monospace');
+    root.querySelector('[data-rescue-target]')!.textContent='OBJECTIVE 0/2 · A-1 1234m · Turn right 180° · OXYGEN training · Return to Station';
+    root.querySelector('[data-rescue-notice]')!.textContent='Docked and ready. Thrust or Launch begins your flight. Brake before the rescue or docking ring.';
+   },font);
+   await assertArcadeLayout(page,`Orbital Rescue ${size.width}x${size.height} ${font}`);
+  }
+ }
+ await page.screenshot({path:testInfo.outputPath('orbital-long-hud-landscape.png'),animations:'disabled'});
+});
 
 test('Blackout Texas: arrancar, asignar, batería, reparar y terminar la jornada @desktop',async({page},testInfo)=>{
  test.setTimeout(90000);await slowFrames(page);await play(page,'blackout-texas');
