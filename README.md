@@ -1,6 +1,12 @@
 # personalWebSite
 
-Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos y ocho juegos: Cadete Roa, Galactian, Rail Crane, Torque Trail, Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue. El blog y tres conceptos de juegos siguen con muestras identificadas.
+Web personal estática con Astro, preparada para GitHub Pages. Incluye la información personal aportada por el propietario, sus proyectos, dos ensayos y ocho juegos: Cadete Roa, Galactian, Rail Crane, Torque Trail, Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue. Los textos de prueba del blog y tres conceptos de juegos conservan sus avisos de muestra.
+
+## Feature12 — blog editorial y portafolio ilustrado
+
+Dos ensayos a partir de las propuestas del propietario: «Anatomía de una tragamonedas de bolsillo» y «El espejo programado». Portada y lectura responsive, fuentes primarias enlazadas, índice plegable, navegación sin JavaScript e ilustraciones originales generadas con IA e inspiradas en Toulouse-Lautrec. Astro produce WebP/JPEG adaptables y las imágenes para compartir. Los originales extensos permanecen en español, identificados en las seis versiones del sitio. Las demos se conservan en un archivo separado y no desplazan publicaciones reales. El build genera 301 páginas. Alcance, revisión factual y prompts en [docs/FEATURE12_BLOG.md](docs/FEATURE12_BLOG.md). Rama: `Feature12-blog-editorial`; sin publicación ni despliegue.
+
+La ampliación del portafolio incorpora 27 estudios conceptuales originales inspirados en los cuadernos técnicos de Da Vinci: pergamino, tinta sepia y mecanismos relacionados con cada proyecto. Se comparten entre tarjetas, detalle e Inicio. El destacado cambia aleatoriamente cada tres segundos, con pausa, siguiente, movimiento reducido y carga diferida, sin repetir proyectos dentro del ciclo. Alcance y prompts en [docs/FEATURE12_PORTAFOLIO.md](docs/FEATURE12_PORTAFOLIO.md).
 
 ## Feature11 — cuatro nuevos juegos
 
@@ -111,7 +117,7 @@ Flujo: `dev` → `Feature<N>-<descripcion>` → PR a `dev` → PR de `dev` a `ma
 
 GitHub Actions ejecuta `npm ci`, `npm run verify` y las pruebas de navegador en pushes a `Feature*`, `dev` y `main`, y en PR hacia `dev` o `main`. Cada Feature debe pasar estas comprobaciones antes de integrarse.
 
-Feature1 a Feature9 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público; Feature8 incorporó idiomas. El propietario también autorizó la integración y el push de Feature10, que incorpora fotografías, Torque Trail y Flickr, conservando su rama histórica. Quedan textos propios del blog y la revisión final antes de publicar. La integración de cada nueva Feature requiere la decisión del propietario.
+Feature1 a Feature11 ya se integraron en `dev` (el blog de Feature5 se completó después de los juegos). Feature7 incluyó calidad y perfil público; Feature8 incorporó idiomas; Feature10, fotografías, Torque Trail y Flickr; Feature11 amplió el arcade a ocho juegos. Feature12 incorpora dos ensayos, una presentación editorial y el portafolio ilustrado con destacado rotativo; el propietario autorizó su integración y push a `dev`. La integración de cada nueva Feature y la publicación requieren la decisión del propietario; esta aprobación no publica el sitio.
 
 ## Publicación futura en GitHub Pages
 
@@ -145,4 +151,5 @@ Con la variable ausente o desactivada, el workflow omite el despliegue. La docum
 - [Fotografías personales y mantenimiento](docs/FEATURE10_FOTOGRAFIAS.md)
 - [Torque Trail: controles, física y arquitectura](docs/TORQUE_TRAIL.md)
 - [Feature11: cuatro juegos, controles y validación](docs/FEATURE11_JUEGOS.md)
+- [Feature12: blog, fuentes e ilustraciones](docs/FEATURE12_BLOG.md)
 - [Astro: configuración de GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)

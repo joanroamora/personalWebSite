@@ -2,6 +2,8 @@
 
 El blog usa la colección local de Astro declarada en `src/content.config.ts`. Cada entrada es un archivo Markdown en `src/content/blog/`; no requiere editar páginas, el menú ni componentes. El build genera el índice, las rutas de lectura, el índice de apartados, los enlaces entre entradas y la última entrada de Inicio.
 
+Feature12 incorpora las dos primeras entradas reales, a partir de las propuestas del propietario, con ilustraciones originales y fuentes enlazadas. La portada usa `EditorialBlog.astro` cuando existen publicaciones y conserva el formato anterior como alternativa para un blog exclusivamente de muestra. Las demos quedan en un archivo nativo plegable; conservan sus rutas. Alcance, fuentes y prompts en [FEATURE12_BLOG.md](FEATURE12_BLOG.md).
+
 ## Crear una entrada
 
 1. Copiar [la plantilla](plantillas/entrada.md) a `src/content/blog/mi-entrada.md`.
@@ -23,10 +25,16 @@ El archivo de plantilla vive fuera de la colección para que nunca genere una p�
 | `summary` | Resumen obligatorio para índice, Inicio y metadatos |
 | `status` | `draft`, `demo` o `published`; no tiene valor por defecto |
 | `tags` | Lista opcional de temas; si se omite, se usa una lista vacía |
+| `subtitle` | Subtítulo editorial opcional, separado del título |
+| `series` | Serie o agrupación editorial opcional |
+| `takeaway` | Resumen opcional «En una línea», mostrado antes del cuerpo |
+| `cover` | Objeto opcional con `src`, `alt` y `caption`; `src` referencia una imagen local validada por Astro |
 
 Ejemplo de enlace: un `slug: mi-entrada` genera `/personalWebSite/blog/mi-entrada/`. El enlace depende del slug explícito, no del título ni del nombre del archivo. Conservarlo al editar una entrada ya compartida. Un slug duplicado hace fallar el build, incluso si una de las fichas está en borrador.
 
-Las entradas se ordenan de más reciente a más antigua; en fechas iguales se ordenan por slug. La estimación de lectura es orientativa, se calcula sobre el cuerpo a 200 palabras por minuto y no incluye bloques de código. No se carga JavaScript del blog ni del motor de juegos en las páginas de lectura.
+Las publicaciones tienen prioridad sobre las demos, incluso si una demo tiene fecha posterior. Dentro de cada grupo se ordena de más reciente a más antigua y, en fechas iguales, por slug. La navegación anterior/siguiente solo enlaza entradas del mismo estado. La estimación de lectura es orientativa, se calcula sobre el cuerpo a 200 palabras por minuto y no incluye bloques de código. No se carga JavaScript del blog ni del motor de juegos en las páginas de lectura.
+
+Las portadas fuente viven en `src/assets/blog/`. Por ejemplo, `cover.src: ../../assets/blog/mi-portada.png` dentro de un Markdown de la colección. `PostCover.astro` genera WebP/JPEG en varios tamaños, con `sizes`, dimensiones y carga diferida/prioritaria. El texto alternativo y el pie son obligatorios si se declara una portada. Las imágenes generadas se identifican como tales; conservar su procedencia y prompts en la documentación de la Feature. Los cuerpos y pies permanecen en español mientras no existan traducciones extensas aprobadas.
 
 ## Estados y contenido de muestra
 

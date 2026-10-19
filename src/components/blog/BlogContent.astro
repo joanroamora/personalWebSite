@@ -2,11 +2,12 @@
 import type { CollectionEntry } from 'astro:content';
 import { postHref } from '../../utils/paths';
 import PostMeta from './PostMeta.astro';
+import EditorialBlog from './EditorialBlog.astro';
 interface Props { posts: CollectionEntry<'blog'>[]; }
 const { posts } = Astro.props;
 const [latest, ...archive] = posts;
 ---
-{latest ? (
+{posts.some(post=>post.data.status==='published') ? <EditorialBlog posts={posts}/> : latest ? (
   <>
     <article class="featured-post" aria-labelledby="featured-post-title">
       <div class="featured-art" aria-hidden="true">

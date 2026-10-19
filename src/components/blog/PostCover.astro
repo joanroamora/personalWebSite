@@ -1,0 +1,15 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+interface Props { post: CollectionEntry<'blog'>; priority?: boolean; caption?: boolean; sizes?: string; }
+const {post,priority=false,caption=false,sizes='(min-width: 74rem) 66rem, calc(100vw - 2.5rem)'}=Astro.props;
+const cover=post.data.cover;
+---
+{cover && <figure class="post-cover" lang="es" dir="ltr" data-no-translate>
+ <Picture src={cover.src} alt={cover.alt} formats={['webp']} fallbackFormat="jpg" width={1536} widths={[400,640,960,1280,1536]} sizes={sizes} quality={80} loading={priority?'eager':'lazy'} fetchpriority={priority?'high':'auto'} decoding="async" />
+ {caption && <figcaption><span class="cover-credit">Ilustración editorial · Generada con IA</span>{cover.caption}</figcaption>}
+</figure>}
+<style>
+ .post-cover{margin:0;min-width:0;width:100%}.post-cover :global(picture){display:block;overflow:hidden;border-radius:.65rem;background:#172623;aspect-ratio:3/2}.post-cover :global(img){display:block;width:100%;height:100%;object-fit:cover}
+ figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1.5rem;padding-top:1rem;color:var(--muted);font:.7rem/1.65 var(--font-body)}.cover-credit{font:.6rem/1.8 var(--font-mono);color:var(--cyan)}
+</style>

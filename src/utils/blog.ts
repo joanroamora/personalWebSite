@@ -13,7 +13,7 @@ export function selectPosts<T extends { data: PostData }>(posts: readonly T[], i
   }
   return posts
     .filter(({ data }) => data.status === 'published' || (isDemo && data.status === 'demo'))
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.data.slug.localeCompare(b.data.slug, 'es'));
+    .sort((a, b) => Number(b.data.status==='published')-Number(a.data.status==='published') || b.data.date.getTime() - a.data.date.getTime() || a.data.slug.localeCompare(b.data.slug, 'es'));
 }
 
 export function formatPostDate(date: Date): string {
@@ -22,6 +22,13 @@ export function formatPostDate(date: Date): string {
 
 export function postDateISO(date: Date): string {
   return date.toISOString().slice(0, 10);
+}
+
+/** Las publicaciones y los ensayos de formato nunca se mezclan en anterior/siguiente. */
+export function postNeighbors<T extends { data: PostData }>(posts: readonly T[], post: T): { newer?: T; older?: T } {
+  const peers=posts.filter(candidate=>candidate.data.status===post.data.status);
+  const index=peers.findIndex(candidate=>candidate.data.slug===post.data.slug);
+  return index<0?{}:{newer:peers[index-1],older:peers[index+1]};
 }
 
 /** Estimación orientativa calculada en el build, sin código en el navegador. */

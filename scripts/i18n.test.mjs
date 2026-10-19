@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { localizeHTML, translate } from '../src/i18n/render.ts';
+import { blogTranslations } from '../src/i18n/blog.ts';
+import { portfolioTranslations } from '../src/i18n/portfolio.ts';
 import { locales, translatedLocales, languageHref, routeContext } from '../src/i18n/locales.ts';
 import { ui } from '../src/i18n/ui.ts';
 import { profileTranslations } from '../src/i18n/profile.ts';
@@ -11,7 +13,7 @@ import { projects } from '../src/data/projects.ts';
 test('los seis idiomas tienen orden estable, nombres propios y escritura árabe RTL', () => {
   assert.deepEqual(locales.map(locale => locale.code),['en','es','zh','hi','ar','fr']);
   assert.equal(locales.find(locale => locale.code === 'ar').direction,'rtl');
-  for (const catalog of [ui,profileTranslations,projectTranslations,editorialTranslations]) for (const row of Object.values(catalog)) {
+  for (const catalog of [ui,profileTranslations,projectTranslations,editorialTranslations,blogTranslations,portfolioTranslations]) for (const row of Object.values(catalog)) {
     assert.equal(row.length,5); row.forEach(text => assert.ok(typeof text === 'string' && text.trim()));
   }
   for (const project of projects) { assert.ok(summaries[project.id]); assert.ok(projectTitles[project.id]); }

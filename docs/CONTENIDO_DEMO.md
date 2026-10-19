@@ -1,6 +1,6 @@
 # Inventario del esqueleto y contenido dummy
 
-Inicio, Sobre mí, Trayectoria y Contacto ya utilizan la información real de [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), incorporada por petición del propietario en la misma rama de Feature7. Feature10 incorpora sus cuatro fotografías aprobadas. Los proyectos corresponden a la selección aprobada y Cadete Roa es un prototipo jugable. El blog y tres conceptos de juegos conservan sus avisos de muestra.
+Inicio, Sobre mí, Trayectoria y Contacto ya utilizan la información real de [PERFIL_PUBLICO.md](PERFIL_PUBLICO.md), incorporada por petición del propietario en la misma rama de Feature7. Feature10 incorpora sus cuatro fotografías aprobadas. Los proyectos corresponden a la selección aprobada y Cadete Roa es un prototipo jugable. Feature12 añade dos ensayos reales al blog; los textos de prueba y tres conceptos de juegos conservan sus avisos de muestra.
 
 ## Mapa de secciones
 
@@ -8,11 +8,11 @@ Las rutas comparten la base `/personalWebSite/`. El mapa de rutas se mantiene en
 
 | Sección | Ruta relativa | Contenido para su etapa |
 | --- | --- | --- |
-| Inicio | `/` | Presentación y retrato casual reales, pdfRoar destacado y última entrada demo identificada |
+| Inicio | `/` | Presentación y retrato casual reales, pdfRoar destacado y última entrada real del blog |
 | Sobre mí | `/sobre-mi/` | Biografía, ámbitos y herramientas reales; retrato formal aprobado |
 | Proyectos | `/proyectos/` | 27 repositorios reales seleccionados por el propietario, con detalles y contexto académico aprobado |
 | Juegos | `/juegos/` | Ocho juegos jugables, incluidos Blackout Texas, Deploy or Die, Packet Runner y Orbital Rescue desde Feature11; más tres fichas de muestra con rutas propias |
-| Blog | `/blog/` | Entradas Markdown de demostración, resumen y estado |
+| Blog | `/blog/` | Dos ensayos reales con imágenes y fuentes; tres demos en «Archivo de pruebas» y un borrador excluido |
 | Trayectoria | `/trayectoria/` | Experiencias, formación y certificaciones proporcionadas por el propietario, con dos fotografías de contexto |
 | Contacto | `/contacto/` | Correo, LinkedIn, GitHub, Flickr y ubicación general autorizados |
 

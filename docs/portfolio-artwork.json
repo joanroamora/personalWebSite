@@ -1,0 +1,195 @@
+{
+  "mode": "built-in image_gen",
+  "basePrompt": "Use case: stylized-concept. Asset type: landscape portfolio project illustration, 3:2 aspect ratio.\nPrimary request: An original contemporary engineering metaphor drawn with the visual language of Leonardo da Vinci's invention notebooks, not a reproduction of an existing manuscript.\nStyle/medium: meticulous sepia pen-and-ink technical draftsmanship, fine cross-hatching, delicate compass construction lines, small exploded details and sectional views, restrained ochre wash.\nScene/backdrop: warm softly aged ivory parchment, subtle paper grain, clean generous margins.\nComposition: one distinctive central invention with two or three small supporting technical studies, all important details inside the central 80 percent so the drawing reads at card size.\nPalette: warm parchment, walnut-brown ink, muted amber, no bright colors.\nConstraints: beautiful coherent vintage workshop study, no readable text, no labels, no numbers, no signatures, no watermark, no logos, no decorative border, no dark photographic desk, no UI. This is a conceptual illustration, not a factual architecture diagram.\nSubject: ",
+  "assets": [
+    {
+      "id": "rag-document-intelligence",
+      "path": "src/assets/projects/rag-document-intelligence.webp",
+      "description": "Folio, lentes y fragmentos conectados a un archivo de evidencias.",
+      "subject": "An open folio on a mechanical reading desk, pages split into strips which pass through two brass lenses and converge into a small evidence cabinet; threads visibly connect answers back to source pages.",
+      "sourceFile": "exec-0a11aa70-df45-473b-8c8c-34496cf0d4a1.png"
+    },
+    {
+      "id": "k8s-architecture-lab",
+      "path": "src/assets/projects/k8s-architecture-lab.webp",
+      "description": "Cámaras cúbicas y anillos de un clúster mecánico en vista explotada.",
+      "subject": "An exploded spherical orrery assembled from small cubic chambers, circular orchestration rings, repairable joints and a central helm; a coherent mechanical cluster, not an atom symbol.",
+      "sourceFile": "exec-86a7376c-239d-4ac2-9587-eb2deb7fa832.png"
+    },
+    {
+      "id": "scout-pulse-engine",
+      "path": "src/assets/projects/scout-pulse-engine.webp",
+      "description": "Antena y embudos que ordenan señales en un archivo.",
+      "subject": "A delicate directional antenna and three listening funnels collecting scattered marks, sorting them through sieves into a structured archive; a pulse trace on a narrow paper reel.",
+      "sourceFile": "exec-e756553d-003f-4ad5-a98b-80f9cb0d9bff.png"
+    },
+    {
+      "id": "real-state-aux",
+      "path": "src/assets/projects/real-state-aux.webp",
+      "description": "Casa en corte, llave y mecanismo de citas.",
+      "subject": "A cutaway miniature house with doors and rooms, a mechanical assistant arm offering a key, and a small rotating appointment wheel.",
+      "sourceFile": "exec-5c7d71fc-6924-4bd7-ada3-f5bf6ea6577d.png"
+    },
+    {
+      "id": "pdf-roar",
+      "path": "src/assets/projects/pdf-roar.webp",
+      "description": "Prensa y guías mecánicas que separan y reúnen páginas.",
+      "subject": "An ingenious document workshop: open folios, brass cutting guides, a manual binding press, individual pages splitting apart and recombining; one clear central mechanical invention.",
+      "sourceFile": "exec-586f29aa-04f7-40f2-a59e-1084741a501d.png"
+    },
+    {
+      "id": "gridflow-tx",
+      "path": "src/assets/projects/gridflow-tx.webp",
+      "description": "Rotor, placas y batería conectados mediante líneas de energía.",
+      "subject": "An interconnected energy apparatus with a wind rotor, solar collecting plates, an electrochemical battery cross-section and transmission pylons, power flows drawn as fine ink paths.",
+      "sourceFile": "exec-61a9c681-c97f-4811-9405-2e938303736b.png"
+    },
+    {
+      "id": "video-forge",
+      "path": "src/assets/projects/video-forge.webp",
+      "description": "Proyector óptico y fotogramas que forman una cinta de movimiento.",
+      "subject": "An exploded early optical projector with sequential film frames advancing through gears; still image plates transform into a continuous strip of moving images.",
+      "sourceFile": "exec-86398ee8-a462-42e2-ae6a-e459e1deba3f.png"
+    },
+    {
+      "id": "operationalizing-fairness",
+      "path": "src/assets/projects/operationalizing-fairness.webp",
+      "description": "Balanza y lentes para examinar dos recorridos de datos.",
+      "subject": "A precise balance scale integrated with a magnifying lens and two mirrored data sorting chambers, measuring asymmetric weights; a rigorous instrument of auditing, no human subjects.",
+      "sourceFile": "exec-f6e1ca87-f5eb-4311-8d2a-4c6394d2c42e.png"
+    },
+    {
+      "id": "lex-shield",
+      "path": "src/assets/projects/lex-shield.webp",
+      "description": "Escudo mecánico, engranajes y libro de reglas de auditoría.",
+      "subject": "A shield-shaped mechanical inspection gate, small dependency gears entering through it, an open rulebook and a final audit scroll.",
+      "sourceFile": "exec-ba7e6141-c982-40d4-88b1-89e8d44d7efb.png"
+    },
+    {
+      "id": "boris-supers",
+      "path": "src/assets/projects/boris-supers.webp",
+      "description": "Lupa mecánica que organiza fragmentos de expedientes sin datos personales.",
+      "subject": "A brass magnifying apparatus reading a closed administrative folio with entirely abstract blank fields, organizing page fragments into drawers; no confidential content or people.",
+      "sourceFile": "exec-4ee8bda2-5487-4431-aa22-8dc977fca66a.png"
+    },
+    {
+      "id": "voice-clone",
+      "path": "src/assets/projects/voice-clone.webp",
+      "description": "Diafragmas, diapasón y cinta de ondas para estudiar la voz.",
+      "subject": "Two resonant brass diaphragms connected by a dissected waveform ribbon, tuning forks and an acoustic horn; a study of voice timbre as an engineering instrument.",
+      "sourceFile": "exec-4d85f7e8-845f-4ea9-a289-c26233e82c63.png"
+    },
+    {
+      "id": "azure-pilot",
+      "path": "src/assets/projects/azure-pilot.webp",
+      "description": "Autómata de palancas que controla tres módulos de infraestructura.",
+      "subject": "A cloud-shaped brass automaton controlling three separate miniature resource chambers through articulated levers and command cams.",
+      "sourceFile": "exec-6660d7ce-6a35-4690-9d65-4f9c72f240ce.png"
+    },
+    {
+      "id": "azure-atlas",
+      "path": "src/assets/projects/azure-atlas.webp",
+      "description": "Arquitectura en capas con red, cómputo y cámara de datos.",
+      "subject": "An exploded three-tier architectural model with separate foundation networks, computing chambers, a load distribution balance and a protected data vault.",
+      "sourceFile": "exec-41998b43-84b0-4415-8041-2edb1dff46b1.png"
+    },
+    {
+      "id": "code-gate",
+      "path": "src/assets/projects/code-gate.webp",
+      "description": "Cadena de montaje con inspección y entrega de una caja modular.",
+      "subject": "A mechanical assembly line with three distinct stations: source gears, an optical quality inspection gate and a sealed delivery crate; fine arrows show the sequence.",
+      "sourceFile": "exec-a68f5e04-6b0b-4e3d-83cc-354568b92714.png"
+    },
+    {
+      "id": "soundprint",
+      "path": "src/assets/projects/soundprint.webp",
+      "description": "Disco, mecanismo musical y trazos de correlación.",
+      "subject": "A vinyl record dissected into concentric waveform grooves, a small piano key mechanism, a sound horn and geometric correlation plots; a poetic anatomical study of music.",
+      "sourceFile": "exec-30f34092-031b-4e3c-b273-85937b76b321.png"
+    },
+    {
+      "id": "rank-shift",
+      "path": "src/assets/projects/rank-shift.webp",
+      "description": "Plataformas móviles y trayectorias probabilísticas de un ranking.",
+      "subject": "A stepped ranking tower with movable platforms, a probability funnel scattering small beads into alternative paths, repeated faint trajectories showing uncertain positions.",
+      "sourceFile": "exec-7b468872-286d-4617-a82d-b770507ee74d.png"
+    },
+    {
+      "id": "europa-perspectiva",
+      "path": "src/assets/projects/europa-perspectiva.webp",
+      "description": "Mapa de Europa con columnas y trayectorias demográficas.",
+      "subject": "A recognizable unlabeled outline map of Europe overlaid with small population columns and branching demographic trajectories, plus a probability wheel.",
+      "sourceFile": "exec-3d80a04f-2aee-4ce0-8791-b4401f46242a.png"
+    },
+    {
+      "id": "echo-brief",
+      "path": "src/assets/projects/echo-brief.webp",
+      "description": "Bocina y mecanismo que condensan una cinta sonora en pocas hojas.",
+      "subject": "An acoustic horn feeding a long waveform ribbon into a compact mechanical condenser that produces a short stack of abstract text sheets.",
+      "sourceFile": "exec-73a9335b-5680-44c5-94d8-f1092f69aba2.png"
+    },
+    {
+      "id": "voz-de-tinta",
+      "path": "src/assets/projects/voz-de-tinta.webp",
+      "description": "Pluma cuyos trazos pasan por una cámara y se convierten en ondas.",
+      "subject": "A fountain pen laying down abstract ink strokes which transform through a resonant brass chamber into expanding sound waves; a text-to-voice invention.",
+      "sourceFile": "exec-66db691f-9265-46f3-9bf1-8f0414ea64a9.png"
+    },
+    {
+      "id": "audio-a-palabras",
+      "path": "src/assets/projects/audio-a-palabras.webp",
+      "description": "Carrete sonoro, rueda de segmentos y mecanismo de transcripción.",
+      "subject": "A wound audio reel passing through a segmentation wheel into a typewriter-like transcription mechanism, with short paper strips emerging in sequence.",
+      "sourceFile": "exec-2ad6ff05-4c84-4932-bfa8-b47dbe4b532c.png"
+    },
+    {
+      "id": "terra-rag",
+      "path": "src/assets/projects/terra-rag.webp",
+      "description": "Cimientos y corredores separados bajo un pabellón de documentos.",
+      "subject": "A cutaway foundation under a small archive pavilion: private and public corridors, connected chambers, a bridge and protective perimeter; infrastructure as an architectural plan.",
+      "sourceFile": "exec-41c164b3-31f6-40df-90ee-b311d43101d2.png"
+    },
+    {
+      "id": "entre-paginas",
+      "path": "src/assets/projects/entre-paginas.webp",
+      "description": "Páginas fragmentadas sobre una retícula que convergen en una lente.",
+      "subject": "An open book with separated page fragments hovering over a geometric coordinate lattice, a question-shaped curved pointer retrieving matching fragments into a reading lens.",
+      "sourceFile": "exec-f0f9a18d-527d-4822-95a5-0e823dce7abd.png"
+    },
+    {
+      "id": "horizonte-2050",
+      "path": "src/assets/projects/horizonte-2050.webp",
+      "description": "Instrumento energético, globo y curvas de proyección por habitante.",
+      "subject": "An energy surveying instrument facing a small globe, a per-person energy scale and several historical-to-future projection curves; a careful academic engineering study without numerical claims.",
+      "sourceFile": "exec-61331baa-b400-4b33-9b01-7d279fdc714b.png"
+    },
+    {
+      "id": "semilla-rag",
+      "path": "src/assets/projects/semilla-rag.webp",
+      "description": "Semilla mecánica que conecta documentos con un índice geométrico.",
+      "subject": "A small seed-shaped indexing mechanism growing branching document strips into a geometric vector lattice and an organized cabinet of tiny drawers.",
+      "sourceFile": "exec-40018812-38f7-4568-8b10-5ec146d1a45a.png"
+    },
+    {
+      "id": "tinta-visible",
+      "path": "src/assets/projects/tinta-visible.webp",
+      "description": "Lente que transforma marcas de una imagen en tipos móviles.",
+      "subject": "A large optical lens scanning abstract block-like glyphs on a sheet, reconstructing them as clean movable type pieces on the opposite side.",
+      "sourceFile": "exec-74807cd6-5740-40da-a01f-8423286d7c05.png"
+    },
+    {
+      "id": "linux-al-dia",
+      "path": "src/assets/projects/linux-al-dia.webp",
+      "description": "Banco de mantenimiento con engranajes, medidor y cajones de paquetes.",
+      "subject": "A cutaway maintenance workbench with interlocking gears, a diagnostic gauge, wrench and orderly package drawers; a simple repeatable servicing mechanism, no mascot or logo.",
+      "sourceFile": "exec-3e5b479b-cf6b-4140-8698-931e67080da3.png"
+    },
+    {
+      "id": "primeras-maquinas",
+      "path": "src/assets/projects/primeras-maquinas.webp",
+      "description": "Tres cámaras de máquinas dentro de una caja anfitriona en vista explotada.",
+      "subject": "Three miniature virtual machine chambers nested inside a larger transparent host box, an exploded configuration plate and provisioning levers; a local experimental laboratory.",
+      "sourceFile": "exec-51675895-fb57-43da-9803-3fb057dd2c0a.png"
+    }
+  ]
+}

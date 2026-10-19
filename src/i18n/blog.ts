@@ -1,0 +1,26 @@
+import type { Translation } from './locales';
+
+export const blogTranslations: Record<string,Translation> = {
+ 'Bajo el cristal':['Behind the glass','屏幕背后','स्क्रीन के पीछे','خلف الزجاج','Derrière la vitre'],
+ 'Anatomía de una tragamonedas de bolsillo':['Anatomy of a pocket slot machine','口袋老虎机的运作剖析','जेब की स्लॉट मशीन की बनावट','تشريح آلة قمار في الجيب','Anatomie d’une machine à sous de poche'],
+ 'Cómo la ingeniería de datos y la IA compiten por tu atención':['How data engineering and AI compete for your attention','数据工程与人工智能如何争夺你的注意力','डेटा इंजीनियरिंग और एआई आपका ध्यान पाने के लिए कैसे प्रतिस्पर्धा करते हैं','كيف تتنافس هندسة البيانات والذكاء الاصطناعي على انتباهك','Comment l’ingénierie des données et l’IA se disputent votre attention'],
+ 'Del gesto de actualizar el feed a los modelos que deciden qué aparece después: una mirada crítica a la ingeniería de la atención, sin confundir metáforas con neurociencia.':['From refreshing the feed to the models choosing what comes next: a critical look at attention engineering, without confusing metaphor with neuroscience.','从刷新信息流到决定下条内容的模型：审视注意力工程，不将比喻误当作神经科学。','फ़ीड रीफ़्रेश करने से अगली सामग्री चुनने वाले मॉडल तक: रूपक को तंत्रिका-विज्ञान समझे बिना ध्यान की इंजीनियरिंग पर एक आलोचनात्मक नज़र।','من تحديث الخلاصة إلى النماذج التي تختار المحتوى التالي: نظرة نقدية لهندسة الانتباه دون الخلط بين الاستعارة وعلم الأعصاب.','Du geste d’actualisation aux modèles qui choisissent la suite : un regard critique sur l’ingénierie de l’attention, sans confondre métaphore et neurosciences.'],
+ 'El espejo programado':['The programmed mirror','被编程的镜子','प्रोग्राम किया हुआ आईना','المرآة المبرمجة','Le miroir programmé'],
+ 'Visión por computadora, mallas 3D y el negocio de la inseguridad':['Computer vision, 3D meshes and the business of insecurity','计算机视觉、三维网格与不安背后的生意','कंप्यूटर विज़न, 3D मेश और असुरक्षा का कारोबार','الرؤية الحاسوبية والشبكات ثلاثية الأبعاد وتجارة انعدام الثقة','Vision par ordinateur, maillages 3D et commerce de l’insécurité'],
+ 'Los filtros no solo cambian una imagen: pueden cambiar el punto desde el que nos comparamos. Así se conectan la geometría facial, la recomendación y la publicidad personalizada.':['Filters do more than change an image: they can shift the standard we compare ourselves against. How facial geometry, recommendations and personalized advertising connect.','滤镜改变的不只是图像，也可能改变我们衡量自己的标准。探讨面部几何、推荐系统与个性化广告的联系。','फ़िल्टर सिर्फ़ तस्वीर नहीं बदलते: वे तुलना का हमारा मानक भी बदल सकते हैं। चेहरे की ज्यामिति, सुझाव और व्यक्तिगत विज्ञापन के संबंध।','لا تغيّر المرشحات الصورة فقط؛ بل قد تغيّر معيار مقارنتنا بأنفسنا. كيف ترتبط هندسة الوجه والتوصيات والإعلانات المخصصة.','Les filtres ne changent pas seulement une image : ils peuvent déplacer notre référence de comparaison. Géométrie du visage, recommandations et publicité personnalisée se rejoignent.'],
+ 'Inteligencia artificial':['Artificial intelligence','人工智能','कृत्रिम बुद्धिमत्ता','الذكاء الاصطناعي','Intelligence artificielle'],
+ 'Ingeniería de datos':['Data engineering','数据工程','डेटा इंजीनियरिंग','هندسة البيانات','Ingénierie des données'],
+ 'Sociedad digital':['Digital society','数字社会','डिजिटल समाज','المجتمع الرقمي','Société numérique'],
+ 'Visión por computadora':['Computer vision','计算机视觉','कंप्यूटर विज़न','الرؤية الحاسوبية','Vision par ordinateur'],
+ 'Imagen corporal':['Body image','身体意象','शरीर की छवि','صورة الجسد','Image corporelle'],
+ 'Lecturas para mirar de nuevo.':['Reading to see things differently.','换个视角，再看一遍。','नए नज़रिए से देखने के लिए पढ़ें।','قراءات لرؤية الأشياء من جديد.','Des lectures pour changer de regard.'],
+ 'TECNOLOGÍA / PERSONAS / CULTURA':['TECHNOLOGY / PEOPLE / CULTURE','技术 / 人 / 文化','तकनीक / लोग / संस्कृति','تقنية / أشخاص / ثقافة','TECHNOLOGIE / PERSONNES / CULTURE'],
+ 'Leer el ensayo':['Read the essay','阅读文章','निबंध पढ़ें','اقرأ المقال','Lire l’essai'],
+ 'Otra forma de mirar.':['Another way of seeing.','另一种看法。','देखने का एक और तरीका।','طريقة أخرى للنظر.','Une autre façon de voir.'],
+ 'Sin scroll infinito. Una idea merece su propio tiempo.':['No infinite scroll. An idea deserves its own time.','没有无限滚动。让每个想法拥有自己的时间。','अनंत स्क्रॉल नहीं। हर विचार अपने समय का हकदार है।','بلا تمرير لا نهائي. كل فكرة تستحق وقتها.','Pas de défilement infini. Une idée mérite son propre temps.'],
+ 'Archivo de pruebas':['Test archive','测试存档','परीक्षण संग्रह','أرشيف التجارب','Archives de test'],
+ 'Textos de muestra':['Sample texts','示例文章','नमूना लेख','نصوص تجريبية','Textes de démonstration'],
+ 'Estos textos se conservan para probar el formato. No son publicaciones del autor.':['These texts remain for testing the layout. They are not the author’s publications.','这些文章保留用于测试版式，不是作者的正式作品。','ये लेख प्रारूप जाँचने के लिए रखे गए हैं। ये लेखक के प्रकाशन नहीं हैं।','هذه النصوص محفوظة لاختبار التنسيق، وليست منشورات المؤلف.','Ces textes sont conservés pour tester la mise en page. Ce ne sont pas des publications de l’auteur.'],
+ 'Por':['By','作者','लेखक','بقلم','Par'],
+ 'Ensayo de divulgación y opinión':['Explanatory essay and commentary','科普与评论','जानकारी और विचार का निबंध','مقال توضيحي ورأي','Essai de vulgarisation et d’opinion'],
+};

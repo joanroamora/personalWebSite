@@ -21,6 +21,8 @@ Las traducciones son una versión de trabajo para revisión editorial, no una ce
 
 ## Implementación y mantenimiento
 
+Feature12 añade `src/i18n/blog.ts` para títulos, subtítulos, resúmenes, temas y controles de los dos ensayos reales. Se mantiene explícitamente en español el cuerpo extenso, sus fuentes, el resumen «En una línea» y los pies de las ilustraciones. Las rutas y los enlaces entre ensayos se localizan; los originales no se anuncian como traducciones completas. Ver [FEATURE12_BLOG.md](FEATURE12_BLOG.md).
+
 `src/i18n/locales.ts` centraliza códigos, orden, escritura y enlaces. Los catálogos `ui.ts`, `profile.ts`, `projects.ts` y `editorial.ts` permanecen en compilación. `src/middleware.ts` localiza la respuesta HTML durante el prerenderizado: no hay servidor en producción, peticiones a traductores ni un diccionario completo descargado por el visitante.
 
 Las rutas de `src/pages/[locale]/` reutilizan las plantillas actuales por sección. No se importan todas las páginas en un único router: eso cargaría CSS ajeno. El motor del juego sigue aislado en sus seis rutas de Cadete Roa. El build genera 247 documentos: 41 páginas de contenido por seis idiomas y una 404 española.
